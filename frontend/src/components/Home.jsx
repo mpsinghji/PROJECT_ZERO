@@ -28,7 +28,7 @@ const Home = () => {
                 <Title>College Management System</Title>
                 <NavLink as={Link} to="/about-me">About Me</NavLink>
                 <NavLink onClick={()=>handleNavigation("#")}>Still Figuring</NavLink>
-                <NavLink onClick={()=>handleNavigation("#")}>Still Figuring</NavLink>
+                <NavLink as={Link} to ="/admin-register"> Register</NavLink>
             </CollegeInfo>
             <ButtonsContainer onClick={handleLoginClick}>
                 <LoginButton>Sign In</LoginButton>

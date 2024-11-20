@@ -19,8 +19,7 @@ export const Navbar = styled.nav`
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
-    justify-content: space-between;
-
+    align-items: flex-start;
   }
 `;
 

@@ -7,10 +7,11 @@ import {
 } from "../styles/StudentSignInStyles";
 
 const StudentSignIn=()=>{
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleSignIn = () =>{
+        console.log('Student Sign In:', { email, password });
     }
     return (
         <StudentSignInContainer>

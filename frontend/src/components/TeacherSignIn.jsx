@@ -7,11 +7,11 @@ import {
 } from "../styles/TeacherSignInStyles";
 
 const TeacherSignIn=()=>{
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleSignIn = () =>{
-        console.log("Teacher Sign In",{email,password});
+        console.log('Teacher Sign In:', { email, password });
     }
     return (
         <TeacherSignInContainer>
