@@ -23,13 +23,13 @@ const userSchema = new mongoose.Schema({
   rollno: {
     type: String,
     required: function () {
-      return this.role === "student"; // Make rollno required only for students
+      return this.role === "student";
     },
   },
   mobileno: {
     type: String,
     required: function () {
-      return this.role === "student"; // Make mobileno required only for students
+      return this.role === "student";
     },
   },
 });
