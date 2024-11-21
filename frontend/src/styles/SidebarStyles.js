@@ -103,3 +103,31 @@ export const Logo = styled.img`
     transform: scale(1.1);
   }
 `;
+
+export const DropdownMenu = styled.div`
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+    background-color: #1A252F;
+/* Bright white background */
+  // border: 1px solid #ccc; /* Light gray border */
+  // border-radius: 5px;
+  padding: 0.5rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Darker shadow for depth */
+`;
+
+export const DropdownItem = styled.div`
+  padding: 0.7rem; /* Slightly larger padding for better clickability */
+  cursor: pointer;
+  color: #fff; /* Dark text color */
+  font-weight: 500; /* Medium font weight for better readability */
+  border-radius: 3px; /* Rounded edges for a modern look */
+  transition: background 0.3s ease, color 0.3s ease;
+  // text-align:center;
+  margin-left:30px;
+
+  &:hover {
+    background: #007bff; /* Blue hover background */
+    color: #ffffff; /* White text on hover */
+  }
+`;

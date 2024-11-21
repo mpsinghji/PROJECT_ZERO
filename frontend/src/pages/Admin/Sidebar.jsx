@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useState } from "react"; // Import useState
 import {
   SidebarContainer,
   SidebarHeader,
   SidebarNav,
   SidebarNavItem,
   SidebarIcon,
-  Logo
+  Logo,
+  DropdownMenu,
+  DropdownItem
 } from "../../styles/SidebarStyles";
 import { useNavigate } from "react-router-dom";
 import {
   BsGraphUp,
   BsPeople,
-  BsPerson,
   BsFileText,
   BsBook,
   BsGraphDown,
@@ -22,13 +23,21 @@ import {
   BsBoxArrowRight,
 } from "react-icons/bs";
 import { FaUserPlus } from "react-icons/fa";
+import { IoIosArrowDropdown } from "react-icons/io";
+
 
 const AdminSidebar = () => {
   const navigate = useNavigate(); // Using React Router's navigate hook
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State for dropdown visibility
 
   const handleNavigation = (path) => {
     navigate(path); // Navigate to the path passed to the function
   };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev); // Toggle the dropdown visibility
+  };
+
 
   return (
     <SidebarContainer>
@@ -36,26 +45,43 @@ const AdminSidebar = () => {
         <Logo src="../assets/bg1.png" alt="PROJECTZERO" />
       </SidebarHeader>
       <SidebarNav>
-        <SidebarNavItem onClick={() => handleNavigation("/admin-register")}>
-          <SidebarIcon><FaUserPlus /></SidebarIcon>
-          Register
-        </SidebarNavItem>
         <SidebarNavItem onClick={() => handleNavigation("/admin/dashboard")}>
           <SidebarIcon><BsGraphUp /></SidebarIcon>
           Dashboard
         </SidebarNavItem>
+        <SidebarNavItem onClick={toggleDropdown}>
+          <SidebarIcon>
+            <FaUserPlus />
+          </SidebarIcon>
+          Register
+         <IoIosArrowDropdown />
+
+        </SidebarNavItem>
+        {isDropdownOpen && (
+          <DropdownMenu>
+            <DropdownItem onClick={() => handleNavigation("/admin/Students")}>
+              Student
+            </DropdownItem>
+            <DropdownItem onClick={() => handleNavigation("/admin/Teachers")}>
+              Teacher
+            </DropdownItem>
+            <DropdownItem onClick={() => handleNavigation("/admin-register")}>
+              Admin
+            </DropdownItem>
+          </DropdownMenu>
+        )}
         <SidebarNavItem onClick={() => handleNavigation("/admin/Classes")}>
           <SidebarIcon><BsPeople /></SidebarIcon>
           Classes
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/admin/Students")}>
+        {/* <SidebarNavItem onClick={() => handleNavigation("/admin/Students")}>
           <SidebarIcon><BsPeople /></SidebarIcon>
           Students
         </SidebarNavItem>
         <SidebarNavItem onClick={() => handleNavigation("/admin/Teachers")}>
           <SidebarIcon><BsPerson /></SidebarIcon>
           Teachers
-        </SidebarNavItem>
+        </SidebarNavItem> */}
         <SidebarNavItem onClick={() => handleNavigation("/admin/Assignment")}>
           <SidebarIcon><BsFileText /></SidebarIcon>
           Assignment
@@ -98,3 +124,4 @@ const AdminSidebar = () => {
 };
 
 export default AdminSidebar;
+
