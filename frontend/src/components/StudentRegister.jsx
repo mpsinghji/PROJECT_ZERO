@@ -8,7 +8,6 @@ import {
 import Sidebar from "../pages/Admin/Sidebar";
 import styled, { createGlobalStyle } from "styled-components";
 
-
 const ScrollLockStyle = createGlobalStyle`
   html, body {
     margin: 0;
@@ -33,9 +32,11 @@ const ContentWrapper = styled.div`
   align-items: center;
 `;
 
-const AdminRegister = () => {
+const StudentRegister = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rollno, setRollno] = useState('');
+  const [mobileno, setMobileno] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -46,7 +47,9 @@ const AdminRegister = () => {
     const userData = {
       email,
       password,
-      role: "admin",
+      role: "student",
+      rollno,
+      mobileno,
     };
 
     setLoading(true);
@@ -66,7 +69,7 @@ const AdminRegister = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       } else {
         const data = await response.json();
-        setSuccessMessage('Admin successfully registered!');
+        setSuccessMessage('Student successfully registered!');
       }
     } catch (error) {
       setErrorMessage('An error occurred during registration.');
@@ -77,12 +80,12 @@ const AdminRegister = () => {
 
   return (
     <>
-    <ScrollLockStyle />
+    <ScrollLockStyle/>
     <PageWrapper>
-      <Sidebar />
+      <Sidebar /> 
       <ContentWrapper>
         <RegisterContainer>
-          <h2>Register as Admin</h2>
+          <h2>Register Student</h2>
           <FormContainer onSubmit={handleRegister}>
             <InputField
               type="email"
@@ -90,21 +93,35 @@ const AdminRegister = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-            />
+              />
             <InputField
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-            />
+              />
+            <InputField
+              type="text"
+              placeholder="Roll Number"
+              value={rollno}
+              onChange={(e) => setRollno(e.target.value)}
+              required
+              />
+            <InputField
+              type="text"
+              placeholder="Mobile Number"
+              value={mobileno}
+              onChange={(e) => setMobileno(e.target.value)}
+              required
+              />
             <SubmitButton type="submit" disabled={loading}>
               {loading ? "Registering..." : "Register"}
             </SubmitButton>
           </FormContainer>
 
           {(successMessage || errorMessage) && (
-            <div className={`message ${successMessage ? "success" : "error"}`}>
+              <div className={`message ${successMessage ? "success" : "error"}`}>
               {successMessage || errorMessage}
             </div>
           )}
@@ -115,4 +132,4 @@ const AdminRegister = () => {
   );
 };
 
-export default AdminRegister;
+export default StudentRegister;

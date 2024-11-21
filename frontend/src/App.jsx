@@ -5,7 +5,10 @@ import AdminSignIn from "./components/AdminSignIn.jsx";
 import StudentSignIn from "./components/StudentSignIn.jsx";
 import TeacherSignIn from "./components/TeacherSignIn.jsx";
 import AboutMe from "./components/AboutMe.jsx";
-import AdminRegister from "./components/AdminRegister";
+
+import AdminRegister from "./components/AdminRegister.jsx";
+import StudentRegister from "./components/StudentRegister.jsx";
+import TeacherRegister from "./components/TeacherRegister.jsx";
 
 import AdminDashboard from "./pages/Admin/Dashboard.jsx";
 import AdminAnnouncement from "./pages/Admin/Announcement.jsx"
@@ -32,7 +35,6 @@ import ProfileSection from './pages/Students/Profile.jsx';
 import TeacherDashboard from '../src/pages/Teachers/Dashboard';
 import ClassSection from '../src/pages/Teachers/Classes';
 import StudentSection from '../src/pages/Teachers/Students';
-import TeacherSection from '../src/pages/Teachers/Teachers';
 import CheckPerformanceSection from '../src/pages/Teachers/Performance';
 import EventSection from '../src/pages/Teachers/Events';
 import TeacherProfileSection from '../src/pages/Teachers/Profile';
@@ -52,6 +54,8 @@ function App() {
 
           {/* Add the Admin Register route here */}
           <Route exact path="/admin-register" element={<AdminRegister />} />
+          <Route exact path="/teacher-register" element={<TeacherRegister />} />
+          <Route exact path="/student-register" element={<StudentRegister />} />
           
 
           {/* Sign in pages routes */}
@@ -93,7 +97,6 @@ function App() {
           {/* Teachers sections here */}
           <Route exact path="/teacher/classes" element={<ClassSection />} />
           <Route exact path="/teacher/students" element={<StudentSection />} />
-          <Route exact path="/teacher/teachers" element={<TeacherSection />} />
           <Route exact path="/teacher/assignments" element={<AssignmentSection />} />
           <Route exact path="/teacher/exams" element={<CheckExamSection />} />
           <Route exact path="/teacher/performance" element={<CheckPerformanceSection />} />

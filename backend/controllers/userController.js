@@ -5,33 +5,27 @@ import bcrypt from "bcrypt";
 
 export const registerUser = async (req, res) => {
   try {
-    // Parsing body data
-    const { email, password, role = "student" } = req.body;
+    const { email, password, rollno, mobileno } = req.body;
 
-    // Checking the body data
     if (!email || !password) {
       return Response(res, 400, false, message.missingFieldsMessage);
     }
 
-    // Validate role
-    const allowedRoles = ["admin", "student", "teacher"];
-    if (!allowedRoles.includes(role)) {
-      return Response(res, 400, false, "Invalid role provided");
+    const role = "admin"; 
+
+    if (role === "student" && (!rollno || !mobileno)) {
+      return Response(res, 400, false, "Roll number and mobile number are required for students.");
     }
 
-    // Check if user exists
     let user = await User.findOne({ email });
     if (user) {
       return Response(res, 400, false, message.userExistsMessage);
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user
-    user = await User.create({ email, password: hashedPassword, role });
+    user = await User.create({ email, password: hashedPassword, role, rollno, mobileno });
 
-    // Send response
     Response(res, 201, true, message.userCreatedMessage, user._id);
   } catch (error) {
     Response(res, 500, false, error.message);

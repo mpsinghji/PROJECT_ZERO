@@ -89,12 +89,6 @@ const Sidebar = () => {
           </SidebarIcon>
           Students
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/teacher/teachers")}>
-          <SidebarIcon>
-            <BsPerson />
-          </SidebarIcon>
-          Teachers
-        </SidebarNavItem>
         <SidebarNavItem onClick={() => handleNavigation("/teacher/assignments")}>
           <SidebarIcon>
             <BsFileText />
