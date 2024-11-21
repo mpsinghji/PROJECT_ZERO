@@ -5,24 +5,25 @@ import {
   InputField,
   SubmitButton,
 } from "../styles/RegisterStyles";
-import Sidebar from "../pages/Admin/Sidebar"; // Adjust path to Sidebar if necessary
+import Sidebar from "../pages/Admin/Sidebar";
 import styled from "styled-components";
 
-// Wrapper to align Sidebar and AdminRegister content
 const PageWrapper = styled.div`
   display: flex;
 `;
 
 const ContentWrapper = styled.div`
-  flex: 1; /* Allow this section to take remaining width */
+  flex: 1; /* Take the remaining width */
   padding: 20px;
-  background-color: #ecf0f1; /* Light background for content */
-  min-height: 100vh; /* Ensures full height alongside sidebar */
+  background-color: #f7f9fc; /* Light background color */
+  min-height: 100vh; /* Ensure it matches sidebar height */
 `;
 
-const AdminRegister = () => {
+const StudentRegister = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rollno, setRollno] = useState('');
+  const [mobileno, setMobileno] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -33,7 +34,9 @@ const AdminRegister = () => {
     const userData = {
       email,
       password,
-      role: "admin", // Hardcoded to "admin"
+      role: "student",
+      rollno,
+      mobileno,
     };
 
     setLoading(true);
@@ -53,7 +56,7 @@ const AdminRegister = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       } else {
         const data = await response.json();
-        setSuccessMessage('Admin successfully registered!');
+        setSuccessMessage('Student successfully registered!');
       }
     } catch (error) {
       setErrorMessage('An error occurred during registration.');
@@ -64,10 +67,10 @@ const AdminRegister = () => {
 
   return (
     <PageWrapper>
-      <Sidebar />
+      <Sidebar /> 
       <ContentWrapper>
         <RegisterContainer>
-          <h2>Register as Admin</h2>
+          <h2>Register Student</h2>
           <FormContainer onSubmit={handleRegister}>
             <InputField
               type="email"
@@ -81,6 +84,20 @@ const AdminRegister = () => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <InputField
+              type="text"
+              placeholder="Roll Number"
+              value={rollno}
+              onChange={(e) => setRollno(e.target.value)}
+              required
+            />
+            <InputField
+              type="text"
+              placeholder="Mobile Number"
+              value={mobileno}
+              onChange={(e) => setMobileno(e.target.value)}
               required
             />
             <SubmitButton type="submit" disabled={loading}>
@@ -99,4 +116,4 @@ const AdminRegister = () => {
   );
 };
 
-export default AdminRegister;
+export default StudentRegister;

@@ -62,10 +62,10 @@ const AdminSidebar = () => {
             <DropdownItem onClick={() => handleNavigation("/admin-register")}>
               Admin
             </DropdownItem>
-            <DropdownItem onClick={() => handleNavigation("/admin/Students")}>
+            <DropdownItem onClick={() => handleNavigation("/student-register")}>
               Student
             </DropdownItem>
-            <DropdownItem onClick={() => handleNavigation("/admin/Teachers")}>
+            <DropdownItem onClick={() => handleNavigation("/teacher-register")}>
               Teacher
             </DropdownItem>
           </DropdownMenu>

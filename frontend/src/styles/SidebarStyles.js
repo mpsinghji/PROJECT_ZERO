@@ -1,4 +1,3 @@
-// SidebarStyles.js
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -7,31 +6,25 @@ export const SidebarContainer = styled.div`
   top: 0;
   left: 0;
   width: 250px;
-  height: 100%;
+  height: 92%;
   background-color: #1A252F;
   color: #ECF0F1;
-  // overflow-y: auto; /* Allow vertical scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
   padding-top: 70px;
   z-index: 100;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
   transition: width 0.3s ease-in-out;
 
-  /* Add scrollbar styling */
+  /* Hide the scrollbar */
   ::-webkit-scrollbar {
-    width: 8px; /* Customize scrollbar width */
+    display: none; /* Hides the scrollbar completely */
   }
 
-  ::-webkit-scrollbar-thumb {
-    background-color: #34495E; /* Customize scrollbar color */
-    border-radius: 10px; /* Rounded scrollbar */
-  }
+  /* For Firefox */
+  scrollbar-width: none; /* Hides the scrollbar in Firefox */
 
   &:hover {
     width: 260px;
-  }
-  
-  @media screen and (max-height: 700px) {
-    padding-top: 50px; /* Reduce padding for small screens */
   }
 `;
 

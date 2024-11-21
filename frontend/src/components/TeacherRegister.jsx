@@ -5,22 +5,21 @@ import {
   InputField,
   SubmitButton,
 } from "../styles/RegisterStyles";
-import Sidebar from "../pages/Admin/Sidebar"; // Adjust path to Sidebar if necessary
+import Sidebar from "../pages/Admin/Sidebar";
 import styled from "styled-components";
 
-// Wrapper to align Sidebar and AdminRegister content
 const PageWrapper = styled.div`
   display: flex;
 `;
 
 const ContentWrapper = styled.div`
-  flex: 1; /* Allow this section to take remaining width */
+  flex: 1; /* Take the remaining width */
   padding: 20px;
-  background-color: #ecf0f1; /* Light background for content */
-  min-height: 100vh; /* Ensures full height alongside sidebar */
+  background-color: #f7f9fc; /* Light background color */
+  min-height: 100vh; /* Ensure it matches sidebar height */
 `;
 
-const AdminRegister = () => {
+const TeacherRegister = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -33,7 +32,7 @@ const AdminRegister = () => {
     const userData = {
       email,
       password,
-      role: "admin", // Hardcoded to "admin"
+      role: "teacher", 
     };
 
     setLoading(true);
@@ -53,7 +52,7 @@ const AdminRegister = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       } else {
         const data = await response.json();
-        setSuccessMessage('Admin successfully registered!');
+        setSuccessMessage('Teacher successfully registered!');
       }
     } catch (error) {
       setErrorMessage('An error occurred during registration.');
@@ -67,7 +66,7 @@ const AdminRegister = () => {
       <Sidebar />
       <ContentWrapper>
         <RegisterContainer>
-          <h2>Register as Admin</h2>
+          <h2>Register as Teacher</h2>
           <FormContainer onSubmit={handleRegister}>
             <InputField
               type="email"
@@ -99,4 +98,4 @@ const AdminRegister = () => {
   );
 };
 
-export default AdminRegister;
+export default TeacherRegister;
