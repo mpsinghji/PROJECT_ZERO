@@ -7,16 +7,26 @@ export const ChooseUserContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100vh;
-  padding: 20px;
+  padding: 2em; /* Use em unit for padding */
   background-color: #f0f8ff; /* Light pastel blue background for a calming effect */
   
   @media screen and (min-width: 768px) {
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
-    padding: 40px;
+    padding: 4em; /* Increase padding for larger screens */
   }
-`;
+  
+  @media screen and (max-width: 480px) {
+    padding: 1em; /* Decrease padding for smaller screens */
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+  }
+  
+  @media screen and (min-width: 481px) and (max-width: 767px) {
+    padding: 2em; /* Adjust padding for tablet screen sizes */
+    flex-direction: column; /* Stack elements vertically on tablet screen sizes */
+  }
+`
 
 export const UserSection = styled.div`
   text-align: center;

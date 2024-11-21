@@ -5,6 +5,7 @@ import AdminSignIn from "./components/AdminSignIn.jsx";
 import StudentSignIn from "./components/StudentSignIn.jsx";
 import TeacherSignIn from "./components/TeacherSignIn.jsx";
 import AboutMe from "./components/AboutMe.jsx";
+import AdminRegister from "./components/AdminRegister";
 
 import AdminDashboard from "./pages/Admin/Dashboard.jsx";
 import AdminAnnouncement from "./pages/Admin/Announcement.jsx"
@@ -48,6 +49,9 @@ function App() {
           <Route path='/' element ={<Home/>}/>
           <Route path='/choose-user' element={<ChooseUser/>}/>
           <Route path="/about-me" element={<AboutMe />} />
+
+          {/* Add the Admin Register route here */}
+          <Route exact path="/admin-register" element={<AdminRegister />} />
           
 
           {/* Sign in pages routes */}

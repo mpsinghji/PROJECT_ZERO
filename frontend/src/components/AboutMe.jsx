@@ -42,8 +42,6 @@ const AboutMe = () => {
         <ListItem>Photography</ListItem>
         <ListItem>Traveling</ListItem>
       </List>
-
-      
     </AboutContainer>
   );
 };

@@ -21,6 +21,7 @@ import {
   BsCalendarEvent,
   BsBoxArrowRight,
 } from "react-icons/bs";
+import { FaUserPlus } from "react-icons/fa";
 
 const AdminSidebar = () => {
   const navigate = useNavigate(); // Using React Router's navigate hook
@@ -35,6 +36,10 @@ const AdminSidebar = () => {
         <Logo src="../assets/bg1.png" alt="PROJECTZERO" />
       </SidebarHeader>
       <SidebarNav>
+        <SidebarNavItem onClick={() => handleNavigation("/admin-register")}>
+          <SidebarIcon><FaUserPlus /></SidebarIcon>
+          Register
+        </SidebarNavItem>
         <SidebarNavItem onClick={() => handleNavigation("/admin/dashboard")}>
           <SidebarIcon><BsGraphUp /></SidebarIcon>
           Dashboard
