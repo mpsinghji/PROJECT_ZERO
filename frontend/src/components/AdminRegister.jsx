@@ -5,19 +5,32 @@ import {
   InputField,
   SubmitButton,
 } from "../styles/RegisterStyles";
-import Sidebar from "../pages/Admin/Sidebar"; // Adjust path to Sidebar if necessary
-import styled from "styled-components";
+import Sidebar from "../pages/Admin/Sidebar";
+import styled, { createGlobalStyle } from "styled-components";
 
-// Wrapper to align Sidebar and AdminRegister content
+
+const ScrollLockStyle = createGlobalStyle`
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling globally */
+  }
+`;
+
 const PageWrapper = styled.div`
   display: flex;
+  height: 100vh; /* Full height of the viewport */
+  width: 100vw; /* Full width of the viewport */
+  overflow: hidden; /* Prevent any scrolling */
 `;
 
 const ContentWrapper = styled.div`
   flex: 1; /* Allow this section to take remaining width */
-  padding: 20px;
   background-color: #ecf0f1; /* Light background for content */
-  min-height: 100vh; /* Ensures full height alongside sidebar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const AdminRegister = () => {
@@ -33,7 +46,7 @@ const AdminRegister = () => {
     const userData = {
       email,
       password,
-      role: "admin", // Hardcoded to "admin"
+      role: "admin",
     };
 
     setLoading(true);
@@ -63,6 +76,8 @@ const AdminRegister = () => {
   };
 
   return (
+    <>
+    <ScrollLockStyle />
     <PageWrapper>
       <Sidebar />
       <ContentWrapper>
@@ -96,6 +111,7 @@ const AdminRegister = () => {
         </RegisterContainer>
       </ContentWrapper>
     </PageWrapper>
+    </>
   );
 };
 
