@@ -4,12 +4,13 @@ import {
   FormContainer,
   InputField,
   SubmitButton,
+  PageWrapper,
+  ContentWrapper,
 } from "../styles/RegisterStyles";
 import Sidebar from "../pages/Admin/Sidebar";
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
-
-const ScrollLockStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   html, body {
     margin: 0;
     padding: 0;
@@ -18,20 +19,6 @@ const ScrollLockStyle = createGlobalStyle`
   }
 `;
 
-const PageWrapper = styled.div`
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-`;
-
-const ContentWrapper = styled.div`
-  flex: 1; 
-  background-color: #ecf0f1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 const AdminRegister = () => {
   const [email, setEmail] = useState('');
@@ -77,7 +64,7 @@ const AdminRegister = () => {
 
   return (
     <>
-    <ScrollLockStyle />
+    <GlobalStyle />
     <PageWrapper>
       <Sidebar />
       <ContentWrapper>

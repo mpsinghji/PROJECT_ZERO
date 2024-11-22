@@ -15,13 +15,21 @@ export const RegisterContainer = styled.div`
   overflow: hidden; 
 `;
 
-export const ScrollLockStyle = `
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden; 
-  }
+
+
+export const PageWrapper = styled.div`
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+`;
+
+export const ContentWrapper = styled.div`
+  flex: 1; 
+  background-color: #ecf0f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const PageHeading = styled.h2`
