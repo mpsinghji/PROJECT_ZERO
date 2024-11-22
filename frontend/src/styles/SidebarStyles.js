@@ -9,19 +9,17 @@ export const SidebarContainer = styled.div`
   height: 92%;
   background-color: #1A252F;
   color: #ECF0F1;
-  overflow-y: auto; /* Allow vertical scrolling */
+  overflow-y: auto; 
   padding-top: 70px;
   z-index: 100;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
   transition: width 0.3s ease-in-out;
 
-  /* Hide the scrollbar */
   ::-webkit-scrollbar {
-    display: none; /* Hides the scrollbar completely */
+    display: none;
   }
 
-  /* For Firefox */
-  scrollbar-width: none; /* Hides the scrollbar in Firefox */
+  scrollbar-width: none; 
 
   &:hover {
     width: 260px;
@@ -62,8 +60,8 @@ export const SidebarNavItem = styled.li`
   }
   
   @media screen and (max-height: 700px) {
-    padding: 10px 15px; /* Reduce padding on smaller height screens */
-    font-size: 16px; /* Adjust font size */
+    padding: 10px 15px; 
+    font-size: 16px; 
   }
 `;
 
@@ -103,25 +101,24 @@ export const DropdownMenu = styled.div`
   display: flex;
   flex-direction: column;
     background-color: #1A252F;
-/* Bright white background */
-  // border: 1px solid #ccc; /* Light gray border */
+  // border: 1px solid #ccc; 
   // border-radius: 5px;
   padding: 0.5rem;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Darker shadow for depth */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
 `;
 
 export const DropdownItem = styled.div`
-  padding: 0.7rem; /* Slightly larger padding for better clickability */
+  padding: 0.7rem; 
   cursor: pointer;
-  color: #fff; /* Dark text color */
-  font-weight: 500; /* Medium font weight for better readability */
-  border-radius: 3px; /* Rounded edges for a modern look */
+  color: #fff; 
+  font-weight: 500; 
+  border-radius: 3px; 
   transition: background 0.3s ease, color 0.3s ease;
   // text-align:center;
   margin-left:30px;
 
   &:hover {
-    background: #007bff; /* Blue hover background */
-    color: #ffffff; /* White text on hover */
+    background: #007bff; 
+    color: #ffffff; 
   }
 `;

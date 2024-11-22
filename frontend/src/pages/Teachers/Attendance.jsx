@@ -1,6 +1,4 @@
-// CheckAttendanceSection.js
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Sidebar from "./Sidebar";
 import {
   Content,
@@ -10,7 +8,6 @@ import {
   AttendanceItem,
   StudentName,
   CheckboxLabel,
-  Divider,
   SubmitButton,
 } from '../../styles/AttendanceStyles';
 import styled from "styled-components";

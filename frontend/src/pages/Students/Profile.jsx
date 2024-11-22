@@ -1,4 +1,3 @@
-// ProfileSection.js
 import React from 'react';
 import Sidebar from './Sidebar';
 import {
@@ -13,7 +12,6 @@ import {
 } from '../../styles/SettingsProfileStyles';
 
 const ProfileSection = () => {
-  // Sample student profile data
   const studentProfile = {
     name: 'John Doe',
     RollNo: 18,

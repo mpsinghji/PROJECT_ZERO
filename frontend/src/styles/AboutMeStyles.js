@@ -7,8 +7,8 @@ export const AboutContainer = styled.div`
   justify-content: center;
   min-height: 100vh;
   padding: 40px;
-  background: linear-gradient(135deg, #6DD5FA, #FFFFFF); /* Gradient background */
-  background-attachment: fixed; /* Keeps the background fixed while scrolling */
+  background: linear-gradient(135deg, #6DD5FA, #FFFFFF);
+  background-attachment: fixed;
   font-family: Arial, sans-serif;
 
   @media (max-width: 768px) {
@@ -21,10 +21,10 @@ export const ProfileSection = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 30px;
-  background: rgba(255, 255, 255, 0.9); /* White background with opacity */
+  background: rgba(255, 255, 255, 0.9); 
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Slight shadow for elevation */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -60,7 +60,7 @@ export const Title = styled.h1`
   color: #333;
   font-size: 36px;
   margin-bottom: 30px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
 
   @media (max-width: 768px) {
     font-size: 28px;

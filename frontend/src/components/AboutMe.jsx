@@ -15,9 +15,7 @@ const AboutMe = () => {
     <AboutContainer>
       <Title>About Me</Title>
 
-      {/* Profile section */}
       <ProfileSection>
-        {/* <ProfileImage src={ProfilePic} alt="Profile" /> */}
         <Bio>
           Hi, I'm Manpreet Singh, a passionate developer and tech enthusiast.
           I'm currently studying at Chitkara University, working on various
@@ -26,7 +24,6 @@ const AboutMe = () => {
         </Bio>
       </ProfileSection>
 
-      {/* Skills Section */}
       <SectionTitle>Skills</SectionTitle>
       <List>
         <ListItem>JavaScript (React, Node.js, Express)</ListItem>
@@ -35,7 +32,6 @@ const AboutMe = () => {
         <ListItem>Version Control (Git/GitHub)</ListItem>
       </List>
 
-      {/* Hobbies Section */}
       <SectionTitle>Hobbies</SectionTitle>
       <List>
         <ListItem>Playing Volleyball and Chess</ListItem>

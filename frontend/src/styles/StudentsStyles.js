@@ -1,4 +1,3 @@
-// StudentsStyles.js
 import styled from 'styled-components';
 
 export const StudentsContainer = styled.div`

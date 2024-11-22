@@ -1,13 +1,10 @@
-// AssignmentSection.js
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Sidebar from "./Sidebar";
 import {
   Content,
   AssignmentsContent,
   AssignmentsHeader,
   AssignmentList,
-  AssignmentItem,
   AddAssignmentForm,
   AddAssignmentInput,
   AddAssignmentTextArea,

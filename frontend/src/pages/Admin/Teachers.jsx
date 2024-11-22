@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import AdminSidebar from "./Sidebar";
 import {
   TeachersContainer,
@@ -7,7 +6,6 @@ import {
   TeachersContent,
   TeachersHeader,
   TeacherList,
-  TeacherItem,
   AddTeacherForm,
   AddTeacherInput,
   AddTeacherButton,

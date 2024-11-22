@@ -3,16 +3,12 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import {
   BsGraphUp,
-  BsPeople,
-  BsPerson,
   BsFileText,
   BsBook,
   BsGraphDown,
   BsCalendar,
   BsGear,
   BsChatDots,
-  BsCalendarEvent,
-  BsQuestionSquare,
   BsBoxArrowRight,
 } from "react-icons/bs";
 import {
@@ -31,20 +27,19 @@ export const SidebarContainer = styled.div`
   height: 100%;
   background-color: #1A252F;
   color: #ECF0F1;
-  // overflow-y: auto; /* Allow vertical scrolling */
+  // overflow-y: auto; 
   padding-top: 70px;
   z-index: 100;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
   transition: width 0.3s ease-in-out;
 
-  /* Add scrollbar styling */
   ::-webkit-scrollbar {
-    width: 8px; /* Customize scrollbar width */
+    width: 8px; 
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #34495E; /* Customize scrollbar color */
-    border-radius: 10px; /* Rounded scrollbar */
+    background-color: #34495E;
+    border-radius: 10px; 
   }
 
   &:hover {
@@ -52,15 +47,15 @@ export const SidebarContainer = styled.div`
   }
   
   @media screen and (max-height: 700px) {
-    padding-top: 50px; /* Reduce padding for small screens */
+    padding-top: 50px; 
   }
 `;
 
 const Sidebar = () => {
-  const navigate = useNavigate(); // Using React Router's navigate hook
+  const navigate = useNavigate();
 
   const handleNavigation = (path) => {
-    navigate(path); // Navigate to the path passed to the function
+    navigate(path); 
   };
 
   return (

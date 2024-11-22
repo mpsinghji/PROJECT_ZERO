@@ -1,4 +1,3 @@
-// TeacherProfileSection.js
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import { ProfileContainer, SidebarContainer, Content, ProfileHeader, ProfileDetails, ProfileLabel, ProfileInfo, EditButton } 

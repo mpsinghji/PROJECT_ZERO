@@ -23,8 +23,6 @@ const EventSection = () => {
         <h1>Events & Calendar</h1>
         <div>Current Time: {new Date().toLocaleString()}</div>
         <CalendarContainer>
-          {/* Display Calendar Here */}
-          {/* For example: <Calendar /> */}
           Calendar
         </CalendarContainer>
         <h2>Add New Event</h2>

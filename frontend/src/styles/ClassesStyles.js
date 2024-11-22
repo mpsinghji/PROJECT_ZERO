@@ -1,10 +1,9 @@
-// ClassesStyles.js
 import styled from 'styled-components';
 
 export const ClassesContainer = styled.div`
   display: flex;
   padding-left: 40px;
-  margin-left: 200px;       //code by me
+  margin-left: 200px;       
 
   @media screen and (max-width: 768px) {
     flex-direction: column;

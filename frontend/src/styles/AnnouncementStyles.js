@@ -1,4 +1,3 @@
-// AnnouncementStyles.js
 import styled from 'styled-components';
 
 export const AnnouncementContainer = styled.div`
@@ -65,7 +64,7 @@ export const AnnouncementContent = styled.p`
 `;
 
 export const SidebarContainer = styled.div`
-  flex: 0 0 250px; /* Sidebar width */
+  flex: 0 0 250px; 
 `;
 
 

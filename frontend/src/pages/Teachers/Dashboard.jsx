@@ -1,4 +1,3 @@
-// TeacherDashboard.js
 import React from "react";
 import Sidebar from "./Sidebar";
 import {
@@ -37,15 +36,12 @@ const TeacherDashboard = () => {
 
         <Section>
           <SectionTitle>Recent Activity</SectionTitle>
-          {/* Add a list of recent activity items */}
         </Section>
 
         <Section>
           <SectionTitle>Upcoming Events</SectionTitle>
-          {/* Add a calendar or list of upcoming events */}
         </Section>
 
-        {/* Add more sections for other parts of the admin dashboard */}
       </Content>
     </TeacherDashboardContainer>
   );

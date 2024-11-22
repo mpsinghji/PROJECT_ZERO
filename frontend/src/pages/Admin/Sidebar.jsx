@@ -74,14 +74,6 @@ const AdminSidebar = () => {
           <SidebarIcon><BsPeople /></SidebarIcon>
           Classes
         </SidebarNavItem>
-        {/* <SidebarNavItem onClick={() => handleNavigation("/admin/Students")}>
-          <SidebarIcon><BsPeople /></SidebarIcon>
-          Students
-        </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/admin/Teachers")}>
-          <SidebarIcon><BsPerson /></SidebarIcon>
-          Teachers
-        </SidebarNavItem> */}
         <SidebarNavItem onClick={() => handleNavigation("/admin/Assignment")}>
           <SidebarIcon><BsFileText /></SidebarIcon>
           Assignment

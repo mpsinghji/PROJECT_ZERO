@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import AdminSidebar from "./Sidebar";
 import styled from "styled-components";
 import {
@@ -7,7 +6,6 @@ import {
   AssignmentsContent,
   AssignmentsHeader,
   AssignmentList,
-  AssignmentItem,
   AddAssignmentForm,
   AddAssignmentInput,
   AddAssignmentTextArea,
