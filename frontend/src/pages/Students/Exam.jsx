@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import Sidebar from './Sidebar';
-import { Bar } from 'react-chartjs-2'; 
 import {
   ExamContainer,
   SidebarContainer,
@@ -15,13 +14,11 @@ import {
 const ExamSection = () => {
   const chartRef = useRef(null);
 
-  // Sample exam results data
   const examResultsData = {
     subjects: ['Math', 'Science', 'English', 'History'],
-    results: [80, 75, 90, 85] // Sample results out of 100
+    results: [80, 75, 90, 85]
   };
 
-  // Bar chart data
   const barChartData = {
     labels: examResultsData.subjects,
     datasets: [
@@ -37,7 +34,6 @@ const ExamSection = () => {
     ]
   };
 
-  // Chart options
   const chartOptions = {
     scales: {
       y: {
@@ -63,11 +59,7 @@ const ExamSection = () => {
             </div>
           ))}
           <ExamChartContainer>
-            {/* <Bar
-              ref={chartRef}
-              data={barChartData}
-              options={chartOptions}
-            /> */}
+
           </ExamChartContainer>
         </ExamResultsContainer>
       </Content>

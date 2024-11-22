@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import AdminSidebar from "./Sidebar";
 import {
   EventCalendarContainer,
   Content,
   CalendarContainer,
   Events,
-  Event,
   AddEventForm,
   EventInput,
   AddEventButton,
-  ErrorText,
 } from '../../styles/EventCalendarStyles';
 
 

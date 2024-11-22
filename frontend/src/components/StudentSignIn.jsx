@@ -5,7 +5,16 @@ import {
   InputField,
   SubmitButton,
 } from "../styles/StudentSignInStyles";
+import { createGlobalStyle } from "styled-components";
 
+export const GlobalStyle = createGlobalStyle`
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+`;
 const StudentSignIn=()=>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -14,6 +23,8 @@ const StudentSignIn=()=>{
         console.log('Student Sign In:', { email, password });
     }
     return (
+        <>
+        <GlobalStyle/>
         <StudentSignInContainer>
             <h2>Student Sign In</h2>
             <FormContainer>
@@ -30,10 +41,11 @@ const StudentSignIn=()=>{
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                     required
-                />
+                    />
                 <SubmitButton to="/student/dashboard" onClick={handleSignIn}>Sign In</SubmitButton>
             </FormContainer>
         </StudentSignInContainer>
+        </>
     )
 }
 

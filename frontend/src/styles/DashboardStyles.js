@@ -1,4 +1,3 @@
-// AdminDashboardStyles.js
 import styled from 'styled-components';
 
 export const AdminDashboardContainer = styled.div`
@@ -16,7 +15,7 @@ export const Content = styled.div`
 export const TopContent = styled.div`
   display: flex;
   gap: 20px;
-  flex: 1; /* Take remaining space */
+  flex: 1; 
 `;
 
 export const BottomContent = styled.div`
@@ -31,13 +30,13 @@ export const BottomContent = styled.div`
 
 export const Section = styled.section`
   margin-bottom: 40px;
-  flex: 1; /* Make the sections expand to fill the available space */
+  flex: 1; 
 `;
 
 export const SectionTitle = styled.h2`
   font-size: 24px;
   margin-bottom: 20px;
-  color: #333333; /* Darker text color */
+  color: #333333; 
 `;
 
 export const CardContainer = styled.div`

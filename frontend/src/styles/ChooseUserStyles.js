@@ -7,39 +7,46 @@ export const ChooseUserContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100vh;
-  padding: 2em; /* Use em unit for padding */
-  background-color: #f0f8ff; /* Light pastel blue background for a calming effect */
-  
+  padding: 2em;
+  background-color: #f0f8ff;
+
   @media screen and (min-width: 768px) {
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
-    padding: 4em; /* Increase padding for larger screens */
+    padding: 4em;
   }
-  
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3em;
+  }
+
   @media screen and (max-width: 480px) {
-    padding: 1em; /* Decrease padding for smaller screens */
-    flex-direction: column; /* Stack elements vertically on smaller screens */
+    padding: 1em;
   }
-  
+
   @media screen and (min-width: 481px) and (max-width: 767px) {
-    padding: 2em; /* Adjust padding for tablet screen sizes */
-    flex-direction: column; /* Stack elements vertically on tablet screen sizes */
+    padding: 2em;
   }
-`
+`;
+
+
 
 export const UserSection = styled.div`
   text-align: center;
   padding: 30px 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  background-color: #ffffff; /* White background for contrast */
+  background-color: #ffffff; 
   width: 90%;
   max-width: 300px;
   transition: transform 0.2s ease;
 
   &:hover {
-    transform: translateY(-5px); /* Adds a slight hover lift */
+    transform: translateY(-5px); 
   }
 
   @media screen and (min-width: 768px) {
@@ -53,7 +60,7 @@ export const Title = styled.h2`
   font-size: 26px;
   font-weight: bold;
   margin-bottom: 25px;
-  color: #ff6347; /* Coral color for warmth and friendliness */
+  color: #34495e; 
   text-transform: uppercase;
 
   @media screen and (max-width: 768px) {
@@ -62,7 +69,7 @@ export const Title = styled.h2`
 `;
 
 export const Button = styled(Link)`
-  background-color: #1e3a8a; /* Navy blue for a more professional look */
+  background-color: #128670; 
   color: white;
   border: none;
   padding: 15px 25px;
@@ -75,12 +82,12 @@ export const Button = styled(Link)`
   transition: background-color 0.3s ease, transform 0.2s ease;
 
   &:hover {
-    background-color: #3b5998; /* Lighter blue on hover */
+    background-color: #1abc9c; 
     transform: translateY(-3px);
   }
 
   &:active {
-    background-color: #27477a; /* Darker shade when pressed */
+    background-color: #27477a; 
     transform: translateY(0);
   }
 

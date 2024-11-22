@@ -5,23 +5,31 @@ export const RegisterContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Full viewport height */
-  min-width: 100vw; /* Full viewport width */
-  background: #ecf0f1; /* Light background to fill the screen */
+  min-height: 100vh; 
+  min-width: 100vw; 
+  background: #ecf0f1; 
   font-family: "Arial", sans-serif;
   color: #000;
-  margin: 0; /* Remove any margin to avoid unwanted space */
-  padding: 0; /* Remove padding */
-  overflow: hidden; /* Prevent scrolling */
+  margin: 0; 
+  padding: 0; 
+  overflow: hidden; 
 `;
 
-export const ScrollLockStyle = `
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden; /* Prevent scrolling on the page */
-  }
+
+
+export const PageWrapper = styled.div`
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+`;
+
+export const ContentWrapper = styled.div`
+  flex: 1; 
+  background-color: #ecf0f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const PageHeading = styled.h2`
@@ -30,7 +38,7 @@ export const PageHeading = styled.h2`
   text-align: center;
   color: #2c3e50;
   padding: 0 10px;
-  max-width: 90%; /* Limit width to prevent stretching on large screens */
+  max-width: 90%; 
   box-sizing: border-box;
 `;
 
@@ -39,7 +47,7 @@ export const FormContainer = styled.form`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 450px; /* Restrict width for larger screens */
+  max-width: 450px; 
   background: #34495e;
   padding: 30px;
   border-radius: 10px;

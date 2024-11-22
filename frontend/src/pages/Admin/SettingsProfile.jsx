@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import AdminSidebar from "./Sidebar";
 import {
   ProfileContainer,
@@ -10,7 +9,7 @@ import {
   ProfileLabel,
   ProfileInfo,
   EditButton,
-} from '../../styles/SettingsProfileStyles'; // Import styled components from SettingsProfileStyles.js
+} from '../../styles/SettingsProfileStyles';
 
 const AdminSettingProfile = () => {
     const teacherInfo = {

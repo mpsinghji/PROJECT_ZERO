@@ -13,14 +13,12 @@ import {
 } from '../../styles/PerformanceStyles';
 
 const PerformanceSection = () => {
-  // Sample performance data
   const performanceData = {
     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-    marks: [80, 85, 90, 88, 92, 85], // Sample marks for each month
-    totalMarks: 520 // Sample total marks for the year
+    marks: [80, 85, 90, 88, 92, 85], 
+    totalMarks: 520 
   };
 
-  // Line chart data
   const lineChartData = {
     labels: performanceData.months,
     datasets: [
@@ -44,18 +42,7 @@ const PerformanceSection = () => {
         <PerformanceHeader>Performance</PerformanceHeader>
         <PerformanceInfo>
           <PerformanceGraphContainer>
-            {/* <Line
-              data={lineChartData}
-              options={{
-                scales: {
-                  yAxes: [{
-                    ticks: {
-                      beginAtZero: true
-                    }
-                  }]
-                }
-              }}
-            /> */}
+            
           </PerformanceGraphContainer>
           <TotalMarks>Total Marks: {performanceData.totalMarks}</TotalMarks>
         </PerformanceInfo>

@@ -13,20 +13,20 @@ const ScrollLockStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; /* Prevent scrolling globally */
+    overflow: hidden;
   }
 `;
 
 const PageWrapper = styled.div`
   display: flex;
-  height: 100vh; /* Full height of the viewport */
-  width: 100vw; /* Full width of the viewport */
-  overflow: hidden; /* Prevent any scrolling */
+  height: 100vh;
+  width: 100vw; 
+  overflow: hidden; 
 `;
 
 const ContentWrapper = styled.div`
-  flex: 1; /* Allow this section to take remaining width */
-  background-color: #ecf0f1; /* Light background for content */
+  flex: 1; 
+  background-color: #ecf0f1; 
   display: flex;
   justify-content: center;
   align-items: center;

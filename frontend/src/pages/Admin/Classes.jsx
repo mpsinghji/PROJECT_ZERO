@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from "react";
 import AdminSidebar from "./Sidebar";
-import axios from "axios";
 import {
   Content,
   ClassesContainer,
   ClassesContent,
   ClassHeader,
   ClassList,
-  ClassItem,
   AddClassForm,
   AddClassInput,
   AddClassButton,
-  ClassContainer,
-  ClassesHeader,
-  SidebarContainer,
-  GradeHeader,
+
 } from "../../styles/ClassesStyles";
 
 const AdminClasses = () => {

@@ -1,6 +1,4 @@
-// CheckAnnouncementSection.js
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Sidebar from "./Sidebar";
 import {
   Content,
@@ -11,8 +9,6 @@ import {
   TextArea,
   Button,
   AnnouncementList,
-  AnnouncementItem,
-  AnnouncementContent,
 } from '../../styles/AnnouncementStyles';
 import styled from "styled-components";
 

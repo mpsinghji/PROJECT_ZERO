@@ -1,4 +1,3 @@
-// AttendanceStyles.js
 import styled from 'styled-components';
 
 export const AttendanceContainer = styled.div`

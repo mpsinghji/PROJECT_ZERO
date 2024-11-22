@@ -1,4 +1,3 @@
-// LibraryStyles.js
 import styled from 'styled-components';
 
 export const LibraryContainer = styled.div`
@@ -79,7 +78,7 @@ export const ActionButton = styled.button`
 `;
 
 export const SidebarContainer = styled.div`
-  flex: 0 0 250px; /* Sidebar width */
+  flex: 0 0 250px; 
 `;
 
 export const LibraryHeader = styled.h1`

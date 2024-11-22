@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-//navigation
-
 export const Navbar = styled.nav`
   position: fixed;
   top: 0;
@@ -12,8 +10,8 @@ export const Navbar = styled.nav`
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #9370DB; /* Medium Purple */
-  color: #FFFFFF; /* White */
+  background-color: #9370DB; 
+  color: #FFFFFF; 
   font-family: Arial, sans-serif;
   z-index: 1000;
 
@@ -54,7 +52,7 @@ export const NavigationLinks = styled.div`
 
 export const NavLink = styled.a`
   margin: 0 20px;
-  color: #FFFFFF; /* White */
+  color: #FFFFFF; 
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
@@ -85,8 +83,8 @@ export const ButtonsContainer = styled.div`
     `;
     
     export const LoginButton = styled.button`
-    background-color: #FFA500; /* Orange */
-    color: #FFFFFF; /* White */
+    background-color: #FFA500;
+    color: #FFFFFF; 
     border: none;
     padding: 10px 20px;
     margin-top: 10px;
@@ -105,16 +103,13 @@ export const ButtonsContainer = styled.div`
 
 
 
-//home
-
-
 
 export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: linear-gradient(45deg, #00bcd4, #0088d4, #e4e6e7); /* Light Blue to Medium Purple */
+  background: linear-gradient(45deg, #00bcd4, #0088d4, #e4e6e7);
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -144,7 +139,7 @@ export const CollegeImage = styled.img`
 export const Title = styled.h1`
   font-size: 36px;
   font-weight: bold;
-  color: #FFFFFF; /* White */
+  color: #FFFFFF; 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
   @media screen and (max-width: 768px) {
@@ -156,7 +151,7 @@ export const Title = styled.h1`
 
 
 export const AdminRegisterLink = styled(Link)`
-  color: #FFFFFF; /* White */
+  color: #FFFFFF; 
   font-size: 12px;
   font-weight: bold;
   text-decoration: none;

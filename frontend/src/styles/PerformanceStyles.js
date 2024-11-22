@@ -1,4 +1,3 @@
-// PerformanceStyles.js
 import styled from 'styled-components';
 
 export const PerformanceContainer = styled.div`
@@ -26,7 +25,7 @@ export const SchoolPerformance = styled.div`
 export const IndividualPerformance = styled.div``;
 
 export const SidebarContainer = styled.div`
-  flex: 0 0 250px; /* Sidebar width */
+  flex: 0 0 250px; 
 `;
 
 export const PerformanceInfo = styled.div`

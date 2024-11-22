@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import AdminSidebar from "./Sidebar.jsx";
-import AdminEventCalender from "./EventCalender.jsx";
 import AdminPerformance from "./Performance.jsx";
 import AdminAnnouncement from "./Announcement.jsx";
 import axios from "axios";
@@ -17,8 +16,7 @@ import {
   Card,
   CardTitle,
   CardContent,
-  StudentDashboardContainer,
-  TeacherDashboardContainer,
+
 } from "../../styles/DashboardStyles.js";
 
 const AdminDashboard = () => {

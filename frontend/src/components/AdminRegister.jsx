@@ -4,34 +4,21 @@ import {
   FormContainer,
   InputField,
   SubmitButton,
+  PageWrapper,
+  ContentWrapper,
 } from "../styles/RegisterStyles";
 import Sidebar from "../pages/Admin/Sidebar";
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
-
-const ScrollLockStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; /* Prevent scrolling globally */
+    overflow: hidden;
   }
 `;
 
-const PageWrapper = styled.div`
-  display: flex;
-  height: 100vh; /* Full height of the viewport */
-  width: 100vw; /* Full width of the viewport */
-  overflow: hidden; /* Prevent any scrolling */
-`;
-
-const ContentWrapper = styled.div`
-  flex: 1; /* Allow this section to take remaining width */
-  background-color: #ecf0f1; /* Light background for content */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 const AdminRegister = () => {
   const [email, setEmail] = useState('');
@@ -77,7 +64,7 @@ const AdminRegister = () => {
 
   return (
     <>
-    <ScrollLockStyle />
+    <GlobalStyle />
     <PageWrapper>
       <Sidebar />
       <ContentWrapper>
