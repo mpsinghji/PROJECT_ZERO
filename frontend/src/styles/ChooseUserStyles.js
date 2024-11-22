@@ -10,7 +10,6 @@ export const ChooseUserContainer = styled.div`
   padding: 2em;
   background-color: #f0f8ff;
 
-  /* For large tablets or desktops (landscape and portrait) */
   @media screen and (min-width: 768px) {
     flex-direction: row;
     justify-content: space-around;
@@ -18,7 +17,6 @@ export const ChooseUserContainer = styled.div`
     padding: 4em;
   }
 
-  /* For large tablets in portrait mode (820 x 1180 specifically) */
   @media screen and (min-width: 768px) and (max-width: 1024px) {
     flex-direction: column;
     justify-content: flex-start;
@@ -26,12 +24,10 @@ export const ChooseUserContainer = styled.div`
     padding: 3em;
   }
 
-  /* For small mobile screens */
   @media screen and (max-width: 480px) {
     padding: 1em;
   }
 
-  /* For medium-sized screens like small tablets */
   @media screen and (min-width: 481px) and (max-width: 767px) {
     padding: 2em;
   }
@@ -64,7 +60,7 @@ export const Title = styled.h2`
   font-size: 26px;
   font-weight: bold;
   margin-bottom: 25px;
-  color: #ff6347; 
+  color: #34495e; 
   text-transform: uppercase;
 
   @media screen and (max-width: 768px) {
@@ -73,7 +69,7 @@ export const Title = styled.h2`
 `;
 
 export const Button = styled(Link)`
-  background-color: #1e3a8a; 
+  background-color: #128670; 
   color: white;
   border: none;
   padding: 15px 25px;
@@ -86,7 +82,7 @@ export const Button = styled(Link)`
   transition: background-color 0.3s ease, transform 0.2s ease;
 
   &:hover {
-    background-color: #3b5998; 
+    background-color: #1abc9c; 
     transform: translateY(-3px);
   }
 
