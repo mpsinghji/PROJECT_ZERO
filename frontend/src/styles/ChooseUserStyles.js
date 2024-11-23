@@ -69,7 +69,8 @@ export const Title = styled.h2`
 `;
 
 export const Button = styled(Link)`
-  background-color: #128670; 
+  // background-color: #128670; 
+  background-color: #27477a; 
   color: white;
   border: none;
   padding: 15px 25px;
@@ -87,7 +88,8 @@ export const Button = styled(Link)`
   }
 
   &:active {
-    background-color: #27477a; 
+    // background-color: #27477a; 
+    background-color: #1abc9c; 
     transform: translateY(0);
   }
 

@@ -1,33 +1,32 @@
 import User from "../models/userModel.js";
 import { message } from "../utils/message.js";
 import { Response } from "../utils/response.js";
-import bcrypt from "bcrypt";
 
 export const registerUser = async (req, res) => {
   try {
     const { email, password, rollno, mobileno } = req.body;
 
     if (!email || !password) {
-      return Response(res, 400, false, message.missingFieldsMessage);
+      return Response(res, 400, false, message.missingFields);
     }
 
-    const role = "admin"; 
+    const role = "admin";
 
     if (role === "student" && (!rollno || !mobileno)) {
-      return Response(res, 400, false, "Roll number and mobile number are required for students.");
+      return Response(res, 400, false, message.studentFieldsMissing);
     }
 
-    let user = await User.findOne({ email });
-    if (user) {
-      return Response(res, 400, false, message.userExistsMessage);
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return Response(res, 400, false, message.userExists);
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await User.create({ email, password, role, rollno, mobileno });
 
-    user = await User.create({ email, password: hashedPassword, role, rollno, mobileno });
+    );
 
-    Response(res, 201, true, message.userCreatedMessage, user._id);
+    Response(res, 201, true, message.userCreated, { userId: user._id });
   } catch (error) {
-    Response(res, 500, false, error.message);
+    Response(res, 500, false, message.serverError, error.message);
   }
 };
