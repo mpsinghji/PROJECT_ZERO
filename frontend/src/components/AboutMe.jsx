@@ -2,7 +2,6 @@ import React from "react";
 import {
   AboutContainer,
   ProfileSection,
-  ProfileImage,
   Bio,
   Title,
   SectionTitle,
