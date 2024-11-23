@@ -23,8 +23,6 @@ export const registerUser = async (req, res) => {
 
     const user = await User.create({ email, password, role, rollno, mobileno });
 
-    );
-
     Response(res, 201, true, message.userCreated, { userId: user._id });
   } catch (error) {
     Response(res, 500, false, message.serverError, error.message);
