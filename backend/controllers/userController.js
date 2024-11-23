@@ -4,13 +4,12 @@ import { Response } from "../utils/response.js";
 
 export const registerUser = async (req, res) => {
   try {
-    const { email, password, rollno, mobileno } = req.body;
+    const { email, password, role, rollno, mobileno } = req.body;
 
     if (!email || !password) {
       return Response(res, 400, false, message.missingFields);
     }
 
-    const role = "admin";
 
     if (role === "student" && (!rollno || !mobileno)) {
       return Response(res, 400, false, message.studentFieldsMissing);
