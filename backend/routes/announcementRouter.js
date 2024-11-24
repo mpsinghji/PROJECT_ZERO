@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllAnnouncements, createAnnouncement } from "../controllers/announcementConroller.js";
+import { getAllAnnouncements, createAnnouncement } from "../controllers/announcementController.js";
 
 const router = express.Router();
 

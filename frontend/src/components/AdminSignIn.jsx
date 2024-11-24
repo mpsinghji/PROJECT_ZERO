@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import {
   AdminSignInContainer,
   FormContainer,
@@ -6,6 +7,8 @@ import {
   SubmitButton,
 } from "../styles/AdminSignInStyles";
 import { createGlobalStyle } from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 
 export const GlobalStyle = createGlobalStyle`
   html, body {
@@ -16,39 +19,49 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const AdminSignIn=()=>{
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    
-    const handleSignIn = () =>{
-        console.log('Admin Sign In:', { email, password });
-    }
+const AdminSignIn = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(null);
+    const navigate = useNavigate(); 
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post("http://localhost:5000/api/admin/login", {
+                email,
+                password,
+            });
+            localStorage.setItem("token", response.data.token); 
+            navigate("/admin/dashboard"); 
+        } catch (err) {
+            console.error("Login failed:", err.response?.data || err.message);
+        }
+    };
     return (
         <>
-        <GlobalStyle/>
-            
-        <AdminSignInContainer>
-            <h2>Admin Sign In</h2>
-            <FormContainer>
-                <InputField
-                    type='email'
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
-                    required
-                    />
-                <InputField
-                    type='password'
-                    placeholder="password"
-                    value={password}
-                    onChange={(e)=>setPassword(e.target.value)}
-                    required
-                    />
-                <SubmitButton to="/admin/dashboard" onClick={handleSignIn}>Sign In</SubmitButton>
-            </FormContainer>
-        </AdminSignInContainer>
-        </>
-    )
-}
+      <GlobalStyle />
+      <AdminSignInContainer>
+        <h2>Admin Sign In</h2>
+        <FormContainer>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <InputField
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <InputField
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <SubmitButton onClick={handleLogin}>Sign In</SubmitButton>
+        </FormContainer>
+      </AdminSignInContainer>
+    </>
+  );
+};
 
 export default AdminSignIn;
