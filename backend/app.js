@@ -45,6 +45,10 @@ app.use("/api/v1/events", eventsRouter);
 app.use("/api/v1/announcements", announcementRouter);
 
 
+
+app.use("/api/v1/announcements", announcementRouter);
+
+
 app.use((req, res, next) => {
   res.status(404).json({ success: false, message: "Route not found" });
 });
