@@ -8,6 +8,7 @@ import cors from "cors";
 
 
 import announcementRouter from "./routes/announcementRouter.js"
+import eventsRouter from "./routes/eventsRouter.js";
 
 
 
@@ -36,6 +37,8 @@ app.use("/api/teacher", teacherRoute);
 
 
 app.use("/api/v1/announcements", announcementRouter);
+app.use("/api/v1/events", eventsRouter);
+
 
 
 

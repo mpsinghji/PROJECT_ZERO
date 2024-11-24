@@ -105,9 +105,6 @@ const AdminDashboard = () => {
             </CardContainer>
           </Section>
 
-          <Section>
-            <SectionTitle>All Events</SectionTitle>
-          </Section>
         </TopContent>
 
         <BottomContent>
