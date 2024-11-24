@@ -4,6 +4,11 @@ import userRouter from "./routes/userRoutes.js";
 import adminRoute from "./routes/adminRoute.js";
 import cors from "cors";
 
+
+import announcementRouter from "./routes/announcementRouter.js"
+
+
+
 dotenv.config({ path: "./config/config.env" });
 
 const app = express();
@@ -24,6 +29,10 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/admin", adminRoute);
+
+
+app.use("/api/v1/announcements", announcementRouter);
+
 
 app.use((req, res, next) => {
   res.status(404).json({ success: false, message: "Route not found" });

@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from "react";
-import AdminSidebar from "./Sidebar";
+import React, { useState, useEffect } from 'react';
+import AdminSidebar from './Sidebar';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
+  AnnouncementContainer,
   Content,
   Title,
   AnnouncementForm,
@@ -9,31 +13,57 @@ import {
   TextArea,
   Button,
   AnnouncementList,
+  AnnouncementItem,
+  AnnouncementContent,
 } from '../../styles/AnnouncementStyles';
-import styled from "styled-components";
 
+const Announcement = () => {
+  const [announcement, setAnnouncement] = useState('');
+  const [announcements, setAnnouncements] = useState([]);
 
-export const AnnouncementContainer = styled.div`
-  display: flex;
-  padding-left: 240px;
+  const fetchAnnouncements = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/v1/announcements/getall');
+      setAnnouncements(response.data.announcements);
+    } catch (error) {
+      console.error('Error fetching announcements:', error);
+    }
+  };
+  
 
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-    padding-left: 0;
-  }
-`;
+  useEffect(() => {
+    fetchAnnouncements();
+  }, []);
 
-const AdminAnnouncement = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/v1/announcements', {
+        announcement: announcement, 
+      });
+      console.log('Announcement sent:', response.data);
+      toast.success('Announcement sent successfully');
+      setAnnouncement('');
+      fetchAnnouncements();
+    } catch (error) {
+      console.error('Error sending announcement:', error);
+      toast.error('Error sending announcement');
+    }
+  };
+
   return (
     <AnnouncementContainer>
+      <ToastContainer />
       <AdminSidebar />
       <Content>
         <Title>Announcement</Title>
-        <AnnouncementForm>
+        <AnnouncementForm onSubmit={handleSubmit}>
           <FormGroup>
             <Label htmlFor="announcement">Announcement:</Label>
             <TextArea
               id="announcement"
+              value={announcement}
+              onChange={(e) => setAnnouncement(e.target.value)}
               required
               rows={4}
               cols={50}
@@ -44,11 +74,15 @@ const AdminAnnouncement = () => {
 
         <h2>Announcements</h2>
         <AnnouncementList>
-          
+          {announcements.map((announcement) => (
+            <AnnouncementItem key={announcement._id}>
+              <AnnouncementContent>{announcement.announcement}</AnnouncementContent>
+            </AnnouncementItem>
+          ))}
         </AnnouncementList>
       </Content>
     </AnnouncementContainer>
-  )
-}
+  );
+};
 
-export default AdminAnnouncement
+export default Announcement;
