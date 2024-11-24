@@ -106,7 +106,7 @@ const AdminSidebar = () => {
           <SidebarIcon><BsGear /></SidebarIcon>
           Settings and Profile
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/")}>
+        <SidebarNavItem onClick={() => handleNavigation("/choose-user")}>
           <SidebarIcon><BsBoxArrowRight /></SidebarIcon>
           Log Out
         </SidebarNavItem>

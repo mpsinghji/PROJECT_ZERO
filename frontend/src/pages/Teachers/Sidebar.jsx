@@ -128,7 +128,7 @@ const Sidebar = () => {
           </SidebarIcon>
           Settings & Profile
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/")}>
+        <SidebarNavItem onClick={() => handleNavigation("/choose-user")}>
           <SidebarIcon>
             <BsBoxArrowRight />
           </SidebarIcon>

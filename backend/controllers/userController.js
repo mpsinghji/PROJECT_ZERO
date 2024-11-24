@@ -1,6 +1,7 @@
 import User from "../models/userModel.js";
 import { message } from "../utils/message.js";
 import { Response } from "../utils/response.js";
+import jwt from "jsonwebtoken";
 
 export const registerUser = async (req, res) => {
   try {
@@ -28,32 +29,28 @@ export const registerUser = async (req, res) => {
   }
 };
 
-export const loginUser = async (req, res) => {
+export const adminLogin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
-
+    const user = await User.findOne({ email, role: "admin" });
     if (!user) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(404).json({ message: "Admin not found." });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
+    const isPasswordValid = await user.comparePassword(password);
     if (!isPasswordValid) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(401).json({ message: "Invalid credentials." });
     }
 
-    if (user.role === 'teacher') {
-      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-        expiresIn: '1h',
-      });
-
-      res.status(200).json({ token });
-    } else {
-      return res.status(403).json({ message: 'You are not authorized to login' });
-    }
+    // Create a token with the user's id and role
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
+      expiresIn: "24h", // Token expires in 1 day
+    });
+    res.status(200).json({ token }); // Send token to the client
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
+    console.error("Admin login error:", error.message); // Log error message
+    console.error("Stack trace:", error.stack); // Log stack trace
+    res.status(500).json({ message: "Server error.", error: error.message });
+}
 };

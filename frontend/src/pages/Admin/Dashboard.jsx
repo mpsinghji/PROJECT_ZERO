@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AdminSidebar from "./Sidebar.jsx";
 import AdminPerformance from "./Performance.jsx";
 import AdminAnnouncement from "./Announcement.jsx";
-import LoadingPage from "../../components/Loading/loading.jsx";
+import Loading from "../../components/Loading/loading.jsx";
 import axios from "axios";
 import {
   AdminDashboardContainer,
@@ -27,11 +27,20 @@ const AdminDashboard = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    let isMounted = true;
+    let isMounted = true; 
 
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/admin/users/count");
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("No token found. Please log in again.");
+        }
+
+        const response = await axios.get("http://localhost:5000/api/admin/users/count", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         if (isMounted) {
           setData({
@@ -43,8 +52,16 @@ const AdminDashboard = () => {
         }
       } catch (err) {
         if (isMounted) {
-          console.error("Error fetching data:", err.response?.data || err.message);
-          setError("Failed to fetch data. Please try again later.");
+          const status = err.response?.status;
+
+          if (status === 401) {
+            setError("Session expired. Redirecting to login...");
+            setTimeout(() => {
+              window.location.href = "/admin-signin";
+            }, 2000); 
+          } else {
+            setError("Failed to fetch data. Please try again later.");
+          }
           setLoading(false);
         }
       }
@@ -58,8 +75,7 @@ const AdminDashboard = () => {
   }, []);
 
   if (loading) {
-    return <LoadingPage/>
-    // return <div>Loading</div>
+    return <Loading />;
   }
 
   if (error) {
