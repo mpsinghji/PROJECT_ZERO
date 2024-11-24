@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AdminSidebar from "./Sidebar.jsx";
 import AdminPerformance from "./Performance.jsx";
 import AdminAnnouncement from "./Announcement.jsx";
-// import LoadingPage from "../../components/Loading/loading.jsx";
+import LoadingPage from "../../components/Loading/loading.jsx";
 import axios from "axios";
 import {
   AdminDashboardContainer,
@@ -58,8 +58,8 @@ const AdminDashboard = () => {
   }, []);
 
   if (loading) {
-    // <LoadingPage/>
-    return <div>Loading</div>
+    return <LoadingPage/>
+    // return <div>Loading</div>
   }
 
   if (error) {
