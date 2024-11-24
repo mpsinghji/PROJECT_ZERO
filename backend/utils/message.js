@@ -4,5 +4,13 @@ export const message = {
     userExists: "User already exists.",
     userCreated: "User registered successfully.",
     serverError: "An internal server error occurred.",
+    adminNotFound: "Admin not found.",
+    invalidCredentials: "Invalid credentials.",
+    studentNotFound: "Student not found.",
+    teacherNotFound: "Teacher not found.",
+    teacherLoginSuccess: "Teacher logged in successfully.",
+    studentLoginSuccess: "Student logged in successfully.",
+    adminLoginSuccess: "Admin logged in successfully.",
+    serverError: "An internal server error occurred.",
   };
   

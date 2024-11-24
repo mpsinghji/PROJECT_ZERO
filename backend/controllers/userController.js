@@ -34,22 +34,71 @@ export const adminLogin = async (req, res) => {
   try {
     const user = await User.findOne({ email, role: "admin" });
     if (!user) {
-      return res.status(404).json({ message: "Admin not found." });
+      Response(res, 404, false, message.adminNotFound);
     }
 
     const isPasswordValid = await user.comparePassword(password);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Invalid credentials." });
+      Response(res, 401, false, message.invalidCredentials);
     }
 
-    // Create a token with the user's id and role
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: "24h", // Token expires in 1 day
+      expiresIn: "24h", 
     });
-    res.status(200).json({ token }); // Send token to the client
+    res.status(200).json({ token }); 
   } catch (error) {
-    console.error("Admin login error:", error.message); // Log error message
-    console.error("Stack trace:", error.stack); // Log stack trace
-    res.status(500).json({ message: "Server error.", error: error.message });
+    console.error("Admin login error:", error.message); 
+    console.error("Stack trace:", error.stack); 
+    Response(res, 500, false, message.serverError, error.message);
 }
+};
+
+export const studentLogin = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email, role: "student" });
+    if (!user) {
+      Response(res, 404, false, message.studentNotFound);
+    }
+
+    const isPasswordValid = await user.comparePassword(password);
+    if (!isPasswordValid) {
+      Response(res, 401, false, message.invalidCredentials);
+    }
+
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
+      expiresIn: "24h", 
+    });
+    res.status(200).json({ token }); 
+  } catch (error) {
+    console.error("Student login error:", error.message); 
+    console.error("Stack trace:", error.stack); 
+    Response(res, 500, false, message.serverError, error.message);
+}
+};
+
+export const teacherLogin = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email, role: "teacher" });
+    if (!user) {
+      Response(res, 404, false, message.teacherNotFound);
+    }
+
+    const isPasswordValid = await user.comparePassword(password);
+    if (!isPasswordValid) {
+      Response(res, 401, false, message.invalidCredentials);
+    }
+
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
+    });
+    res.status(200).json({ token });
+  } catch (error) {
+    console.error("Teacher login error:", error.message);
+    console.error("Stack trace:", error.stack);
+    Response(res, 500, false, message.serverError, error.message);
+  }
 };
