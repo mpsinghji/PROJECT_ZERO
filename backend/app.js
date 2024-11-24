@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import userRouter from "./routes/userRoutes.js";
 import adminRoute from "./routes/adminRoute.js";
+import studentRoute from "./routes/studentRoute.js";
+import teacherRoute from "./routes/teacherRoute.js";
 import cors from "cors";
 
 
@@ -29,6 +31,12 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/admin", adminRoute);
+app.use("/api/student", studentRoute);
+app.use("/api/teacher", teacherRoute);
+
+
+app.use("/api/v1/announcements", announcementRouter);
+
 
 
 app.use("/api/v1/announcements", announcementRouter);
