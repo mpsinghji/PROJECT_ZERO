@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const AnnouncementContainer = styled.div`
   display: flex;
-  // padding-left: 240px;
+  flex-direction: row;
+  padding-left: 240px;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -48,33 +49,51 @@ export const Button = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
 `;
 
 export const AnnouncementList = styled.ul`
   list-style: none;
   padding: 0;
+  margin: 0;
 `;
 
 export const AnnouncementItem = styled.li`
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
+`;
+
+export const AnnouncementHeader = styled.h2`
+  font-size: 20px;
   margin-bottom: 10px;
+  font-weight: bold;
 `;
 
 export const AnnouncementContent = styled.p`
   font-size: 16px;
+  line-height: 1.5;
+  margin: 5px 0 10px;
 `;
 
 export const SidebarContainer = styled.div`
-  flex: 0 0 250px; 
+  // flex: 0 0 250px;
+  padding: 20px;
+  // background-color: #f4f4f4;
+  border-right: 1px solid #ddd;
 `;
-
-
-export const AnnouncementHeader = styled.h1`
-  font-size: 24px;
-  margin-bottom: 20px;
-`;
-
 
 export const AnnouncementTitle = styled.h3`
+  font-size: 18px;
+  font-weight: 600;
   margin-bottom: 10px;
 `;
-
