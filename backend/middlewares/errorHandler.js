@@ -1,5 +1,3 @@
-// errorHandler.js
-
 export const handleValidationError = (message, statusCode) => {
     const error = new Error(message);
     error.statusCode = statusCode;

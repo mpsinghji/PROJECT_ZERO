@@ -12,5 +12,7 @@ export const message = {
     studentLoginSuccess: "Student logged in successfully.",
     adminLoginSuccess: "Admin logged in successfully.",
     serverError: "An internal server error occurred.",
+    noTokenProvided: "No token provided in the request headers.",
+    invalidOrExpiredToken: "Invalid or expired token.",
   };
   
