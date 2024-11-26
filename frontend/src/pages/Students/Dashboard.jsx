@@ -24,11 +24,11 @@ const StudentDashboard = () => {
               <CardContent>5</CardContent>
             </Card>
             <Card>
-              <CardTitle>Performance</CardTitle>
+              <CardTitle>Announcement</CardTitle>
               <CardContent>500</CardContent>
             </Card>
             <Card>
-              <CardTitle>Term</CardTitle>
+              <CardTitle>Events</CardTitle>
               <CardContent>1</CardContent>
             </Card>
           </CardContainer>

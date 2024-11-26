@@ -20,6 +20,7 @@ import {
   Logo,
 } from "../../styles/SidebarStyles";
 import styled , { css } from "styled-components";
+import bg1 from "../../assets/bg1.png";
 
 export const SidebarNavItem = styled.li`
   display: flex;
@@ -70,7 +71,7 @@ const Sidebar = () => {
   return (
     <SidebarContainer>
       <SidebarHeader>
-        <Logo src={"../assets/bg1.png"} alt="Logo" />
+        <Logo src={bg1} alt="Logo" />
       </SidebarHeader>
       <SidebarHeader>Teacher</SidebarHeader>
       <SidebarNav>

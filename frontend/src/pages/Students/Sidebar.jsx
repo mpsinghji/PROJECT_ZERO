@@ -18,6 +18,7 @@ import {
   SidebarIcon,
   Logo,
 } from "../../styles/SidebarStyles";
+import bg1 from "../../assets/bg1.png";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const Sidebar = () => {
   return (
     <SidebarContainer>
       <SidebarHeader>
-        <Logo src={"../assets/bg1.png"} alt="Logo" />
+        <Logo src={bg1} alt="Logo" />
       </SidebarHeader>
       <SidebarHeader>Student</SidebarHeader>
       <SidebarNav>
@@ -107,6 +108,15 @@ const Sidebar = () => {
             <BsChatDots />
           </SidebarIcon>
           Announcement
+        </SidebarNavItem>
+        <SidebarNavItem
+          onClick={() => handleNavigation("/student/EventCalendar")}
+          className={isActive("/student/EventCalendar")}
+        >
+          <SidebarIcon>
+            <BsChatDots />
+          </SidebarIcon>
+          Events and Calendar
         </SidebarNavItem>
         <SidebarNavItem
           onClick={() => handleNavigation("/student/settings")}

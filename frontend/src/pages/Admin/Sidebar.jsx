@@ -22,6 +22,7 @@ import {
   BsCalendarEvent,
   BsBoxArrowRight,
 } from "react-icons/bs";
+import bg1 from "../../assets/bg1.png";
 import { FaUserPlus } from "react-icons/fa";
 import { IoIosArrowDropdown } from "react-icons/io";
 
@@ -61,7 +62,7 @@ const AdminSidebar = () => {
   return (
     <SidebarContainer>
       <SidebarHeader>
-        <Logo src="../assets/bg1.png" alt="PROJECTZERO" />
+        <Logo src={bg1} alt="PROJECTZERO" />
       </SidebarHeader>
       <SidebarNav>
         <SidebarNavItem

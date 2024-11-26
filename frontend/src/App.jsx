@@ -31,6 +31,7 @@ import AttendanceSection from './pages/Students/Attendance.jsx';
 import LibrarySection from './pages/Students/Library.jsx';
 import AnnouncementSection from './pages/Students/Announcement.jsx';
 import ProfileSection from './pages/Students/Profile.jsx';
+import StudentEventSection from './pages/Students/EventCalendar.jsx';
 
 import TeacherDashboard from '../src/pages/Teachers/Dashboard';
 import ClassSection from '../src/pages/Teachers/Classes';
@@ -91,6 +92,7 @@ function App() {
           <Route exact path="/student/attendance" element={<AttendanceSection />} />
           <Route exact path="/student/library" element={<LibrarySection />} />
           <Route exact path="/student/communication" element={<AnnouncementSection/>} />
+          <Route exact path="/student/EventCalendar" element={<StudentEventSection />} />
           <Route exact path="/student/settings" element={<ProfileSection />} />
 
 
