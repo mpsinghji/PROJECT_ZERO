@@ -84,7 +84,7 @@ export const CollegeVideo = styled.div`
   width: 100%;
   height: 100%;
   z-index: -1;
-  opacity: 0.3; /* Optional: Set the opacity of the video to make it less distracting */
+  opacity: 0.6; /* Optional: Set the opacity of the video to make it less distracting */
 `;
 
 // NavLink: Styled component for navigation links
