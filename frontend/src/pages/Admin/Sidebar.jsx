@@ -83,7 +83,7 @@ const AdminSidebar = () => {
         </SidebarNavItem>
         {isDropdownOpen && (
           <DropdownMenu>
-            <DropdownItem onClick={() => handleNavigation("/admin-register")}>
+            <DropdownItem onClick={() => handleNavigation("/admin-register") }>
               Admin
             </DropdownItem>
             <DropdownItem onClick={() => handleNavigation("/student-register")}>

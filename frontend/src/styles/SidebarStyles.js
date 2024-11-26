@@ -1,26 +1,25 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
+
 export const SidebarContainer = styled.div`
   position: fixed;
-  top: 0;
+  top: 0; /* Centers the sidebar vertically */
   left: 0;
   width: 250px;
-  height: 100%;
+  height: 92%; /* Adjust the height to 90% of the viewport */
   background-color: #1A252F;
   color: #ECF0F1;
   padding-top: 70px;
   z-index: 100;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
   transition: width 0.3s ease-in-out;
+  overflow-y: auto; /* Enable scrolling */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer */
 
   ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: #34495E;
-    border-radius: 10px;
+    display: none; /* Hide scrollbar in Chrome, Safari, and Edge */
   }
 
   &:hover {
@@ -31,6 +30,7 @@ export const SidebarContainer = styled.div`
     padding-top: 50px;
   }
 `;
+
 
 
 export const SidebarHeader = styled.div`
