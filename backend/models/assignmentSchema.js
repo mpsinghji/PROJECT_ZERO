@@ -1,24 +1,19 @@
-import mongoose from "mongoose";
-import validator from "validator";
+import mongoose from 'mongoose';
 
 const assignmentSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  grade: {
-    type: String,
-    required: true
-  },
-  deadline: {
-    type: Date,
-    required: true
-  },
+    title: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
 });
 
-export const Assignment = mongoose.model('Assignment', assignmentSchema);
-
+const Assignment = mongoose.model('Assignment', assignmentSchema);
+export default Assignment;

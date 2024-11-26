@@ -106,15 +106,17 @@ export const Logo = styled.img`
 `;
 
 export const DropdownMenu = styled.div`
-  margin-left: 1.5rem;
+  margin-left: 0.5rem;
   display: flex;
   flex-direction: column;
   background-color: #1A252F;
   padding: 0.5rem;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
-`;
-
-export const DropdownItem = styled.div`
+  // box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
+  `;
+  
+  export const DropdownItem = styled.div`
+  border-bottom: 1px solid #34495E; 
+  border-left: 4px solid #1ABC9C;
   padding: 0.7rem; 
   cursor: pointer;
   color: #fff; 
