@@ -24,7 +24,7 @@ export const HomeContainer = styled.div`
     height: 100%;
     background: url(${props => props.background}) no-repeat center center;
     background-size: cover;
-    opacity: 0.5; /* Optional: Reduce video opacity to make text stand out */
+    opacity: 0.6; /* Optional: Reduce video opacity to make text stand out */
     z-index: -1;
   }
 `;
@@ -52,7 +52,7 @@ export const LoginButton = styled.button`
   color: #FFFFFF; 
   border: none;
   padding: 10px 20px;
-  margin-top: 10px;
+  // margin-top: 10px;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
@@ -84,7 +84,7 @@ export const CollegeVideo = styled.div`
   width: 100%;
   height: 100%;
   z-index: -1;
-  opacity: 0.3; /* Optional: Set the opacity of the video to make it less distracting */
+  opacity: 0.6; /* Optional: Set the opacity of the video to make it less distracting */
 `;
 
 // NavLink: Styled component for navigation links
