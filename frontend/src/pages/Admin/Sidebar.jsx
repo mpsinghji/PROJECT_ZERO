@@ -93,7 +93,7 @@ const AdminSidebar = () => {
             </DropdownItem>
           </DropdownMenu>
         )}
-        <SidebarNavItem
+        {/* <SidebarNavItem
           className={isActive("/admin/Classes") ? "active" : ""}
           onClick={() => handleNavigation("/admin/Classes")}
         >
@@ -101,7 +101,7 @@ const AdminSidebar = () => {
             <BsPeople />
           </SidebarIcon>
           Classes
-        </SidebarNavItem>
+        </SidebarNavItem> */}
         <SidebarNavItem
           className={isActive("/admin/Assignment") ? "active" : ""}
           onClick={() => handleNavigation("/admin/Assignment")}
