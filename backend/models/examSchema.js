@@ -1,23 +1,23 @@
 import mongoose from "mongoose";
 
 const examSchema = new mongoose.Schema({
-  name: {
+  subjectName: {
     type: String,
-    required: true
+    required: true,
   },
-  registrationNumber: {
+  subjectCode: {
     type: String,
-    required: true
+    required: true,
   },
-  className: {
+  batch: {
     type: String,
-    required: true
+    required: true,
   },
-  marks: {
-    type: Number,
-    required: true
-  }
+  date: {
+    type: Date,
+    required: true,
+  },
 });
 
-export const Exam = mongoose.model('Exam', examSchema);
-
+const Exam = mongoose.model('Exam', examSchema);
+export default Exam;

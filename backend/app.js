@@ -9,6 +9,8 @@ import cors from "cors";
 
 import announcementRouter from "./routes/announcementRouter.js"
 import eventsRouter from "./routes/eventsRouter.js";
+import examRouter from "./routes/examRoute.js";
+import libraryRouter from "./routes/libraryRoute.js";
 
 
 
@@ -38,15 +40,8 @@ app.use("/api/teacher", teacherRoute);
 
 app.use("/api/v1/announcements", announcementRouter);
 app.use("/api/v1/events", eventsRouter);
-
-
-
-
-app.use("/api/v1/announcements", announcementRouter);
-
-
-
-app.use("/api/v1/announcements", announcementRouter);
+app.use("/api/v1/exam", examRouter);
+app.use("/api/v1/library", libraryRouter);
 
 
 app.use((req, res, next) => {

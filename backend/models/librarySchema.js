@@ -4,17 +4,14 @@ import validator from "validator";
 const librarySchema = new mongoose.Schema({
   bookname: {
     type: String,
-    required: true
+    required: true,
   },
   author: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
 });
 
-
-export const  Book = mongoose.model('Library', librarySchema);
-
-
-
+const Book = mongoose.model("Library", librarySchema);
+export default Book;
