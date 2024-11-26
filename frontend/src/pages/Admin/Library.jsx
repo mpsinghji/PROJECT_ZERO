@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import AdminSidebar from "./Sidebar";
+import React, { useState, useEffect } from 'react';
+import AdminSidebar from './Sidebar';
+import axios from 'axios';
 import {
   Content,
   Title,
@@ -13,7 +13,7 @@ import {
   BookItem,
   BookTitle,
   BookAuthor,
-  ActionButton,
+  // ActionButton,
 } from '../../styles/LibraryStyles';
 import styled from "styled-components";
 
@@ -22,13 +22,62 @@ export const LibraryContainer = styled.div`
   padding-left: 240px;
 `;
 
-const AdminLibrary = () => {
+const Library = () => {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
+  const fetchBooks = async () => {
+    try {
+      // console.log(books);
+      const response = await axios.get('http://localhost:5000/api/v1/library/getall');
+      setBooks(response.data.books);
+    } catch (error) {
+      console.error('Error fetching books:', error.response.data.error);
+    }
+  };
+
+  const addBook = async (book) => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/v1/library/books', {
+        bookname: book.title,
+        author: book.author,
+      });
+      fetchBooks();
+      setBooks([...books, response.data]);
+    } catch (error) {
+      console.error('Error adding book:', error.response.data.error);
+    }
+  };
+
+  const handleBookPick = async (bookId, studentId) => {
+    
+    console.log(bookId, studentId);
+  };
+
+  const handleBookReturn = async (bookId, studentId) => {
+    console.log(bookId, studentId);
+  };
+
   return (
     <LibraryContainer>
       <AdminSidebar />
       <Content>
         <Title>Library Management</Title>
-        <AddBookForm>
+        <AddBookForm
+          onSubmit={(e) => {
+            e.preventDefault();
+            const book = {
+              id: Math.random().toString(36).substr(2, 9),
+              title: e.target.title.value,
+              author: e.target.author.value,
+            };
+            addBook(book);
+            e.target.reset();
+          }}
+        >
           <h2>Add New Book</h2>
           <FormGroup>
             <Label htmlFor="title">Title:</Label>
@@ -43,11 +92,18 @@ const AdminLibrary = () => {
 
         <h2>Books</h2>
         <BookList>
-          
+          {books.map((book) => (
+            <BookItem key={book._id}>
+              <BookTitle>{book.bookname}</BookTitle>
+              <BookAuthor>by {book.author}</BookAuthor>
+              <ActionButton onClick={() => handleBookPick(book._id, 'student123')}>Pick</ActionButton>
+              <ActionButton onClick={() => handleBookReturn(book._id, 'student123')}>Return</ActionButton>
+            </BookItem>
+          ))}
         </BookList>
       </Content>
     </LibraryContainer>
-  )
-}
+  );
+};
 
-export default AdminLibrary
+export default Library;
