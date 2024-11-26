@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   BsGraphUp,
   BsPeople,
@@ -14,51 +13,58 @@ import {
   BsBoxArrowRight,
 } from "react-icons/bs";
 import {
+  SidebarContainer,
   SidebarHeader,
   SidebarNav,
-  SidebarNavItem,
   SidebarIcon,
-  Logo
+  Logo,
 } from "../../styles/SidebarStyles";
+import styled , { css } from "styled-components";
 
-export const SidebarContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 250px;
-  height: 100%;
-  background-color: #1A252F;
+export const SidebarNavItem = styled.li`
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  font-size: 18px;
+  border-bottom: 1px solid #34495E;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
   color: #ECF0F1;
-  // overflow-y: auto; 
-  padding-top: 70px;
-  z-index: 100;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
-  transition: width 0.3s ease-in-out;
-
-  ::-webkit-scrollbar {
-    width: 8px; 
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: #34495E; 
-    border-radius: 10px; 
-  }
-
-  &:hover {
-    width: 260px;
-  }
   
-  @media screen and (max-height: 700px) {
-    padding-top: 50px; 
+  /* Apply active styles when the active prop is true */
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: #34495E;
+      padding-left: 30px;
+      color: #1ABC9C;
+      border-left: 4px solid #1ABC9C;
+    `}
+  
+  &:hover {
+    background-color: #34495E;
+    padding-left: 30px;
+    color: #1ABC9C;
+    border-left: 4px solid #1ABC9C;
   }
 `;
 
 
 const Sidebar = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavigation = (path) => {
-    navigate(path); 
+    navigate(path);
+  };
+
+  const isActive = (path) => location.pathname === path ? "active" : "";
+
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+      navigate("/choose-user");
+    }
   };
 
   return (
@@ -68,67 +74,97 @@ const Sidebar = () => {
       </SidebarHeader>
       <SidebarHeader>Teacher</SidebarHeader>
       <SidebarNav>
-        <SidebarNavItem onClick={() => handleNavigation("/teacher/dashboard")}>
+        <SidebarNavItem
+          onClick={() => handleNavigation("/teacher/dashboard")}
+          active={isActive("/teacher/dashboard") }
+        >
           <SidebarIcon>
             <BsGraphUp />
           </SidebarIcon>
           Dashboard
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/teacher/classes")}>
+        <SidebarNavItem
+          active={isActive("/teacher/classes")}
+          onClick={() => handleNavigation("/teacher/classes")}
+        >
           <SidebarIcon>
             <BsPeople />
           </SidebarIcon>
           Classes
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/teacher/students")}>
+        <SidebarNavItem
+          active={isActive("/teacher/students")}
+          onClick={() => handleNavigation("/teacher/students")}
+        >
           <SidebarIcon>
             <BsPeople />
           </SidebarIcon>
           Students
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/teacher/assignments")}>
+        <SidebarNavItem
+          active={isActive("/teacher/assignments")}
+          onClick={() => handleNavigation("/teacher/assignments")}
+        >
           <SidebarIcon>
             <BsFileText />
           </SidebarIcon>
           Assignments
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/teacher/exams")}>
+        <SidebarNavItem
+          active={isActive("/teacher/exams")}
+          onClick={() => handleNavigation("/teacher/exams")}
+        >
           <SidebarIcon>
             <BsBook />
           </SidebarIcon>
           Exams
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/teacher/performance")}>
+        <SidebarNavItem
+          active={isActive("/teacher/performance")}
+          onClick={() => handleNavigation("/teacher/performance")}
+        >
           <SidebarIcon>
             <BsGraphDown />
           </SidebarIcon>
           Performance
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/teacher/attendance")}>
+        <SidebarNavItem
+          active={isActive("/teacher/attendance")}
+          onClick={() => handleNavigation("/teacher/attendance")}
+        >
           <SidebarIcon>
             <BsCalendar />
           </SidebarIcon>
           Attendance
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/teacher/communication")}>
+        <SidebarNavItem
+          active={isActive("/teacher/communication")}
+          onClick={() => handleNavigation("/teacher/communication")}
+        >
           <SidebarIcon>
             <BsChatDots />
           </SidebarIcon>
           Announcement
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/teacher/events")}>
+        <SidebarNavItem
+          active={isActive("/teacher/events")}
+          onClick={() => handleNavigation("/teacher/events")}
+        >
           <SidebarIcon>
             <BsCalendarEvent />
           </SidebarIcon>
           Events & Calendar
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/teacher/settings")}>
+        <SidebarNavItem
+          active={isActive("/teacher/settings")}
+          onClick={() => handleNavigation("/teacher/settings")}
+        >
           <SidebarIcon>
             <BsGear />
           </SidebarIcon>
           Settings & Profile
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/choose-user")}>
+        <SidebarNavItem onClick={handleLogout}>
           <SidebarIcon>
             <BsBoxArrowRight />
           </SidebarIcon>
@@ -138,4 +174,5 @@ const Sidebar = () => {
     </SidebarContainer>
   );
 };
+
 export default Sidebar;

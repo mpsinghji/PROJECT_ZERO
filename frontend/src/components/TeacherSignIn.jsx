@@ -22,10 +22,12 @@ const TeacherSignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    setError(null);
+    setLoading(true);
     try {
       const response = await axios.post(
         "http://localhost:5000/api/teacher/login",
@@ -43,8 +45,11 @@ const TeacherSignIn = () => {
         err.response?.data?.message ||
           "Invalid credentials or email not registered"
       );
+    } finally {
+      setLoading(false);
     }
   };
+
   return (
     <>
       <GlobalStyle />
@@ -60,13 +65,13 @@ const TeacherSignIn = () => {
           />
           <InputField
             type="password"
-            placeholder="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <SubmitButton onClick={handleLogin}>
-            Sign In
+          <SubmitButton onClick={handleLogin} disabled={loading}>
+            {loading ? "Processing..." : "Sign In"}
           </SubmitButton>
         </FormContainer>
         {error && <p style={{ color: "Black" }}>{error}</p>}

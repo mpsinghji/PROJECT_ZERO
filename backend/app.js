@@ -43,6 +43,7 @@ app.use("/api/v1/events", eventsRouter);
 
 
 app.use("/api/v1/announcements", announcementRouter);
+app.use("/api/v1/announcements", announcementRouter);
 
 
 app.use((req, res, next) => {
