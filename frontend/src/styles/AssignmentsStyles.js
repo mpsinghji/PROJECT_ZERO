@@ -1,111 +1,89 @@
 import styled from 'styled-components';
 
+// Container for the entire assignments page
 export const AssignmentsContainer = styled.div`
   display: flex;
-  padding-left: 40px;
+  height: 100vh;
+  background-color: #f4f4f4;
+`;
 
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-    padding-left: 0;
+// Sidebar container
+export const SidebarContainer = styled.div`
+  width: 250px;
+  color: #ecf0f1;
+`;
+
+// Main content area
+export const Content = styled.div`
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+
+  h1 {
+    color: #34495e;
+    font-size: 2rem;
+    margin-bottom: 20px;
   }
 `;
 
-export const Content = styled.div`
-  flex: 1;
-`;
-
-export const AssignmentsContent = styled.div`
-  padding: 20px;
-`;
-
-export const AssignmentsHeader = styled.h2`
-  font-size: 24px;
-  margin-bottom: 20px;
-`;
-
-export const AssignmentList = styled.ul`
-  list-style: none;
-  padding: 0;
-`;
-
-export const AssignmentItem = styled.li`
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 10px 20px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
-
-export const AddAssignmentForm = styled.form`
-  margin-bottom: 20px;
-`;
-
-export const AddAssignmentInput = styled.input`
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-`;
-
-export const AddAssignmentTextArea = styled.textarea`
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  resize: vertical;
-`;
-
-export const AddAssignmentButton = styled.button`
-  padding: 10px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-`;
-
-
-export const SidebarContainer = styled.div`
-  flex: 0 0 250px;
-`;
-
-
-
+// Individual assignment card
 export const AssignmentCard = styled.div`
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin-bottom: 20px;
-  width: 100%;
-  max-width: 600px;
-`;
-
-export const AssignmentTitle = styled.h3`
-  margin-bottom: 10px;
-`;
-
-export const AssignmentDescription = styled.p`
-  color: #555;
   margin-bottom: 15px;
-`;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
 
-export const AssignmentButton = styled.button`
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
   &:hover {
-    background-color: #0056b3;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
   }
 `;
 
-export const AssignmentDoneMessage = styled.p`
-  color: #28a745;
+// Assignment title
+export const AssignmentTitle = styled.h2`
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin: 0;
+`;
+
+// Assignment description
+export const AssignmentDescription = styled.p`
+  color: #7f8c8d;
+  font-size: 1rem;
+  margin: 0;
+`;
+
+// Message indicating assignment completion
+export const AssignmentDoneMessage = styled.span`
+  color: #27ae60;
   font-weight: bold;
+  font-size: 1.2rem;
+`;
+
+// Button for submitting assignments
+export const AssignmentButton = styled.button`
+  align-self: flex-start;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #2980b9;
+  }
+
+  &:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+  }
 `;
