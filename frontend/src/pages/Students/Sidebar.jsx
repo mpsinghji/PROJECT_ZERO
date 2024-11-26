@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   BsGraphUp,
   BsFileText,
@@ -12,50 +11,31 @@ import {
   BsBoxArrowRight,
 } from "react-icons/bs";
 import {
+  SidebarContainer,
   SidebarHeader,
   SidebarNav,
   SidebarNavItem,
   SidebarIcon,
-  Logo
+  Logo,
 } from "../../styles/SidebarStyles";
-
-export const SidebarContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 250px;
-  height: 100%;
-  background-color: #1A252F;
-  color: #ECF0F1;
-  // overflow-y: auto; 
-  padding-top: 70px;
-  z-index: 100;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
-  transition: width 0.3s ease-in-out;
-
-  ::-webkit-scrollbar {
-    width: 8px; 
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: #34495E;
-    border-radius: 10px; 
-  }
-
-  &:hover {
-    width: 260px;
-  }
-  
-  @media screen and (max-height: 700px) {
-    padding-top: 50px; 
-  }
-`;
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavigation = (path) => {
-    navigate(path); 
+    navigate(path);
+  };
+
+  const isActive = (path) => {
+    return location.pathname === path ? "active" : "";
+  };
+
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+      navigate("/choose-user");
+    }
   };
 
   return (
@@ -65,55 +45,82 @@ const Sidebar = () => {
       </SidebarHeader>
       <SidebarHeader>Student</SidebarHeader>
       <SidebarNav>
-        <SidebarNavItem onClick={() => handleNavigation("/student/dashboard")}>
+        <SidebarNavItem
+          onClick={() => handleNavigation("/student/dashboard")}
+          className={isActive("/student/dashboard")}
+        >
           <SidebarIcon>
             <BsGraphUp />
           </SidebarIcon>
           Dashboard
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/student/assignments")}>
+        <SidebarNavItem
+          onClick={() => handleNavigation("/student/assignments")}
+          className={isActive("/student/assignments")}
+        >
           <SidebarIcon>
             <BsFileText />
           </SidebarIcon>
           Assignments
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/student/exams")}>
+        <SidebarNavItem
+          onClick={() => handleNavigation("/student/exams")}
+          className={isActive("/student/exams")}
+        >
           <SidebarIcon>
             <BsBook />
           </SidebarIcon>
           Exams
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/student/performance")}>
+        <SidebarNavItem
+          onClick={() => handleNavigation("/student/performance")}
+          className={isActive("/student/performance")}
+        >
           <SidebarIcon>
             <BsGraphDown />
           </SidebarIcon>
           Performance
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/student/attendance")}>
+        <SidebarNavItem
+          onClick={() => handleNavigation("/student/attendance")}
+          className={isActive("/student/attendance")}
+        >
           <SidebarIcon>
             <BsCalendar />
           </SidebarIcon>
           Attendance
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/student/library")}>
+        <SidebarNavItem
+          onClick={() => handleNavigation("/student/library")}
+          className={isActive("/student/library")}
+        >
           <SidebarIcon>
             <BsBook />
           </SidebarIcon>
           Library
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/student/communication")}>
+        <SidebarNavItem
+          onClick={() => handleNavigation("/student/communication")}
+          className={isActive("/student/communication")}
+        >
           <SidebarIcon>
             <BsChatDots />
           </SidebarIcon>
           Announcement
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/student/settings")}>
+        <SidebarNavItem
+          onClick={() => handleNavigation("/student/settings")}
+          className={isActive("/student/settings")}
+        >
           <SidebarIcon>
             <BsGear />
           </SidebarIcon>
           Profile
         </SidebarNavItem>
-        <SidebarNavItem onClick={() => handleNavigation("/choose-user")}>
+        <SidebarNavItem
+          onClick={handleLogout}
+          className={isActive("/choose-user")}
+        >
           <SidebarIcon>
             <BsBoxArrowRight />
           </SidebarIcon>

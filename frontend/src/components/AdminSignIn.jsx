@@ -22,21 +22,25 @@ const AdminSignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    setError(null);
+    setLoading(true);
     try {
-      setError(null);
       const response = await axios.post("http://localhost:5000/api/admin/login", {
         email,
         password,
       });
       localStorage.setItem("token", response.data.token);
-      navigate("/admin/dashboard"); 
+      navigate("/admin/dashboard");
     } catch (err) {
       const errorMessage =
         err.response?.data?.message || "Login failed. Please try again.";
-      setError(errorMessage); 
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,17 +56,19 @@ const AdminSignIn = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            />
+          />
           <InputField
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            />
-          <SubmitButton onClick={handleLogin}>Sign In</SubmitButton>
+          />
+          <SubmitButton onClick={handleLogin} disabled={loading}>
+            {loading ? "Processing..." : "Sign In"}
+          </SubmitButton>
         </FormContainer>
-        {error && <p style={{ color: "Black" }}>{error}</p>} 
+        {error && <p style={{ color: "Black" }}>{error}</p>}
       </AdminSignInContainer>
     </>
   );
