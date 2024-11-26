@@ -13,7 +13,7 @@ import {
   BookItem,
   BookTitle,
   BookAuthor,
-  // ActionButton,
+  ActionButton,
 } from '../../styles/LibraryStyles';
 import styled from "styled-components";
 
@@ -31,7 +31,7 @@ const Library = () => {
 
   const fetchBooks = async () => {
     try {
-      // console.log(books);
+      console.log(books);
       const response = await axios.get('http://localhost:5000/api/v1/library/getall');
       setBooks(response.data.books);
     } catch (error) {
