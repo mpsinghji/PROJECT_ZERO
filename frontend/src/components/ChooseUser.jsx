@@ -1,14 +1,14 @@
-import {
-  ChooseUserContainer,
-  UserSection,
-  Title,
-  Button,
-} from "../styles/ChooseUserStyles";
+import React from "react";
+import { ChooseUserContainer, UserSection, Title, Button } from "../styles/ChooseUserStyles";
 import { Link } from "react-router-dom";
 
 const ChooseUser = () => {
   return (
+    <>
+    
     <ChooseUserContainer>
+      <div className="overlay"></div>
+      
       <UserSection>
         <Title>Admin</Title>
         <Button to="/admin-signIn">Login As Admin</Button>
@@ -20,8 +20,11 @@ const ChooseUser = () => {
       <UserSection>
         <Title>Teacher</Title>
         <Button to="/teacher-signIn">Login As Teacher</Button>
+
+    
       </UserSection>
     </ChooseUserContainer>
+    </>
   );
 };
 

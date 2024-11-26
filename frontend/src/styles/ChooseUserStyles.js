@@ -1,100 +1,111 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import backgroundImage from "../assets/background_image.jpeg"
 
+// Container for the entire page
 export const ChooseUserContainer = styled.div`
   display: flex;
+  justify-content: center; /* Aligns items horizontally */
+  align-items: center; /* Aligns items vertically to center */
+  height: 100vh; /* Full height */
+  position: fixed; /* Fixed position so it stays in place */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url(${backgroundImage}) no-repeat center center fixed; /* Background image */
+  background-size: cover;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100vh;
-  padding: 2em;
-  background-color: #f0f8ff;
+  gap: 70px; /* Space between the child elements (user section boxes) */
+  color: white;
+  overflow: hidden; /* Prevent scrolling */
+  z-index: 1;
 
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 4em;
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 3em;
-  }
-
-  @media screen and (max-width: 480px) {
-    padding: 1em;
-  }
-
-  @media screen and (min-width: 481px) and (max-width: 767px) {
-    padding: 2em;
+  /* Overlay div will now be in this container */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black overlay */
+    z-index: -1; /* Ensures it stays behind the content */
   }
 `;
 
+export const QuoteContainer = styled.div`
+  position: absolute;
+  top: -190px; /* Positioning from the top of the user section */
+  right: -350px; /* Position it on the right side */
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+  padding: 5px;
+  max-width: 100px; /* Control the length of the quote */
+`;
 
+export const Chotaquote = styled.div`
+  position: absolute;
+  top: -160px; /* Positioning from the top of the user section */
+  right: -90px; /* Position it on the right side */
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+  padding: 5px;
+  max-width: 100px; /* Control the length of the quote */
+`;
 
+// Style for each user section box
 export const UserSection = styled.div`
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  width: 250px;
   text-align: center;
-  padding: 30px 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  background-color: #ffffff; 
-  width: 90%;
-  max-width: 300px;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
 
   &:hover {
-    transform: translateY(-5px); 
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
   }
 
-  @media screen and (min-width: 768px) {
-    padding: 40px 30px;
-    margin: 0 20px;
-    text-align: left;
+  @media (max-width: 768px) {
+    width: 200px;
   }
 `;
 
+// Style for titles (Admin, Student, Teacher)
 export const Title = styled.h2`
-  font-size: 26px;
-  font-weight: bold;
-  margin-bottom: 25px;
-  color: #34495e; 
-  text-transform: uppercase;
-
-  @media screen and (max-width: 768px) {
-    font-size: 22px;
-  }
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 15px;
 `;
 
+// Style for the buttons (Login buttons)
 export const Button = styled(Link)`
-  // background-color: #128670; 
-  background-color: #27477a; 
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
   color: white;
-  border: none;
-  padding: 15px 25px;
-  margin-top: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
   text-decoration: none;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
+  text-align: center;
   transition: background-color 0.3s ease, transform 0.2s ease;
 
   &:hover {
-    background-color: #1abc9c; 
-    transform: translateY(-3px);
+    background-color: #2980b9;
+    transform: scale(1.05);
   }
 
   &:active {
-    // background-color: #27477a; 
-    background-color: #1abc9c; 
-    transform: translateY(0);
-  }
-
-  @media screen and (max-width: 768px) {
-    padding: 12px 20px;
-    font-size: 14px;
+    background-color: #1f6f8b;
   }
 `;
+
