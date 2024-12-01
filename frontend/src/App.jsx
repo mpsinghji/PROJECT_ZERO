@@ -1,9 +1,6 @@
 import { BrowserRouter as Router,Route,Routes } from "react-router-dom";
 import Home from "./components/Home.jsx";
 import ChooseUser from "./components/ChooseUser.jsx";
-import AdminSignIn from "./components/AdminSignIn.jsx";
-import StudentSignIn from "./components/StudentSignIn.jsx";
-import TeacherSignIn from "./components/TeacherSignIn.jsx";
 import AboutMe from "./components/AboutMe.jsx";
 
 import AdminRegister from "./components/AdminRegister.jsx";
@@ -57,13 +54,6 @@ function App() {
           <Route exact path="/admin-register" element={<AdminRegister />} />
           <Route exact path="/teacher-register" element={<TeacherRegister />} />
           <Route exact path="/student-register" element={<StudentRegister />} />
-          
-
-          {/* Sign in pages routes */}
-          <Route exact path='/admin-signIn' element ={<AdminSignIn/>}/>
-          <Route exact path='/student-signIn' element ={<StudentSignIn/>}/>
-          <Route exact path='/teacher-signIn' element ={<TeacherSignIn/>}/>
-          
 
           {/* All dashboard routes */}
           <Route exact path='/admin/dashboard' element ={<AdminDashboard/>}/>
