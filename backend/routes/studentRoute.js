@@ -4,17 +4,16 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Response } from "../utils/response.js";
 import { message } from "../utils/message.js";
-import { verifyToken } from "../middlewares/auth.js";
 
 const studentRoute = express.Router();
 
-studentRoute.post("/login", verifyToken, async (req, res) => {
+studentRoute.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const user = await User.findOne({ email, role: "student" });
     if (!user) {
-        return Response(res, 404, false, message.studentNotFound);
+      return Response(res, 404, false, message.studentNotFound);
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -34,5 +33,6 @@ studentRoute.post("/login", verifyToken, async (req, res) => {
     Response(res, 500, false, message.serverError, error.message);
   }
 });
+
 
 export default studentRoute;

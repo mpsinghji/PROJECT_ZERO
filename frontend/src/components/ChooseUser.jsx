@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ChooseUserContainer, UserSection, Title, Button, InputField, Select } from "../styles/ChooseUserStyles";
+import {
+  ChooseUserContainer,
+  UserSection,
+  Title,
+  Button,
+  InputField,
+  Select,
+} from "../styles/ChooseUserStyles";
 import { createGlobalStyle } from "styled-components";
 import { useAuth } from "../context/authContext.jsx";
 
@@ -14,8 +21,8 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: "Arial", sans-serif;
-    background: #ecf0f1; /* Fallback color */
-    overflow: hidden; /* Prevent scrolling */
+    background: #ecf0f1;
+    overflow: hidden;
     height: 100vh;
     width: 100vw;
   }
@@ -29,8 +36,8 @@ export const GlobalStyle = createGlobalStyle`
 const ChooseUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("admin"); // Default role is Admin
-  const { setIsAuthenticated } = useAuth(); // Get the authentication state and setter function
+  const [role, setRole] = useState("admin");
+  const { setIsAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -48,30 +55,35 @@ const ChooseUser = () => {
         password,
       });
 
-      console.log(response); // Log the full response
-
-      // Check if token exists in response
-      const token = response.data?.token;
+      console.log(response);
+      let token;
+      if (role === "admin") {
+        token = response.data?.token;
+      } else if (role === "student" || role === "teacher") {
+        token = response.data?.data?.token;
+      }
 
       if (!token) {
         throw new Error("Token not found in response");
       }
 
-      // Save token to localStorage
       localStorage.setItem("token", token);
-
-      // Mark the user as authenticated
       setIsAuthenticated(true);
 
-      // Redirect based on role
       if (role === "admin") navigate("/admin/dashboard");
       else if (role === "student") navigate("/student/dashboard");
       else if (role === "teacher") navigate("/teacher/dashboard");
-
     } catch (error) {
-      console.error(error);
+      console.log(error);
       alert(error.response?.data?.message || "Login failed. Please try again.");
     }
+  };
+
+  const token = localStorage.getItem("token");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   };
 
   return (
@@ -110,7 +122,9 @@ const ChooseUser = () => {
                 <option value="teacher">Teacher</option>
               </Select>
             </div>
-            <Button as="button" type="submit">Login</Button>
+            <Button as="button" type="submit">
+              Login
+            </Button>
           </form>
         </UserSection>
       </ChooseUserContainer>

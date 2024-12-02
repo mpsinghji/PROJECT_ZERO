@@ -1,7 +1,7 @@
 import { BrowserRouter as Router,Route,Routes } from "react-router-dom";
 import Home from "./components/Home.jsx";
 import ChooseUser from "./components/ChooseUser.jsx";
-import AboutMe from "./components/AboutMe.jsx";
+// import AboutMe from "./components/AboutMe.jsx";
 
 import AdminRegister from "./components/AdminRegister.jsx";
 import StudentRegister from "./components/StudentRegister.jsx";
@@ -49,7 +49,7 @@ function App() {
       <Routes>
           <Route path='/' element ={<Home/>}/>
           <Route path='/choose-user' element={<ChooseUser/>}/>
-          <Route path="/about-me" element={<AboutMe />} />
+          {/* <Route path="/about-me" element={<AboutMe />} /> */}
 
           {/* Add the Admin Register route here */}
           <Route exact path="/admin-register" element={<AdminRegister />} />

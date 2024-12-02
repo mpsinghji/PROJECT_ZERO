@@ -74,7 +74,7 @@ export const studentLogin = async (req, res) => {
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
       expiresIn: "1h", 
     });
-    res.status(200).json({ token }); 
+    return Response(res, 200, true, message.studentLoginSuccess, { token });
   } catch (error) {
     console.error("Student login error:", error.message); 
     console.error("Stack trace:", error.stack); 

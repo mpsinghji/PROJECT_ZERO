@@ -12,7 +12,6 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   BsGraphUp,
-  BsPeople,
   BsFileText,
   BsBook,
   BsGraphDown,
@@ -45,7 +44,8 @@ const AdminSidebar = () => {
     const confirmLogout = window.confirm("Are you sure you want to log out?");
     if (confirmLogout) {
       navigate("/choose-user");
-      localStorage.clear();
+      localStorage.removeItem("token");
+      setIsAuthenticated(false);
     }
   };
 
