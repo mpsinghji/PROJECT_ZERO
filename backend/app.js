@@ -5,6 +5,7 @@ import adminRoute from "./routes/adminRoute.js";
 import studentRoute from "./routes/studentRoute.js";
 import teacherRoute from "./routes/teacherRoute.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 
 import announcementRouter from "./routes/announcementRouter.js"
@@ -18,6 +19,7 @@ dotenv.config({ path: "./config/config.env" });
 
 const app = express();
 
+app.use(cookieParser());
 app.use(express.json());
 
 app.use(
@@ -27,6 +29,18 @@ app.use(
     credentials: true,
   })
 );
+
+app.post("/login", (req, res, next) => {
+  const { email, password } = req.body;
+  const token = "some token";
+  res.cookie('authToken', token, {
+    httpOnly: true, 
+    secure: process.env.NODE_ENV === 'production', 
+    maxAge: 3600000 
+  });
+  res.status(200).json({ message: 'Login successful' });
+});
+
 
 app.get("/", (req, res) => {
   res.send("Hello from the server!");

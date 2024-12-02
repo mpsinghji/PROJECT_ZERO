@@ -41,6 +41,7 @@ import AssignmentSection from '../src/pages/Teachers/Assignments';
 import CheckAttendanceSection from '../src/pages/Teachers/Attendance';
 import CheckExamSection from '../src/pages/Teachers/Exams';
 
+import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 function App() {
   return(
@@ -56,46 +57,44 @@ function App() {
           <Route exact path="/student-register" element={<StudentRegister />} />
 
           {/* All dashboard routes */}
-          <Route exact path='/admin/dashboard' element ={<AdminDashboard/>}/>
-          <Route exact path="/student/dashboard" element={<StudentDashboard />} />
-          <Route exact path="/teacher/dashboard" element={<TeacherDashboard />} /> 
+          <Route exact path='/admin/dashboard' element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
+          <Route exact path="/student/dashboard" element={<ProtectedRoute><StudentDashboard /> </ProtectedRoute>} />
+          <Route exact path="/teacher/dashboard" element={<ProtectedRoute><TeacherDashboard /></ProtectedRoute>} /> 
 
 
           {/* Admin Section */}
-          <Route exact path='/admin/Announcement' element ={<AdminAnnouncement/>}/>
-          <Route exact path='/admin/Assignment' element ={<AdminAssignment/>}/>
-          <Route exact path='/admin/Attendance' element ={<AdminAttendance/>}/>
-          <Route exact path='/admin/Classes' element ={<AdminClasses/>}/>
-          <Route exact path='/admin/EventCalender' element ={<AdminEventCalender/>}/>
-          <Route exact path='/admin/Exam' element ={<AdminExam/>}/>
-          <Route exact path='/admin/Library' element ={<AdminLibrary/>}/>
-          <Route exact path='/admin/Performance' element ={<AdminPerformance/>}/>
-          <Route exact path='/admin/Profile' element ={<AdminSettingProfile/>}/>
-          <Route exact path='/admin/Students' element ={<Students/>}/>
-          <Route exact path='/admin/Teachers' element ={<Teachers/>}/>
-
+          <Route exact path='/admin/Announcement' element ={<ProtectedRoute><AdminAnnouncement/></ProtectedRoute>}/>
+          <Route exact path='/admin/Assignment' element ={<ProtectedRoute><AdminAssignment/></ProtectedRoute>}/>
+          <Route exact path='/admin/Attendance' element ={<ProtectedRoute><AdminAttendance/></ProtectedRoute>}/>
+          <Route exact path='/admin/Classes' element ={<ProtectedRoute><AdminClasses/></ProtectedRoute>}/>
+          <Route exact path='/admin/EventCalender' element ={<ProtectedRoute><AdminEventCalender/></ProtectedRoute>}/>
+          <Route exact path='/admin/Exam' element ={<ProtectedRoute><AdminExam/></ProtectedRoute>}/>
+          <Route exact path='/admin/Library' element ={<ProtectedRoute><AdminLibrary/></ProtectedRoute>}/>
+          <Route exact path='/admin/Performance' element ={<ProtectedRoute><AdminPerformance/></ProtectedRoute>}/>
+          <Route exact path='/admin/Profile' element ={<ProtectedRoute><AdminSettingProfile/></ProtectedRoute>}/>
+          <Route exact path='/admin/Students' element ={<ProtectedRoute><Students/></ProtectedRoute>}/>
+          <Route exact path='/admin/Teachers' element ={<ProtectedRoute><Teachers/></ProtectedRoute>}/>
 
           {/* Student Dashboard routes */}
-          <Route exact path="/student/assignments" element={<StudentAssignments />} />
-          <Route exact path="/student/exams" element={<ExamSection />} />
-          <Route exact path="/student/performance" element={<PerformanceSection />} />
-          <Route exact path="/student/attendance" element={<AttendanceSection />} />
-          <Route exact path="/student/library" element={<LibrarySection />} />
-          <Route exact path="/student/communication" element={<AnnouncementSection/>} />
-          <Route exact path="/student/EventCalendar" element={<StudentEventSection />} />
-          <Route exact path="/student/settings" element={<ProfileSection />} />
-
+          <Route exact path="/student/assignments" element={<ProtectedRoute><StudentAssignments /></ProtectedRoute>} />
+          <Route exact path="/student/exams" element={<ProtectedRoute><ExamSection /></ProtectedRoute>} />
+          <Route exact path="/student/performance" element={<ProtectedRoute><PerformanceSection /></ProtectedRoute>} />
+          <Route exact path="/student/attendance" element={<ProtectedRoute><AttendanceSection /></ProtectedRoute>} />
+          <Route exact path="/student/library" element={<ProtectedRoute><LibrarySection /></ProtectedRoute>} />
+          <Route exact path="/student/communication" element={<ProtectedRoute><AnnouncementSection/></ProtectedRoute>} />
+          <Route exact path="/student/EventCalendar" element={<ProtectedRoute><StudentEventSection /></ProtectedRoute>} />
+          <Route exact path="/student/settings" element={<ProtectedRoute><ProfileSection /></ProtectedRoute>} />
 
           {/* Teachers sections here */}
-          <Route exact path="/teacher/classes" element={<ClassSection />} />
-          <Route exact path="/teacher/students" element={<StudentSection />} />
-          <Route exact path="/teacher/assignments" element={<AssignmentSection />} />
-          <Route exact path="/teacher/exams" element={<CheckExamSection />} />
-          <Route exact path="/teacher/performance" element={<CheckPerformanceSection />} />
-          <Route exact path="/teacher/attendance" element={<CheckAttendanceSection />} />
-          <Route exact path="/teacher/communication" element={<CheckAnnouncementSection />} />
-          <Route exact path="/teacher/events" element={<EventSection />} />
-          <Route exact path="/teacher/settings" element={<TeacherProfileSection/>} />
+          <Route exact path="/teacher/classes" element={<ProtectedRoute><ClassSection /></ProtectedRoute>} />
+          <Route exact path="/teacher/students" element={<ProtectedRoute><StudentSection /></ProtectedRoute>} />
+          <Route exact path="/teacher/assignments" element={<ProtectedRoute><AssignmentSection /></ProtectedRoute>} />
+          <Route exact path="/teacher/exams" element={<ProtectedRoute><CheckExamSection /></ProtectedRoute>} />
+          <Route exact path="/teacher/performance" element={<ProtectedRoute><CheckPerformanceSection /></ProtectedRoute>} />
+          <Route exact path="/teacher/attendance" element={<ProtectedRoute><CheckAttendanceSection /></ProtectedRoute>} />
+          <Route exact path="/teacher/communication" element={<ProtectedRoute><CheckAnnouncementSection /></ProtectedRoute>} />
+          <Route exact path="/teacher/events" element={<ProtectedRoute><EventSection /></ProtectedRoute>} />
+          <Route exact path="/teacher/settings" element={<ProtectedRoute><TeacherProfileSection/></ProtectedRoute>} />
       </Routes>
     </Router>
   )

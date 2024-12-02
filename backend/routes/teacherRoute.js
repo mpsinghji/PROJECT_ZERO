@@ -4,10 +4,11 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Response } from "../utils/response.js";
 import { message } from "../utils/message.js";
+import { verifyToken } from "../middlewares/auth.js";
 
 const teacherRoute = express.Router();
 
-teacherRoute.post("/login", async (req, res) => {
+teacherRoute.post("/login", verifyToken, async (req, res) => {
   const { email, password } = req.body;
 
   try {

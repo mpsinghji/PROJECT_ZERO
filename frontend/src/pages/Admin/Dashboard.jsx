@@ -29,13 +29,17 @@ const AdminDashboard = () => {
   useEffect(() => {
     let isMounted = true; 
 
+    // Check token immediately
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("No token found. Please log in again.");
+      setLoading(false);
+      window.location.href = "/admin-signin"; // Redirect to login if no token found
+      return;
+    }
+
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          throw new Error("No token found. Please log in again.");
-        }
-
         const response = await axios.get("http://localhost:5000/api/admin/users/count", {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -54,10 +58,11 @@ const AdminDashboard = () => {
         if (isMounted) {
           const status = err.response?.status;
 
+          // Handle unauthorized error
           if (status === 401) {
             setError("Session expired. Redirecting to login...");
             setTimeout(() => {
-              window.location.href = "/admin-signin";
+              window.location.href = "/admin-signin"; // Redirect to login after 2 seconds
             }, 2000); 
           } else {
             setError("Failed to fetch data. Please try again later.");
@@ -104,7 +109,6 @@ const AdminDashboard = () => {
               </Card>
             </CardContainer>
           </Section>
-
         </TopContent>
 
         <BottomContent>

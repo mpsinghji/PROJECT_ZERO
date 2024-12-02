@@ -43,15 +43,19 @@ export const adminLogin = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: "24h", 
+      expiresIn: "1h", 
     });
-    res.status(200).json({ token }); 
+
+    // Send the token to the client
+    res.status(200).json({ token });
+
   } catch (error) {
     console.error("Admin login error:", error.message); 
     console.error("Stack trace:", error.stack); 
     return Response(res, 500, false, message.serverError, error.message);
-}
+  }
 };
+
 
 export const studentLogin = async (req, res) => {
   const { email, password } = req.body;
@@ -68,7 +72,7 @@ export const studentLogin = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: "24h", 
+      expiresIn: "1h", 
     });
     res.status(200).json({ token }); 
   } catch (error) {
@@ -93,7 +97,7 @@ export const teacherLogin = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: "24h",
+      expiresIn: "1h",
     });
     res.status(200).json({ token });
   } catch (error) {
