@@ -63,7 +63,7 @@ const AdminSidebar = () => {
   return (
     <SidebarContainer>
       <SidebarHeader>
-        <Logo src={bg1} alt="PROJECTZERO" />
+        <Logo src={bg1} alt="PROJECTZERO" onClick={() => handleNavigation("/admin/dashboard")} />
       </SidebarHeader>
       <SidebarNav>
         <SidebarNavItem

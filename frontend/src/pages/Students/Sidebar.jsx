@@ -43,7 +43,7 @@ const Sidebar = () => {
   return (
     <SidebarContainer>
       <SidebarHeader>
-        <Logo src={bg1} alt="Logo" />
+        <Logo src={bg1} alt="Logo" onClick={() => navigate("/student/dashboard")} />
       </SidebarHeader>
       <SidebarHeader>Student</SidebarHeader>
       <SidebarNav>

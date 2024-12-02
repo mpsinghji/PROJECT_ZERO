@@ -72,7 +72,7 @@ const Sidebar = () => {
   return (
     <SidebarContainer>
       <SidebarHeader>
-        <Logo src={bg1} alt="Logo" />
+        <Logo src={bg1} alt="Logo" onClick={() => navigate("/teacher/dashboard")} />
       </SidebarHeader>
       <SidebarHeader>Teacher</SidebarHeader>
       <SidebarNav>

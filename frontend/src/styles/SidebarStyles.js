@@ -95,8 +95,8 @@ export const SidebarIcon = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 60px;
-  height: auto;
+  width: 160px;
+  height: 50px;
   margin-bottom: 20px;
   transition: transform 0.3s ease-in-out;
 
