@@ -25,6 +25,7 @@ const AdminExam = () => {
   
   useEffect(() => {
     fetchExams();
+    toast.success('Exams fetched successfully');
   }, []);
 
   const fetchExams = async () => {

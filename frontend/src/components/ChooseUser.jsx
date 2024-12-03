@@ -48,9 +48,9 @@ const ChooseUser = () => {
     e.preventDefault();
 
     const roleUrls = {
-      admin: "http://localhost:5000/api/admin/login",
-      student: "http://localhost:5000/api/student/login",
-      teacher: "http://localhost:5000/api/teacher/login",
+      admin: "http://localhost:5000/api/v1/admin/login",
+      student: "http://localhost:5000/api/v1/student/login",
+      teacher: "http://localhost:5000/api/v1/teacher/login",
     };
 
     try {

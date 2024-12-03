@@ -85,7 +85,6 @@ const AdminRegister = () => {
           <RegisterContainer>
             <h2>Register as Admin</h2>
             <FormContainer onSubmit={handleRegister}>
-              <label htmlFor="email">Email</label>
               <InputField
                 id="email"
                 type="email"
@@ -94,7 +93,6 @@ const AdminRegister = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <label htmlFor="password">Password</label>
               <InputField
                 id="password"
                 type="password"
