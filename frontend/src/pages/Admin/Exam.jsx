@@ -22,9 +22,9 @@ const AdminExam = () => {
   const [batch, setBatch] = useState('');
   const [date, setDate] = useState('');
 
+  
   useEffect(() => {
     fetchExams();
-    toast.success('Exams fetched successfully');
   }, []);
 
   const fetchExams = async () => {
@@ -52,6 +52,7 @@ const AdminExam = () => {
         setSubjectCode('');
         setBatch('');
         setDate('');
+        fetchExams();
       } else {
         toast.error('Error adding exam');
       }
@@ -91,7 +92,7 @@ const AdminExam = () => {
             />
           <FormLabel>Date:</FormLabel>
           <FormInput
-            type="date"
+            type="datetime-local"
             value={date}
             onChange={(e) => setDate(e.target.value)}
             required
@@ -105,7 +106,7 @@ const AdminExam = () => {
               <p><strong>Subject Name:</strong> {exam.subjectName}</p>
               <p><strong>Subject Code:</strong> {exam.subjectCode}</p>
               <p><strong>Batch:</strong> {exam.batch}</p>
-              <p><strong>Date:</strong> {exam.date}</p>
+              <p><strong>Date:</strong> {new Date(exam.date).toLocaleString()}</p>
             </li>
           ))}
         </ul>

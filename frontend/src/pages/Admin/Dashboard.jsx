@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import AdminSidebar from "./Sidebar.jsx";
-import AdminPerformance from "./Performance.jsx";
-import AdminAnnouncement from "./Announcement.jsx";
 import Loading from "../../components/Loading/loading.jsx";
 import axios from "axios";
 import {
@@ -17,7 +15,7 @@ import {
   CardContent,
 } from "../../styles/DashboardStyles.js";
 import { createGlobalStyle } from "styled-components";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -133,8 +131,6 @@ const AdminDashboard = () => {
         </TopContent>
 
         <BottomContent>
-          <AdminPerformance />
-          <AdminAnnouncement />
         </BottomContent>
       </Content>
     </AdminDashboardContainer>

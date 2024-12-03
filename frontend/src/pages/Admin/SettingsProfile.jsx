@@ -46,7 +46,7 @@ const AdminSettingProfile = () => {
           <EditButton>Edit Profile</EditButton>
         </Content>
       </ProfileContainer>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       </>
     );
   };
