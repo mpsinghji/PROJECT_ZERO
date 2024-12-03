@@ -199,7 +199,7 @@ const AdminSidebar = () => {
             <SidebarIcon>
               <BsGear />
             </SidebarIcon>
-            Settings and Profile
+            Settings & Profile
           </SidebarNavItem>
 
           <SidebarNavItem

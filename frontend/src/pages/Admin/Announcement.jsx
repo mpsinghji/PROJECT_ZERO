@@ -25,6 +25,7 @@ const Announcement = () => {
     try {
       const response = await axios.get('http://localhost:5000/api/v1/announcements/getall');
       setAnnouncements(response.data.announcements.reverse());
+      toast.success('Announcements fetched successfully');
     } catch (error) {
       toast.error('Error fetching announcements');
     }
@@ -33,7 +34,6 @@ const Announcement = () => {
   
   useEffect(() => {
     fetchAnnouncements();
-    toast.success('Announcements fetched successfully');
   }, []);
 
   const handleSubmit = async (e) => {
@@ -42,9 +42,9 @@ const Announcement = () => {
       const response = await axios.post('http://localhost:5000/api/v1/announcements', {
         announcement: announcement, 
       });
-      toast.success('Announcement sent successfully');
       setAnnouncement('');
       fetchAnnouncements();
+      toast.success('Announcement sent successfully');
     } catch (error) {
       toast.error('Error sending announcement');
     }
