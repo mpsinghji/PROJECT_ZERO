@@ -19,7 +19,7 @@ const Teachers = () => {
         <TeachersContent>
           <TeachersHeader>Teachers</TeachersHeader>
           <AddTeacherForm>
-            <AddTeacherInput
+            {/* <AddTeacherInput
               type="text"
               placeholder="Enter teacher name"
             />
@@ -31,7 +31,7 @@ const Teachers = () => {
               type="text"
               placeholder="Enter teacher subject"
             />
-            <AddTeacherButton type="submit">Add Teacher</AddTeacherButton>
+            <AddTeacherButton type="submit">Add Teacher</AddTeacherButton> */}
           </AddTeacherForm>
           <TeacherList>
             

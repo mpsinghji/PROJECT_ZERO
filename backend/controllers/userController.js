@@ -43,7 +43,7 @@ export const adminLogin = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: "1h", 
+      expiresIn: "12h", 
     });
 
     // Send the token to the client
@@ -72,7 +72,7 @@ export const studentLogin = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: "1h", 
+      expiresIn: "12h", 
     });
     return Response(res, 200, true, message.studentLoginSuccess, { token });
   } catch (error) {
@@ -97,7 +97,7 @@ export const teacherLogin = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "12h",
     });
     res.status(200).json({ token });
   } catch (error) {
