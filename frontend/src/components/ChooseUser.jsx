@@ -3,16 +3,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
   ChooseUserContainer,
+  RoleSelector,
+  RoleTab,
   UserSection,
   Title,
   Button,
   InputField,
-  Select,
+  UserSectionTransition,
 } from "../styles/ChooseUserStyles";
 import { createGlobalStyle } from "styled-components";
 import { useAuth } from "../context/authContext.jsx";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -72,7 +74,9 @@ const ChooseUser = () => {
       else if (role === "teacher") navigate("/teacher/dashboard");
     } catch (error) {
       console.log(error);
-      toast.error(error.response?.data?.message || "Login failed. Please try again.");
+      toast.error(
+        error.response?.data?.message || "Login failed. Please try again."
+      );
     }
   };
 
@@ -83,13 +87,38 @@ const ChooseUser = () => {
     },
   };
 
+  const handleRoleSelection = (role) => {
+    setRole(role);
+  };
+
   return (
     <>
       <GlobalStyle />
       <ChooseUserContainer>
         <div className="overlay"></div>
         <Title>Login</Title>
-        <UserSection>
+        <RoleSelector>
+          <RoleTab
+            className={role === "admin" ? "active" : ""}
+            onClick={() => handleRoleSelection("admin")}
+          >
+            Admin
+          </RoleTab>
+          <RoleTab
+            className={role === "student" ? "active" : ""}
+            onClick={() => handleRoleSelection("student")}
+          >
+            Student
+          </RoleTab>
+          <RoleTab
+            className={role === "teacher" ? "active" : ""}
+            onClick={() => handleRoleSelection("teacher")}
+          >
+            Teacher
+          </RoleTab>
+        </RoleSelector>
+
+        <UserSection className={role}>
           <form onSubmit={handleSubmit}>
             <div>
               <label>Email:</label>
@@ -110,14 +139,6 @@ const ChooseUser = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-            </div>
-            <div>
-              <label>Role:</label>
-              <Select value={role} onChange={(e) => setRole(e.target.value)}>
-                <option value="admin">Admin</option>
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-              </Select>
             </div>
             <Button as="button" type="submit">
               Login

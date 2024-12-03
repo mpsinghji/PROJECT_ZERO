@@ -190,7 +190,7 @@ const AdminSidebar = () => {
             <SidebarIcon>
               <BsCalendarEvent />
             </SidebarIcon>
-            Events and Calendar
+            Events & Calendar
           </SidebarNavItem>
           <SidebarNavItem
             className={isActive("/admin/Profile") ? "active" : ""}
