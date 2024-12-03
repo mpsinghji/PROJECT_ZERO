@@ -32,6 +32,7 @@ const AdminSidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const handleNavigation = (path) => {
@@ -40,6 +41,9 @@ const AdminSidebar = () => {
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
+  };
+  const toggleDropdown2 = () => {
+    setIsDropdownOpen2((prev) => !prev);
   };
 
   const isActive = (path) => location.pathname === path;
@@ -63,6 +67,7 @@ const AdminSidebar = () => {
     const handleClickOutside = (e) => {
       if (!e.target.closest(".dropdown")) {
         setIsDropdownOpen(false);
+        setIsDropdownOpen2(false);
       }
     };
 
@@ -106,6 +111,32 @@ const AdminSidebar = () => {
               </DropdownItem>
             </DropdownMenu>
           )}
+
+
+          <SidebarNavItem className="dropdown" onClick={toggleDropdown2}>
+            <SidebarIcon>
+              <FaUserPlus />
+            </SidebarIcon>
+            Users
+            <IoIosArrowDropdown />
+          </SidebarNavItem>
+          {isDropdownOpen2 && (
+            <DropdownMenu>
+              <DropdownItem onClick={() => handleNavigation("/admin/Students")}>
+                Students
+              </DropdownItem>
+              <DropdownItem onClick={() => handleNavigation("/admin/Teachers")}>
+                Teachers
+              </DropdownItem>
+            </DropdownMenu>
+          )}
+
+
+
+
+
+
+
           <SidebarNavItem
             className={isActive("/admin/Assignment") ? "active" : ""}
             onClick={() => handleNavigation("/admin/Assignment")}

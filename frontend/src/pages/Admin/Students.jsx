@@ -6,37 +6,35 @@ import {
   StudentsContent,
   StudentsHeader,
   StudentList,
-  AddStudentForm,
-  AddStudentInput,
-  AddStudentButton,
 } from "../../styles/StudentsStyles";
 
 const Students = () => {
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/admin/students");
+        const data = await response.json();
+        setStudents(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchStudents();
+  }, []);
+
   return (
     <StudentsContainer>
       <AdminSidebar />
       <Content>
         <StudentsContent>
-          <StudentsHeader>
-            <AddStudentForm>
-              <AddStudentInput
-                type='Text'
-                placeholder="Enter Student Name"
-              />
-              <AddStudentInput
-                type='Text'
-                placeholder="Enter Roll Number"
-              />
-              <AddStudentInput
-                type='Text'
-                placeholder="Enter Group"
-              />
-              <AddStudentButton type="submit">Add Student</AddStudentButton>
-            </AddStudentForm>
-            <StudentList>
-              
-            </StudentList>
-          </StudentsHeader>
+          <StudentsHeader>Students</StudentsHeader>
+          <StudentList>
+            {/* {students.map((student) => (
+              <p key={student._id}>{`${student.name} - ${student.rollNumber} - ${student.group}`}</p>
+            ))} */}
+          </StudentList>
         </StudentsContent>
       </Content>
     </StudentsContainer>
