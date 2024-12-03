@@ -31,7 +31,7 @@ const EventCalendar = () => {
   
   useEffect(() => {
     fetchEvents();
-    // toast.success('Events fetched successfully');
+    toast.success('Events fetched successfully');
   }, []);
 
   const handleInputChange = (e) => {

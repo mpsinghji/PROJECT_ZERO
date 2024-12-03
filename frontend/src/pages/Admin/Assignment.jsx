@@ -26,7 +26,7 @@ const AdminAssignments = () => {
 
     useEffect(() => {
         fetchAssignments();
-        // toast.success('Assignments fetched successfully');
+        toast.success('Assignments fetched successfully');
     }, []);
 
     const fetchAssignments = async () => {

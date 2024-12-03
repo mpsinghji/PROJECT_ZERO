@@ -25,8 +25,8 @@ import bg1 from "../../assets/bg1.png";
 import { FaUserPlus } from "react-icons/fa";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { CgUserRemove } from "react-icons/cg";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import LogoutModal from "../../components/Logout/logOut";
 
 const AdminSidebar = () => {
@@ -221,7 +221,7 @@ const AdminSidebar = () => {
         </SidebarNav>
       </SidebarContainer>
 
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </>
   );
 };

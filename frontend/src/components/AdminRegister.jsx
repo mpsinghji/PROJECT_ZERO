@@ -7,7 +7,7 @@ import {
   PageWrapper,
   ContentWrapper,
 } from "../styles/RegisterStyles";
-import Sidebar from "../pages/Admin/Sidebar";
+import AdminSidebar from "../pages/Admin/Sidebar";
 import { createGlobalStyle } from "styled-components";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -68,7 +68,7 @@ const AdminRegister = () => {
     <>
     <GlobalStyle />
     <PageWrapper>
-      <Sidebar />
+      <AdminSidebar />
       <ContentWrapper>
         <RegisterContainer>
           <h2>Register as Admin</h2>

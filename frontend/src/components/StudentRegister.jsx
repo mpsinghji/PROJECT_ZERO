@@ -63,7 +63,7 @@ const StudentRegister = () => {
         },
         body: JSON.stringify(userData),
       });
-
+      
       if (!response.ok) {
         if (response.status === 409 || message.userExists) {
           toast.error("Student already exists in the database.");

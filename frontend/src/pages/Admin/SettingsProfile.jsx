@@ -10,8 +10,8 @@ import {
   ProfileInfo,
   EditButton,
 } from '../../styles/SettingsProfileStyles';
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from "react-toastify";
+// import 'react-toastify/dist/ReactToastify.css';
 
 
 const AdminSettingProfile = () => {
