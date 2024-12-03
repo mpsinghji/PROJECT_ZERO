@@ -14,19 +14,27 @@ const studentSchema = new mongoose.Schema({
   rollno: {
     type: String,
     required: [true, "Roll number is required"],
+    unique: true,
   },
   mobileno: {
     type: String,
     required: [true, "Mobile number is required"],
+    unique: true,
+  },
+  role: {
+    type: String,
+    default: "student",
   },
 });
 
+// Hash password before saving
 studentSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
+// Compare password method
 studentSchema.methods.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };

@@ -2,20 +2,27 @@ import Admin from "../models/adminModel.js";
 import { Response } from "../utils/response.js";
 import jwt from "jsonwebtoken";
 
+
 export const adminRegister = async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    console.log("Request Body:", req.body);
+
+    // Check if the admin already exists
     const existingAdmin = await Admin.findOne({ email });
+    console.log("Existing Admin:", existingAdmin);
     if (existingAdmin) {
       return Response(res, 400, false, "Admin already exists");
     }
 
+    // Create a new admin
     const admin = new Admin({ email, password });
     await admin.save();
 
-    Response(res, 201, true, "Admin successfully registered");
+    return Response(res, 201, true, "Admin successfully registered");
   } catch (error) {
+    console.error("Error registering admin:", error);
     return Response(res, 500, false, "Server error", error.message);
   }
 };

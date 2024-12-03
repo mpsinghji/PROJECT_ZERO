@@ -11,6 +11,10 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: [true, "Password is required"],
   },
+  role: {
+    type: String,
+    default: "admin",
+  },
 });
 
 adminSchema.pre("save", async function (next) {

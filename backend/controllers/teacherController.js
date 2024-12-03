@@ -6,20 +6,25 @@ export const teacherRegister = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const existingTeacher = await Teacher.findOne({ email });
-    if (existingTeacher) {
-      return Response(res, 400, false, "Teacher already exists");
+    console.log("Request Body:", req.body);
+
+    // Check if the teacher already exists
+    const existingteacher = await Teacher.findOne({ email });
+    console.log("Existing teacher:", existingteacher);
+    if (existingteacher) {
+      return Response(res, 400, false, "teacher already exists");
     }
 
+    // Create a new teacher
     const teacher = new Teacher({ email, password });
     await teacher.save();
 
-    Response(res, 201, true, "Teacher successfully registered");
+    return Response(res, 201, true, "teacher successfully registered");
   } catch (error) {
+    console.error("Error registering teacher:", error);
     return Response(res, 500, false, "Server error", error.message);
   }
 };
-
 export const teacherLogin = async (req, res) => {
   const { email, password } = req.body;
 

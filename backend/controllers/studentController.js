@@ -6,19 +6,26 @@ export const studentRegister = async (req, res) => {
   const { email, password, rollno, mobileno } = req.body;
 
   try {
-    const existingStudent = await Student.findOne({ email });
+    console.log("Request Body:", req.body);
+
+    // Check if the student already exists by email or roll number
+    const existingStudent = await Student.findOne({ $or: [{ email }, { rollno }] });
+    console.log("Existing student:", existingStudent);
     if (existingStudent) {
-      return Response(res, 400, false, "Student already exists");
+      return Response(res, 400, false, "Student with this email or roll number already exists");
     }
 
+    // Create a new student
     const student = new Student({ email, password, rollno, mobileno });
     await student.save();
 
-    Response(res, 201, true, "Student successfully registered");
+    return Response(res, 201, true, "Student successfully registered");
   } catch (error) {
+    console.error("Error registering student:", error);
     return Response(res, 500, false, "Server error", error.message);
   }
 };
+
 
 export const studentLogin = async (req, res) => {
   const { email, password } = req.body;

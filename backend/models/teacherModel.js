@@ -4,12 +4,16 @@ import bcrypt from "bcrypt";
 const teacherSchema = new mongoose.Schema({
   email: {
     type: String,
-    required: [true, "Email is required"],
+    required: true,
     unique: true,
   },
   password: {
     type: String,
-    required: [true, "Password is required"],
+    required: true,
+  },
+  role: {
+    type: String,
+    default: "teacher",
   },
 });
 
