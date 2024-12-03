@@ -16,6 +16,8 @@ import {
   ActionButton,
 } from '../../styles/LibraryStyles';
 import styled from "styled-components";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const LibraryContainer = styled.div`
   display: flex;
@@ -27,15 +29,15 @@ const Library = () => {
 
   useEffect(() => {
     fetchBooks();
+    toast.success('Books fetched successfully');
   }, []);
 
   const fetchBooks = async () => {
     try {
-      // console.log(books);
       const response = await axios.get('http://localhost:5000/api/v1/library/getall');
-      setBooks(response.data.books);
+      setBooks(response.data.books.reverse());
     } catch (error) {
-      console.error('Error fetching books:', error.response.data.error);
+      toast.error('Error fetching books');
     }
   };
 
@@ -47,8 +49,9 @@ const Library = () => {
       });
       fetchBooks();
       setBooks([...books, response.data]);
+      toast.success('Book added successfully');
     } catch (error) {
-      console.error('Error adding book:', error.response.data.error);
+      toast.error('Error adding book');
     }
   };
 
@@ -62,6 +65,7 @@ const Library = () => {
   };
 
   return (
+    <>
     <LibraryContainer>
       <AdminSidebar />
       <Content>
@@ -103,6 +107,8 @@ const Library = () => {
         </BookList>
       </Content>
     </LibraryContainer>
+    <ToastContainer />
+    </>
   );
 };
 

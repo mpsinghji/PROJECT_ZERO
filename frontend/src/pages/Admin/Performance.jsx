@@ -8,8 +8,11 @@ import {
   SchoolPerformance,
   IndividualPerformance,
 } from '../../styles/PerformanceStyles'; 
-
 import styled from "styled-components";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 export const PerformanceContainer = styled.div`
   display: flex;
   padding-left:220px
@@ -28,6 +31,7 @@ const Performance = () => {
   ];
 
   return (
+    <>
     <PerformanceContainer>
       <AdminSidebar /> 
       <Content>
@@ -48,6 +52,8 @@ const Performance = () => {
         </PerformanceContent>
       </Content>
     </PerformanceContainer>
+    <ToastContainer />
+    </>
   );
 };
 

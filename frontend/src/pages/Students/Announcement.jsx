@@ -21,7 +21,7 @@ const AnnouncementSection = () => {
   const fetchAnnouncements = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/v1/announcements/getall');
-      setAnnouncements(response.data.announcements);
+      setAnnouncements(response.data.announcements.reverse());
     } catch (error) {
       console.error('Error fetching announcements:', error);
     }

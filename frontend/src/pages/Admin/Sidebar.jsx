@@ -24,11 +24,15 @@ import {
 import bg1 from "../../assets/bg1.png";
 import { FaUserPlus } from "react-icons/fa";
 import { IoIosArrowDropdown } from "react-icons/io";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import LogoutModal from "../../components/Logout/logOut";
 
 const AdminSidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const handleNavigation = (path) => {
     navigate(path);
@@ -41,12 +45,18 @@ const AdminSidebar = () => {
   const isActive = (path) => location.pathname === path;
 
   const handleLogout = () => {
-    const confirmLogout = window.confirm("Are you sure you want to log out?");
-    if (confirmLogout) {
-      navigate("/choose-user");
-      localStorage.removeItem("token");
-      setIsAuthenticated(false);
-    }
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = (status) => {
+    setIsModalOpen(status);
+  };
+
+  const handleConfirmLogout = () => {
+    console.log('User has logged out');
+    localStorage.removeItem("token");
+    navigate("/choose-user"); 
+    setIsModalOpen(false); 
   };
 
   useEffect(() => {
@@ -61,132 +71,135 @@ const AdminSidebar = () => {
   }, []);
 
   return (
-    <SidebarContainer>
-      <SidebarHeader>
-        <Logo src={bg1} alt="PROJECTZERO" onClick={() => handleNavigation("/admin/dashboard")} />
-      </SidebarHeader>
-      <SidebarNav>
-        <SidebarNavItem
-          className={isActive("/admin/dashboard") ? "active" : ""}
-          onClick={() => handleNavigation("/admin/dashboard")}
-        >
-          <SidebarIcon>
-            <BsGraphUp />
-          </SidebarIcon>
-          Dashboard
-        </SidebarNavItem>
-        <SidebarNavItem className="dropdown" onClick={toggleDropdown}>
-          <SidebarIcon>
-            <FaUserPlus />
-          </SidebarIcon>
-          Register
-          <IoIosArrowDropdown />
-        </SidebarNavItem>
-        {isDropdownOpen && (
-          <DropdownMenu>
-            <DropdownItem onClick={() => handleNavigation("/admin-register") }>
-              Admin
-            </DropdownItem>
-            <DropdownItem onClick={() => handleNavigation("/student-register")}>
-              Student
-            </DropdownItem>
-            <DropdownItem onClick={() => handleNavigation("/teacher-register")}>
-              Teacher
-            </DropdownItem>
-          </DropdownMenu>
-        )}
-        {/* <SidebarNavItem
-          className={isActive("/admin/Classes") ? "active" : ""}
-          onClick={() => handleNavigation("/admin/Classes")}
-        >
-          <SidebarIcon>
-            <BsPeople />
-          </SidebarIcon>
-          Classes
-        </SidebarNavItem> */}
-        <SidebarNavItem
-          className={isActive("/admin/Assignment") ? "active" : ""}
-          onClick={() => handleNavigation("/admin/Assignment")}
-        >
-          <SidebarIcon>
-            <BsFileText />
-          </SidebarIcon>
-          Assignment
-        </SidebarNavItem>
-        <SidebarNavItem
-          className={isActive("/admin/Exam") ? "active" : ""}
-          onClick={() => handleNavigation("/admin/Exam")}
-        >
-          <SidebarIcon>
-            <BsBook />
-          </SidebarIcon>
-          Exams
-        </SidebarNavItem>
-        <SidebarNavItem
-          className={isActive("/admin/Performance") ? "active" : ""}
-          onClick={() => handleNavigation("/admin/Performance")}
-        >
-          <SidebarIcon>
-            <BsGraphDown />
-          </SidebarIcon>
-          Performance
-        </SidebarNavItem>
-        <SidebarNavItem
-          className={isActive("/admin/Attendance") ? "active" : ""}
-          onClick={() => handleNavigation("/admin/Attendance")}
-        >
-          <SidebarIcon>
-            <BsCalendar />
-          </SidebarIcon>
-          Attendance
-        </SidebarNavItem>
-        <SidebarNavItem
-          className={isActive("/admin/Library") ? "active" : ""}
-          onClick={() => handleNavigation("/admin/Library")}
-        >
-          <SidebarIcon>
-            <BsBook />
-          </SidebarIcon>
-          Library
-        </SidebarNavItem>
-        <SidebarNavItem
-          className={isActive("/admin/Announcement") ? "active" : ""}
-          onClick={() => handleNavigation("/admin/Announcement")}
-        >
-          <SidebarIcon>
-            <BsChatDots />
-          </SidebarIcon>
-          Announcement
-        </SidebarNavItem>
-        <SidebarNavItem
-          className={isActive("/admin/EventCalender") ? "active" : ""}
-          onClick={() => handleNavigation("/admin/EventCalender")}
-        >
-          <SidebarIcon>
-            <BsCalendarEvent />
-          </SidebarIcon>
-          Events and Calendar
-        </SidebarNavItem>
-        <SidebarNavItem
-          className={isActive("/admin/Profile") ? "active" : ""}
-          onClick={() => handleNavigation("/admin/Profile")}
-        >
-          <SidebarIcon>
-            <BsGear />
-          </SidebarIcon>
-          Settings and Profile
-        </SidebarNavItem>
-        <SidebarNavItem
-          className={isActive("/choose-user") ? "active" : ""}
-          onClick={handleLogout}
-        >
-          <SidebarIcon>
-            <BsBoxArrowRight />
-          </SidebarIcon>
-          Log Out
-        </SidebarNavItem>
-      </SidebarNav>
-    </SidebarContainer>
+    <>
+      <SidebarContainer>
+        <SidebarHeader>
+          <Logo src={bg1} alt="PROJECTZERO" onClick={() => handleNavigation("/admin/dashboard")} />
+        </SidebarHeader>
+        <SidebarNav>
+          <SidebarNavItem
+            className={isActive("/admin/dashboard") ? "active" : ""}
+            onClick={() => handleNavigation("/admin/dashboard")}
+          >
+            <SidebarIcon>
+              <BsGraphUp />
+            </SidebarIcon>
+            Dashboard
+          </SidebarNavItem>
+          <SidebarNavItem className="dropdown" onClick={toggleDropdown}>
+            <SidebarIcon>
+              <FaUserPlus />
+            </SidebarIcon>
+            Register
+            <IoIosArrowDropdown />
+          </SidebarNavItem>
+          {isDropdownOpen && (
+            <DropdownMenu>
+              <DropdownItem onClick={() => handleNavigation("/admin-register")}>
+                Admin
+              </DropdownItem>
+              <DropdownItem onClick={() => handleNavigation("/student-register")}>
+                Student
+              </DropdownItem>
+              <DropdownItem onClick={() => handleNavigation("/teacher-register")}>
+                Teacher
+              </DropdownItem>
+            </DropdownMenu>
+          )}
+          <SidebarNavItem
+            className={isActive("/admin/Assignment") ? "active" : ""}
+            onClick={() => handleNavigation("/admin/Assignment")}
+          >
+            <SidebarIcon>
+              <BsFileText />
+            </SidebarIcon>
+            Assignment
+          </SidebarNavItem>
+          <SidebarNavItem
+            className={isActive("/admin/Exam") ? "active" : ""}
+            onClick={() => handleNavigation("/admin/Exam")}
+          >
+            <SidebarIcon>
+              <BsBook />
+            </SidebarIcon>
+            Exams
+          </SidebarNavItem>
+          <SidebarNavItem
+            className={isActive("/admin/Performance") ? "active" : ""}
+            onClick={() => handleNavigation("/admin/Performance")}
+          >
+            <SidebarIcon>
+              <BsGraphDown />
+            </SidebarIcon>
+            Performance
+          </SidebarNavItem>
+          <SidebarNavItem
+            className={isActive("/admin/Attendance") ? "active" : ""}
+            onClick={() => handleNavigation("/admin/Attendance")}
+          >
+            <SidebarIcon>
+              <BsCalendar />
+            </SidebarIcon>
+            Attendance
+          </SidebarNavItem>
+          <SidebarNavItem
+            className={isActive("/admin/Library") ? "active" : ""}
+            onClick={() => handleNavigation("/admin/Library")}
+          >
+            <SidebarIcon>
+              <BsBook />
+            </SidebarIcon>
+            Library
+          </SidebarNavItem>
+          <SidebarNavItem
+            className={isActive("/admin/Announcement") ? "active" : ""}
+            onClick={() => handleNavigation("/admin/Announcement")}
+          >
+            <SidebarIcon>
+              <BsChatDots />
+            </SidebarIcon>
+            Announcement
+          </SidebarNavItem>
+          <SidebarNavItem
+            className={isActive("/admin/EventCalender") ? "active" : ""}
+            onClick={() => handleNavigation("/admin/EventCalender")}
+          >
+            <SidebarIcon>
+              <BsCalendarEvent />
+            </SidebarIcon>
+            Events and Calendar
+          </SidebarNavItem>
+          <SidebarNavItem
+            className={isActive("/admin/Profile") ? "active" : ""}
+            onClick={() => handleNavigation("/admin/Profile")}
+          >
+            <SidebarIcon>
+              <BsGear />
+            </SidebarIcon>
+            Settings and Profile
+          </SidebarNavItem>
+
+          <SidebarNavItem
+            className={isActive("/choose-user") ? "active" : ""}
+            onClick={handleLogout}
+          >
+            <SidebarIcon>
+              <BsBoxArrowRight />
+            </SidebarIcon>
+            Log Out
+          </SidebarNavItem>
+
+          {isModalOpen && (
+            <LogoutModal
+              onClose={handleCloseModal}
+              onConfirm={handleConfirmLogout}
+            />
+          )}
+        </SidebarNav>
+      </SidebarContainer>
+
+      <ToastContainer />
+    </>
   );
 };
 

@@ -9,6 +9,9 @@ import {
 } from "../styles/RegisterStyles";
 import Sidebar from "../pages/Admin/Sidebar";
 import { createGlobalStyle } from "styled-components";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { message } from "../../../backend/utils/message";
 
 export const GlobalStyle = createGlobalStyle`
   html, body {
@@ -24,8 +27,6 @@ const AdminRegister = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
 
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -37,8 +38,6 @@ const AdminRegister = () => {
     };
 
     setLoading(true);
-    setErrorMessage('');
-    setSuccessMessage('');
 
     try {
       const response = await fetch("http://localhost:5000/api/v1/user/register", {
@@ -50,13 +49,16 @@ const AdminRegister = () => {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        if (response.status === 409 || message.userExists) {
+          toast.error("Admin already exists in the database.");
+        } else {
+          toast.error("An error occurred during registration.");
+        }
       } else {
-        const data = await response.json();
-        setSuccessMessage('Admin successfully registered!');
+        toast.success("Admin successfully registered!");
       }
     } catch (error) {
-      setErrorMessage('An error occurred during registration.');
+      toast.error('An error occurred during registration.');
     } finally {
       setLoading(false);
     }
@@ -89,15 +91,10 @@ const AdminRegister = () => {
               {loading ? "Registering..." : "Register"}
             </SubmitButton>
           </FormContainer>
-
-          {(successMessage || errorMessage) && (
-            <div className={`message ${successMessage ? "success" : "error"}`}>
-              {successMessage || errorMessage}
-            </div>
-          )}
         </RegisterContainer>
       </ContentWrapper>
     </PageWrapper>
+    <ToastContainer/>
     </>
   );
 };

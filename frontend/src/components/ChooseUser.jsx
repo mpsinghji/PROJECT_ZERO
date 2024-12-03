@@ -11,6 +11,8 @@ import {
 } from "../styles/ChooseUserStyles";
 import { createGlobalStyle } from "styled-components";
 import { useAuth } from "../context/authContext.jsx";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -56,12 +58,7 @@ const ChooseUser = () => {
       });
 
       console.log(response);
-      let token;
-      if (role === "admin") {
-        token = response.data?.token;
-      } else if (role === "student" || role === "teacher") {
-        token = response.data?.data?.token;
-      }
+      const token = response.data?.token || response.data?.data?.token;
 
       if (!token) {
         throw new Error("Token not found in response");
@@ -75,7 +72,7 @@ const ChooseUser = () => {
       else if (role === "teacher") navigate("/teacher/dashboard");
     } catch (error) {
       console.log(error);
-      alert(error.response?.data?.message || "Login failed. Please try again.");
+      toast.error(error.response?.data?.message || "Login failed. Please try again.");
     }
   };
 
@@ -128,6 +125,7 @@ const ChooseUser = () => {
           </form>
         </UserSection>
       </ChooseUserContainer>
+      <ToastContainer />
     </>
   );
 };

@@ -11,6 +11,8 @@ import {
   AddButton,
 } from '../../styles/ExamStyles';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const AdminExam = () => {
@@ -22,21 +24,22 @@ const AdminExam = () => {
 
   useEffect(() => {
     fetchExams();
+    toast.success('Exams fetched successfully');
   }, []);
 
   const fetchExams = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/v1/exam/getall');
-      console.log(response.data);
-      if (Array.isArray(response.data)) {
-        setExamData(response.data);
+      if (Array.isArray(response.data.exams)) { 
+        setExamData(response.data.exams.reverse());
       } else {
-        setExamData([response.data]);
+        toast.error('Unexpected data format received');
       }
     } catch (error) {
-      console.error('Error fetching exams:', error);
+      toast.error('Error fetching exams');
     }
   };
+  
 
   const handleAddExam = async (e) => {
     e.preventDefault();
@@ -50,13 +53,14 @@ const AdminExam = () => {
         setBatch('');
         setDate('');
       } else {
-        console.error('Error: API response data is not an object');
+        toast.error('Error adding exam');
       }
     } catch (error) {
-      console.error('Error adding exam:', error);
+      toast.error('Error adding exam');
     }
   };
   return (
+    <>
     <ExamContainer>
       <SidebarContainer>
         <AdminSidebar />
@@ -70,34 +74,34 @@ const AdminExam = () => {
             value={subjectName}
             onChange={(e) => setSubjectname(e.target.value)}
             required
-          />
+            />
           <FormLabel>Subject Code:</FormLabel>
           <FormInput
             type="text"
             value={subjectCode}
             onChange={(e) => setSubjectCode(e.target.value)}
             required
-          />
+            />
           <FormLabel>Batch:</FormLabel>
           <FormInput
             type="text"
             value={batch}
             onChange={(e) => setBatch(e.target.value)}
             required
-          />
+            />
           <FormLabel>Date:</FormLabel>
           <FormInput
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
             required
-          />
+            />
           <AddButton type="submit">Add Exam</AddButton>
         </ExamForm>
         <h3>Exam Details:</h3>
         <ul>
           {examData.map((exam,index) => (
-            <li key={index}>
+            <li key={index} style={{ marginBottom: '10px', backgroundColor: '#f2f2f2', padding: '10px', borderRadius: '5px' }}>
               <p><strong>Subject Name:</strong> {exam.subjectName}</p>
               <p><strong>Subject Code:</strong> {exam.subjectCode}</p>
               <p><strong>Batch:</strong> {exam.batch}</p>
@@ -107,6 +111,8 @@ const AdminExam = () => {
         </ul>
       </Content>
     </ExamContainer>
+    <ToastContainer />
+  </>
   )
 }
 

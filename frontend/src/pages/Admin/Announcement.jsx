@@ -24,15 +24,16 @@ const Announcement = () => {
   const fetchAnnouncements = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/v1/announcements/getall');
-      setAnnouncements(response.data.announcements);
+      setAnnouncements(response.data.announcements.reverse());
     } catch (error) {
-      console.error('Error fetching announcements:', error);
+      toast.error('Error fetching announcements');
     }
   };
   
-
+  
   useEffect(() => {
     fetchAnnouncements();
+    toast.success('Announcements fetched successfully');
   }, []);
 
   const handleSubmit = async (e) => {
@@ -41,19 +42,17 @@ const Announcement = () => {
       const response = await axios.post('http://localhost:5000/api/v1/announcements', {
         announcement: announcement, 
       });
-      console.log('Announcement sent:', response.data);
       toast.success('Announcement sent successfully');
       setAnnouncement('');
       fetchAnnouncements();
     } catch (error) {
-      console.error('Error sending announcement:', error);
       toast.error('Error sending announcement');
     }
   };
 
   return (
+    <>
     <AnnouncementContainer>
-      <ToastContainer />
       <AdminSidebar />
       <Content>
         <Title>Announcement</Title>
@@ -82,6 +81,8 @@ const Announcement = () => {
         </AnnouncementList>
       </Content>
     </AnnouncementContainer>
+    <ToastContainer />
+    </>
   );
 };
 

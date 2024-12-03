@@ -7,6 +7,9 @@ import {
 } from "../styles/RegisterStyles";
 import Sidebar from "../pages/Admin/Sidebar";
 import styled, { createGlobalStyle } from "styled-components";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { message } from "../../../backend/utils/message";
 
 const ScrollLockStyle = createGlobalStyle`
   html, body {
@@ -38,8 +41,6 @@ const StudentRegister = () => {
   const [rollno, setRollno] = useState('');
   const [mobileno, setMobileno] = useState('');
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
 
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -53,8 +54,6 @@ const StudentRegister = () => {
     };
 
     setLoading(true);
-    setErrorMessage('');
-    setSuccessMessage('');
 
     try {
       const response = await fetch("http://localhost:5000/api/v1/user/register", {
@@ -66,13 +65,16 @@ const StudentRegister = () => {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        if (response.status === 409 || message.userExists) {
+          toast.error("Student already exists in the database.");
+        } else {
+          toast.error("An error occurred during registration.");
+        }
       } else {
-        const data = await response.json();
-        setSuccessMessage('Student successfully registered!');
+        toast.success("Student successfully registered!");
       }
     } catch (error) {
-      setErrorMessage('An error occurred during registration.');
+      toast.error('An error occurred during registration.');
     } finally {
       setLoading(false);
     }
@@ -119,15 +121,10 @@ const StudentRegister = () => {
               {loading ? "Registering..." : "Register"}
             </SubmitButton>
           </FormContainer>
-
-          {(successMessage || errorMessage) && (
-              <div className={`message ${successMessage ? "success" : "error"}`}>
-              {successMessage || errorMessage}
-            </div>
-          )}
         </RegisterContainer>
       </ContentWrapper>
     </PageWrapper>
+    <ToastContainer/>
     </>
   );
 };

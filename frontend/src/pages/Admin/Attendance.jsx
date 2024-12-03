@@ -11,6 +11,8 @@ import {
   SubmitButton,
 } from '../../styles/AttendanceStyles';
 import styled from "styled-components";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const AttendanceContainer = styled.div`
   display: flex;
@@ -24,6 +26,7 @@ export const AttendanceContainer = styled.div`
 
 const AdminAttendance = () => {
   return (
+    <>
     <AttendanceContainer>
       <AdminSidebar />
       <Content>
@@ -41,7 +44,7 @@ const AdminAttendance = () => {
                   <CheckboxLabel>
                     <input
                       type="checkbox"
-                    />
+                      />
                     Absent
                   </CheckboxLabel>
                 </AttendanceItem>
@@ -50,6 +53,8 @@ const AdminAttendance = () => {
         </AttendanceContent>
       </Content>
     </AttendanceContainer>
+    <ToastContainer />
+    </>
   )
 }
 

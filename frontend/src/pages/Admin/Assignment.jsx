@@ -26,14 +26,15 @@ const AdminAssignments = () => {
 
     useEffect(() => {
         fetchAssignments();
+        toast.success('Assignments fetched successfully');
     }, []);
 
     const fetchAssignments = async () => {
         try {
             const response = await axios.get('http://localhost:5000/api/v1/assignments/getall');
-            setAssignments(response.data.assignments);
+            setAssignments(response.data.assignments.reverse());
         } catch (error) {
-            console.error('Error fetching assignments:', error);
+            toast.error('Error fetching assignments');
         }
     };
 
@@ -45,7 +46,7 @@ const AdminAssignments = () => {
     const handleAddAssignment = async (e) => {
         e.preventDefault();
         if (!newAssignment.title || !newAssignment.description) {
-            alert('Please fill out all fields.');
+            toast.error('Please fill out all fields.');
             return;
         }
 
@@ -57,15 +58,13 @@ const AdminAssignments = () => {
                 fetchAssignments(); 
             }
         } catch (error) {
-            console.error('Error adding assignment:', error);
             toast.error('Error sending announcement');
-
         }
     };
 
     return (
+        <>
         <PageContainer>
-          <ToastContainer />
             <SidebarContainer>
                 <AdminSidebar /> 
             </SidebarContainer>
@@ -101,6 +100,8 @@ const AdminAssignments = () => {
                 </AssignmentList>
             </ContentContainer>
         </PageContainer>
+        <ToastContainer />
+    </>
     );
 };
 

@@ -10,6 +10,9 @@ import {
   ProfileInfo,
   EditButton,
 } from '../../styles/SettingsProfileStyles';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const AdminSettingProfile = () => {
     const teacherInfo = {
@@ -21,6 +24,7 @@ const AdminSettingProfile = () => {
     };
   
     return (
+      <>
       <ProfileContainer>
         <SidebarContainer>
           <AdminSidebar />
@@ -42,6 +46,8 @@ const AdminSettingProfile = () => {
           <EditButton>Edit Profile</EditButton>
         </Content>
       </ProfileContainer>
+      <ToastContainer />
+      </>
     );
   };
 

@@ -16,6 +16,25 @@ import {
   CardTitle,
   CardContent,
 } from "../../styles/DashboardStyles.js";
+import { createGlobalStyle } from "styled-components";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: "Arial", sans-serif;
+    background: #ecf0f1;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+`;
 
 const AdminDashboard = () => {
   const [data, setData] = useState({
@@ -29,12 +48,11 @@ const AdminDashboard = () => {
   useEffect(() => {
     let isMounted = true; 
 
-    // Check token immediately
     const token = localStorage.getItem("token");
     if (!token) {
-      setError("No token found. Please log in again.");
+      toast.error("No token found. Please log in again.");
       setLoading(false);
-      window.location.href = "/admin-signin"; // Redirect to login if no token found
+      window.location.href = "/admin-signin";
       return;
     }
 
@@ -58,15 +76,16 @@ const AdminDashboard = () => {
         if (isMounted) {
           const status = err.response?.status;
 
-          // Handle unauthorized error
+
           if (status === 401) {
-            setError("Session expired. Redirecting to login...");
+            toast.error("Session expired. Redirecting to login...");
             setTimeout(() => {
-              window.location.href = "/admin-signin"; // Redirect to login after 2 seconds
+              window.location.href = "/admin-signin";
             }, 2000); 
           } else {
-            setError("Failed to fetch data. Please try again later.");
+            toast.error("Failed to fetch data. Please try again later.");
           }
+          setError(true);
           setLoading(false);
         }
       }
@@ -84,10 +103,12 @@ const AdminDashboard = () => {
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return toast.error("Something went Wrong!");
   }
 
   return (
+    <>
+    <GlobalStyle />
     <AdminDashboardContainer>
       <AdminSidebar />
       <Content>
@@ -117,6 +138,8 @@ const AdminDashboard = () => {
         </BottomContent>
       </Content>
     </AdminDashboardContainer>
+    <ToastContainer />
+    </>
   );
 };
 

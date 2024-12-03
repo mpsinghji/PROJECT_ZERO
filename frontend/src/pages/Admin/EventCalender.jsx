@@ -12,6 +12,8 @@ import {
   ErrorText,
 } from '../../styles/EventCalendarStyles';
 import AdminSidebar from './Sidebar.jsx';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EventCalendar = () => {
   const [events, setEvents] = useState([]);
@@ -21,15 +23,15 @@ const EventCalendar = () => {
   const fetchEvents = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/v1/events/getall');
-      setEvents(response.data.events || []);
+      setEvents(response.data.events.reverse() || []);
     } catch (error) {
-      console.error('Error fetching events:', error);
-      setError('Error fetching events');
+      toast.error('Error fetching events');
     }
   };
-
+  
   useEffect(() => {
     fetchEvents();
+    toast.success('Events fetched successfully');
   }, []);
 
   const handleInputChange = (e) => {
@@ -43,19 +45,18 @@ const EventCalendar = () => {
       const response = await axios.post('http://localhost:5000/api/v1/events', newEvent);
       setEvents([...events, response.data.event]);
       setNewEvent({ name: '', description: '', date: '' });
+      toast.success('Event added successfully');
     } catch (error) {
-      console.error('Error adding event:', error);
-      setError(error.response?.data?.error || 'Error adding event');
+      toast.error('Error adding event');
     }
   };
 
   return (
+    <>
     <EventCalendarContainer>
       <AdminSidebar />
       <Content>
         <h1>Events & Calendar</h1>
-        {/* <div>Current Time: {new Date().toLocaleString()}</div> */}
-        {/* <CalendarContainer>Calendar</CalendarContainer> */}
         <h2>Add New Event</h2>
         <AddEventForm onSubmit={addEvent}>
           <EventInput
@@ -93,6 +94,8 @@ const EventCalendar = () => {
         </Events>
       </Content>
     </EventCalendarContainer>
+    <ToastContainer />
+    </>
   );
 };
 

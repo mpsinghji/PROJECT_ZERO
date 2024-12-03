@@ -11,9 +11,12 @@ import {
   AddClassButton,
 
 } from "../../styles/ClassesStyles";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminClasses = () => {
   return (
+    <>
     <ClassesContainer>
       <AdminSidebar/>
       <Content>
@@ -32,6 +35,8 @@ const AdminClasses = () => {
         </ClassesContent>
       </Content>
     </ClassesContainer>
+    <ToastContainer />
+    </>
   )
 };
 
