@@ -40,40 +40,56 @@ const TeacherRegister = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
+
   const handleRegister = async (event) => {
     event.preventDefault();
-
-    const userData = {
-      email,
-      password,
-      role: "teacher", 
-    };
-
+  
+    if (!email.includes("@")) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+  
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters long.");
+      return;
+    }
+  
+    const userData = { email, password };
+  
     setLoading(true);
+  
     try {
-      const response = await fetch("http://localhost:5000/api/v1/user/register", {
+      const response = await fetch(`http://localhost:5000/api/v1/teacher/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userData),
       });
-
-      if (!response.ok) {
-        if (response.status === 409 || message.userExists) {
-          toast.error("Teacher already exists in the database.");
-        }else{
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-      } else {
-        toast.success("Teacher successfully registered!");
+      
+  
+      let result = null;
+  
+      // Check if the response has a JSON content type
+      if (response.headers.get("content-type")?.includes("application/json")) {
+        result = await response.json();
       }
+  
+      if (!response.ok) {
+        const errorMessage = result?.message || "An error occurred during registration.";
+        toast.error(errorMessage);
+        return;
+      }
+  
+      toast.success(result?.message || "teacher successfully registered!");
     } catch (error) {
-      toast.error("An error occurred during registration.");
+      console.error("Error during registration:", error);
+      toast.error("An unexpected error occurred during registration.");
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <>
