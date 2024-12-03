@@ -6,6 +6,8 @@ export const LoginPageContainer = styled.section`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-family: "Arial", sans-serif;
+
 `;
 
 // Box for the OTP form, with a simple border and padding

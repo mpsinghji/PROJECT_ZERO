@@ -13,6 +13,8 @@ export const HomeContainer = styled.div`
   height: 100vh;
   overflow: hidden; /* Prevent scrolling */
   z-index: -1; /* Make sure the content is above the video */
+  font-family: "Arial", sans-serif;
+
 
   /* Add background video */
   &::before {

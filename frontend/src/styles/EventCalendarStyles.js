@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const EventCalendarContainer = styled.div`
   display: flex;
+  font-family: "Arial", sans-serif;
   
   `;
   

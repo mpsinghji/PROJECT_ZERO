@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const LibraryContainer = styled.div`
   display: flex;
   padding-left: 40px;
+  font-family: "Arial", sans-serif;
+
 `;
 
 export const Content = styled.div`

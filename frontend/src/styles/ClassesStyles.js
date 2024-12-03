@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const ClassesContainer = styled.div`
   display: flex;
   padding-left: 40px;
-  margin-left: 200px;       
+  margin-left: 200px;     
+  font-family: "Arial", sans-serif;
+
 
   @media screen and (max-width: 768px) {
     flex-direction: column;

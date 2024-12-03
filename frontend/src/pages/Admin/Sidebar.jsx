@@ -24,6 +24,7 @@ import {
 import bg1 from "../../assets/bg1.png";
 import { FaUserPlus } from "react-icons/fa";
 import { IoIosArrowDropdown } from "react-icons/io";
+import { CgUserRemove } from "react-icons/cg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LogoutModal from "../../components/Logout/logOut";
@@ -96,7 +97,7 @@ const AdminSidebar = () => {
               <FaUserPlus />
             </SidebarIcon>
             Register
-            <IoIosArrowDropdown />
+            <IoIosArrowDropdown style={{ marginLeft: "auto" }} />
           </SidebarNavItem>
           {isDropdownOpen && (
             <DropdownMenu>
@@ -111,14 +112,12 @@ const AdminSidebar = () => {
               </DropdownItem>
             </DropdownMenu>
           )}
-
-
           <SidebarNavItem className="dropdown" onClick={toggleDropdown2}>
             <SidebarIcon>
-              <FaUserPlus />
+              <CgUserRemove />
             </SidebarIcon>
             Users
-            <IoIosArrowDropdown />
+            <IoIosArrowDropdown style={{ marginLeft: "auto" }} />
           </SidebarNavItem>
           {isDropdownOpen2 && (
             <DropdownMenu>
@@ -130,13 +129,6 @@ const AdminSidebar = () => {
               </DropdownItem>
             </DropdownMenu>
           )}
-
-
-
-
-
-
-
           <SidebarNavItem
             className={isActive("/admin/Assignment") ? "active" : ""}
             onClick={() => handleNavigation("/admin/Assignment")}

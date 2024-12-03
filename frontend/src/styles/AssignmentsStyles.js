@@ -5,6 +5,8 @@ export const AssignmentsContainer = styled.div`
   display: flex;
   height: 100vh;
   background-color: #f4f4f4;
+  font-family: "Arial", sans-serif;
+
 `;
 
 // Sidebar container

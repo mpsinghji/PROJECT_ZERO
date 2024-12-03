@@ -12,7 +12,9 @@ export const RegisterContainer = styled.div`
   color: #000;
   margin: 0; 
   padding: 0; 
-  overflow: hidden; 
+  overflow: hidden;
+  font-family: "Arial", sans-serif;
+
 `;
 
 

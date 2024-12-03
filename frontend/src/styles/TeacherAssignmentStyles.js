@@ -4,6 +4,8 @@ export const PageContainer = styled.div`
     display: flex;
     height: 100vh;
     background-color: #f5f5f5;
+    font-family: "Arial", sans-serif;
+
 `;
 
 export const SidebarContainer = styled.div`

@@ -4,6 +4,8 @@ export const AnnouncementContainer = styled.div`
   display: flex;
   flex-direction: row;
   padding-left: 240px;
+  font-family: "Arial", sans-serif;
+
 
   @media screen and (max-width: 768px) {
     flex-direction: column;

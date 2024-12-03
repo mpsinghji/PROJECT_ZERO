@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const PerformanceContainer = styled.div`
   display: flex;
+  font-family: "Arial", sans-serif;
+
   `;
   
 export const Content = styled.div`

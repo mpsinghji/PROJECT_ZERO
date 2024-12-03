@@ -13,6 +13,8 @@ export const ChooseUserContainer = styled.div`
   margin: 0; 
   padding: 0; 
   overflow: hidden;
+  font-family: "Arial", sans-serif;
+
 `;
 
 // Style for each user section box

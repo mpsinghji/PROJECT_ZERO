@@ -17,13 +17,15 @@ export const SidebarContainer = styled.div`
   overflow-y: auto; /* Enable scrolling */
   scrollbar-width: none; /* Hide scrollbar in Firefox */
   -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer */
+  font-family: "Arial", sans-serif;
+
 
   ::-webkit-scrollbar {
     display: none; /* Hide scrollbar in Chrome, Safari, and Edge */
   }
 
   &:hover {
-    width: 260px;
+    // width: 260px;
   }
 
   @media screen and (max-height: 700px) {

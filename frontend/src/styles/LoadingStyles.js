@@ -14,6 +14,8 @@ export const LoadingPageContainer = styled.section`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-family: "Arial", sans-serif;
+
 `;
 
 export const LoadingContentContainer = styled.div`

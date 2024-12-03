@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const ProfileContainer = styled.div`
   display: flex;
+  font-family: "Arial", sans-serif;
+
 `;
 
 export const SidebarContainer = styled.div`
