@@ -17,8 +17,8 @@ import {
   CardContent,
 } from "../../styles/DashboardStyles.js";
 import { createGlobalStyle } from "styled-components";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -138,7 +138,6 @@ const AdminDashboard = () => {
         </BottomContent>
       </Content>
     </AdminDashboardContainer>
-    {/* <ToastContainer /> */}
     </>
   );
 };

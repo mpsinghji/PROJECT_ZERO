@@ -25,7 +25,6 @@ const Announcement = () => {
     try {
       const response = await axios.get('http://localhost:5000/api/v1/announcements/getall');
       setAnnouncements(response.data.announcements.reverse());
-      toast.success('Announcements fetched successfully');
     } catch (error) {
       toast.error('Error fetching announcements');
     }
@@ -34,6 +33,7 @@ const Announcement = () => {
   
   useEffect(() => {
     fetchAnnouncements();
+    toast.success('Announcements fetched successfully');
   }, []);
 
   const handleSubmit = async (e) => {
