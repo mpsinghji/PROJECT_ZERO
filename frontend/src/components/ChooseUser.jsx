@@ -60,13 +60,14 @@ const ChooseUser = () => {
       });
 
       console.log(response);
-      const token = response.data?.token || response.data?.data?.token;
+      const tokenKey = `${role}token`;
+      const token = response.data?.[tokenKey] || response.data?.data?.[tokenKey];
 
       if (!token) {
         throw new Error("Token not found in response");
       }
 
-      localStorage.setItem("token", token);
+      localStorage.setItem(tokenKey, token);
       setIsAuthenticated(true);
 
       if (role === "admin") navigate("/admin/dashboard");
@@ -80,7 +81,8 @@ const ChooseUser = () => {
     }
   };
 
-  const token = localStorage.getItem("token");
+  const tokenKey = `${role}token`;
+  const token = localStorage.getItem(tokenKey);
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

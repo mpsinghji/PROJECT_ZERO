@@ -41,10 +41,10 @@ export const studentLogin = async (req, res) => {
       return Response(res, 401, false, "Invalid credentials");
     }
 
-    const token = jwt.sign({ id: student._id, role: "student" }, process.env.JWT_SECRET, {
+    const studenttoken = jwt.sign({ id: student._id, role: "student" }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
-    return Response(res, 200, true, "Student logged in", { token });
+    return Response(res, 200, true, "Student logged in", { studenttoken });
   } catch (error) {
     return Response(res, 500, false, "Server error", error.message);
   }

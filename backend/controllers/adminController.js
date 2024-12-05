@@ -41,10 +41,10 @@ export const adminLogin = async (req, res) => {
       return Response(res, 401, false, "Invalid credentials");
     }
 
-    const token = jwt.sign({ id: admin._id, role: "admin" }, process.env.JWT_SECRET, {
+    const admintoken = jwt.sign({ id: admin._id, role: "admin" }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
-    return Response(res, 200, true, "Admin logged in", { token });
+    return Response(res, 200, true, "Admin logged in", { admintoken });
   } catch (error) {
     return Response(res, 500, false, "Server error", error.message);
   }

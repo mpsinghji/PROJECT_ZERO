@@ -59,7 +59,7 @@ const AdminSidebar = () => {
 
   const handleConfirmLogout = () => {
     console.log('User has logged out');
-    localStorage.removeItem("token");
+    localStorage.removeItem("admintoken");
     navigate("/choose-user"); 
     setIsModalOpen(false); 
   };

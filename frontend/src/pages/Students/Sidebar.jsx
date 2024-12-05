@@ -36,7 +36,7 @@ const Sidebar = () => {
     const confirmLogout = window.confirm("Are you sure you want to log out?");
     if (confirmLogout) {
       navigate("/choose-user");
-      localStorage.clear();
+      localStorage.removeItem("studenttoken");
     }
   };
 
