@@ -11,23 +11,21 @@ import {
   ExamResult,
   ExamChartContainer,
 } from '../../styles/ExamStyles'; 
-
-// Importing chart.js components
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// Registering chart components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ExamSection = () => {
   const chartRef = useRef(null);
 
-  // Sample exam results data
+
   const examResultsData = {
     subjects: ['Math', 'Science', 'English', 'History'],
-    results: [80, 75, 90, 85] // Sample results out of 100
+    results: [80, 75, 90, 85] 
   };
 
-  // Bar chart data
   const barChartData = {
     labels: examResultsData.subjects,
     datasets: [
@@ -43,7 +41,7 @@ const ExamSection = () => {
     ]
   };
 
-  // Chart options
+
   const chartOptions = {
     scales: {
       y: {
@@ -55,6 +53,7 @@ const ExamSection = () => {
   };
 
   return (
+    <>
     <ExamContainer>
       <SidebarContainer>
         <Sidebar />
@@ -73,11 +72,13 @@ const ExamSection = () => {
               ref={chartRef}
               data={barChartData}
               options={chartOptions}
-            />
+              />
           </ExamChartContainer>
         </ExamResultsContainer>
       </Content>
     </ExamContainer>
+    <ToastContainer />
+    </>
   );
 };
 

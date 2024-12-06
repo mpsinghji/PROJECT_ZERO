@@ -19,25 +19,32 @@ import {
   Logo,
 } from "../../styles/SidebarStyles";
 import bg1 from "../../assets/bg1.png";
+import LogoutModal from "../../components/Logout/logOut";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const handleNavigation = (path) => {
     navigate(path);
   };
 
-  const isActive = (path) => {
-    return location.pathname === path ? "active" : "";
-  };
+  const isActive = (path) => location.pathname === path;
 
   const handleLogout = () => {
-    const confirmLogout = window.confirm("Are you sure you want to log out?");
-    if (confirmLogout) {
-      navigate("/choose-user");
-      localStorage.removeItem("studenttoken");
-    }
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = (status) => {
+    setIsModalOpen(status);
+  };
+
+  const handleConfirmLogout = () => {
+    console.log('User has logged out');
+    localStorage.removeItem("studenttoken");
+    navigate("/choose-user"); 
+    setIsModalOpen(false); 
   };
 
   return (
@@ -117,7 +124,7 @@ const Sidebar = () => {
           <SidebarIcon>
             <BsChatDots />
           </SidebarIcon>
-          Events and Calendar
+          Events & Calendar
         </SidebarNavItem>
         <SidebarNavItem
           onClick={() => handleNavigation("/student/settings")}
@@ -137,6 +144,12 @@ const Sidebar = () => {
           </SidebarIcon>
           Log Out
         </SidebarNavItem>
+        {isModalOpen && (
+            <LogoutModal
+              onClose={handleCloseModal}
+              onConfirm={handleConfirmLogout}
+            />
+          )}
       </SidebarNav>
     </SidebarContainer>
   );

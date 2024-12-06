@@ -10,24 +10,28 @@ import {
   AnnouncementItem,
   AnnouncementTitle,
 } from '../../styles/AnnouncementStyles'; 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AnnouncementSection = () => {
   const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
     fetchAnnouncements();
+    toast.success('Announcements fetched successfully');
   }, []);
-
+  
   const fetchAnnouncements = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/v1/announcements/getall');
       setAnnouncements(response.data.announcements.reverse());
     } catch (error) {
-      console.error('Error fetching announcements:', error);
+      toast.error('Error fetching announcements');
     }
   };
 
   return (
+    <>
     <AnnouncementContainer>
       <SidebarContainer>
         <Sidebar />
@@ -43,6 +47,8 @@ const AnnouncementSection = () => {
         </AnnouncementList>
       </Content>
     </AnnouncementContainer>
+    <ToastContainer />
+    </>
   );
 };
 

@@ -11,6 +11,8 @@ import {
   SubmitButton,
 } from '../../styles/AttendanceStyles';
 import styled from "styled-components";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const AttendanceContainer = styled.div`
   display: flex;
@@ -26,6 +28,7 @@ export const AttendanceContainer = styled.div`
 
 const CheckAttendanceSection = () => {
   return (
+    <>
     <AttendanceContainer>
       <Sidebar />
       <Content>
@@ -55,6 +58,8 @@ const CheckAttendanceSection = () => {
         </AttendanceContent>
       </Content>
     </AttendanceContainer>
+    <ToastContainer />
+    </>
   );
 };
 

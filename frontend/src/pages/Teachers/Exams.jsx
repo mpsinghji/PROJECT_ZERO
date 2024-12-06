@@ -11,6 +11,8 @@ import {
   AddButton,
 } from "../../styles/ExamStyles";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CheckExamSection = () => {
   const [examData, setExamData] = useState([]);
@@ -21,19 +23,19 @@ const CheckExamSection = () => {
 
   useEffect(() => {
     fetchExams();
+    toast.success('Exams fetched successfully');
   }, []);
 
   const fetchExams = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/v1/exam/getall");
-      console.log(response.data);
       if (Array.isArray(response.data)) {
         setExamData(response.data);
       } else {
         setExamData([response.data]);
       }
     } catch (error) {
-      console.error("Error fetching exams:", error);
+      toast.error('Error fetching exams');
     }
   };
 
@@ -49,14 +51,15 @@ const CheckExamSection = () => {
         setBatch('');
         setDate('');
       } else {
-        console.error("Error: API response data is not an object");
+        toast.error("Error adding exam");
       }
     } catch (error) {
-      console.error("Error adding exam:", error);
+      toast.error("Error adding exam", error);
     }
   };
 
   return (
+    <>
     <ExamContainer>
       <SidebarContainer>
         <Sidebar />
@@ -108,6 +111,8 @@ const CheckExamSection = () => {
         </ul>
       </Content>
     </ExamContainer>
+    <ToastContainer />
+    </>
   );
 };
 

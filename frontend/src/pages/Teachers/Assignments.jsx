@@ -15,6 +15,8 @@ import {
     Title,
     Description,
 } from '../../styles/TeacherAssignmentStyles';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TeacherAssignments = () => {
     const [newAssignment, setNewAssignment] = useState({ title: '', description: '' });
@@ -22,6 +24,7 @@ const TeacherAssignments = () => {
 
     useEffect(() => {
         fetchAssignments();
+        toast.success('Assignments fetched successfully');
     }, []);
 
     const fetchAssignments = async () => {
@@ -29,7 +32,7 @@ const TeacherAssignments = () => {
             const response = await axios.get('http://localhost:5000/api/v1/assignments/getall');
             setAssignments(response.data.assignments);
         } catch (error) {
-            console.error('Error fetching assignments:', error);
+            toast.error('Error fetching assignments');
         }
     };
 
@@ -60,6 +63,7 @@ const TeacherAssignments = () => {
     
 
     return (
+        <>
         <PageContainer>
             <SidebarContainer>
                 <Sidebar />
@@ -95,6 +99,8 @@ const TeacherAssignments = () => {
                 </AssignmentList>
             </ContentContainer>
         </PageContainer>
+        <ToastContainer />
+        </>
     );
 };
 

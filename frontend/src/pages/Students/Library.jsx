@@ -11,12 +11,15 @@ import {
   BookTitle,
   BorrowButton,
 } from '../../styles/LibraryStyles';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LibrarySection = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
     fetchBooks();
+    toast.success('Books fetched successfully');
   }, []);
 
   const fetchBooks = async () => {
@@ -24,19 +27,16 @@ const LibrarySection = () => {
       const response = await axios.get('http://localhost:5000/api/v1/library/getall');
       setBooks(response.data.books);
     } catch (error) {
-      console.error('Error fetching books:', error);
+      toast.error('Error fetching books');
     }
   };
 
   const handleBorrowBook = (id) => {
-
-
-
-    
     console.log(`Book with ID ${id} has been borrowed.`);
   };
 
   return (
+    <>
     <LibraryContainer>
       <SidebarContainer>
         <Sidebar />
@@ -54,6 +54,8 @@ const LibrarySection = () => {
         </BookList>
       </Content>
     </LibraryContainer>
+    <ToastContainer />
+    </>
   );
 };
 

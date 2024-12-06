@@ -7,9 +7,12 @@ import {
   StudentsHeader,
   StudentList,
 } from "../../styles/StudentsStyles";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const StudentSection = () => {
   return (
+    <>
     <StudentsContainer>
       <Sidebar />
       <Content>
@@ -19,6 +22,8 @@ const StudentSection = () => {
         </StudentsContent>
       </Content>
     </StudentsContainer>
+    <ToastContainer />
+    </>
   );
 };
 

@@ -21,6 +21,7 @@ import {
 } from "../../styles/SidebarStyles";
 import styled , { css } from "styled-components";
 import bg1 from "../../assets/bg1.png";
+import LogoutModal from "../../components/Logout/logOut";
 
 export const SidebarNavItem = styled.li`
   display: flex;
@@ -54,19 +55,26 @@ export const SidebarNavItem = styled.li`
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const handleNavigation = (path) => {
     navigate(path);
   };
 
-  const isActive = (path) => location.pathname === path ? "active" : "";
+  const isActive = (path) => location.pathname === path;
 
   const handleLogout = () => {
-    const confirmLogout = window.confirm("Are you sure you want to log out?");
-    if (confirmLogout) {
-      navigate("/choose-user");
-      localStorage.removeItem("teachertoken");
-    }
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = (status) => {
+    setIsModalOpen(status);
+  };
+
+  const handleConfirmLogout = () => {
+    localStorage.removeItem("teachertoken");
+    navigate("/choose-user"); 
+    setIsModalOpen(false); 
   };
 
   return (
@@ -172,6 +180,12 @@ const Sidebar = () => {
           </SidebarIcon>
           Log Out
         </SidebarNavItem>
+        {isModalOpen && (
+            <LogoutModal
+              onClose={handleCloseModal}
+              onConfirm={handleConfirmLogout}
+            />
+          )}
       </SidebarNav>
     </SidebarContainer>
   );

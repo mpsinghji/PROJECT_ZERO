@@ -10,7 +10,8 @@ import {
   AssignmentDoneMessage,
   AssignmentButton,
 } from '../../styles/AssignmentsStyles';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Sidebar from './Sidebar'; 
 
 const StudentAssignments = () => {
@@ -18,6 +19,7 @@ const StudentAssignments = () => {
 
   useEffect(() => {
     fetchAssignments();
+    toast.success('Assignments fetched successfully');
   }, []);
 
   const fetchAssignments = async () => {
@@ -25,7 +27,7 @@ const StudentAssignments = () => {
       const response = await axios.get('http://localhost:5000/api/v1/assignments/getall');
       setAssignments(response.data.assignments);
     } catch (error) {
-      console.error('Error fetching assignments:', error);
+      toast.error('Error fetching assignments');
     }
   };
 
@@ -47,6 +49,7 @@ const StudentAssignments = () => {
   };
 
   return (
+    <>
     <AssignmentsContainer>
       <SidebarContainer>
         <Sidebar /> 
@@ -75,6 +78,8 @@ const StudentAssignments = () => {
         </div>
       </Content>
     </AssignmentsContainer>
+    <ToastContainer />
+    </>
   );
 };
 

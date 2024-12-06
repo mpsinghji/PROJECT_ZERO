@@ -11,6 +11,8 @@ import {
   PerformanceGraphContainer,
   TotalMarks,
 } from '../../styles/PerformanceStyles';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PerformanceSection = () => {
   const performanceData = {
@@ -34,6 +36,7 @@ const PerformanceSection = () => {
   };
 
   return (
+    <>
     <PerformanceContainer>
       <SidebarContainer>
         <Sidebar />
@@ -48,6 +51,8 @@ const PerformanceSection = () => {
         </PerformanceInfo>
       </Content>
     </PerformanceContainer>
+    <ToastContainer />
+    </>
   );
 };
 

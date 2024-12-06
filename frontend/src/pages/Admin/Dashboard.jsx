@@ -17,6 +17,7 @@ import {
 import { createGlobalStyle } from "styled-components";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -42,13 +43,14 @@ const AdminDashboard = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("admintoken");
     if (!token) {
-      toast.error("No token found. Please log in again.");
+      toast.error("Invalid User. Please log in again.");
       setLoading(false);
-      window.location.href = "/admin-signin";
+      navigate("/choose-user");
       return;
     }
   

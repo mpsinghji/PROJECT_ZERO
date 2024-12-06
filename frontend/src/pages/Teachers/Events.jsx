@@ -11,6 +11,8 @@ import {
   AddEventButton,
   ErrorText,
 } from "../../styles/EventCalendarStyles";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EventSection = () => {
   const [events, setEvents] = useState([]);
@@ -28,13 +30,13 @@ const EventSection = () => {
       );
       setEvents(response.data.events || []);
     } catch (error) {
-      console.error("Error fetching events:", error);
-      setError("Error fetching events");
+      toast.error("Error fetching events");
     }
   };
 
   useEffect(() => {
     fetchEvents();
+    toast.success("Events fetched successfully");
   }, []);
 
   const addEvent = async (e) => {
@@ -52,16 +54,16 @@ const EventSection = () => {
         date: "",
       });
     } catch (error) {
-      console.error("Error adding event:", error);
       if (error.response && error.response.data && error.response.data.error) {
-        setError(error.response.data.error);
+        toast.error(error.response.data.error);
       } else {
-        setError("Error adding event");
+        toast.error("Error adding event");
       }
     }
   };
 
   return (
+    <>
     <EventCalendarContainer>
       <Sidebar />
       <Content>
@@ -105,6 +107,8 @@ const EventSection = () => {
         </Events>
       </Content>
     </EventCalendarContainer>
+    <ToastContainer />
+    </>
   );
 };
 

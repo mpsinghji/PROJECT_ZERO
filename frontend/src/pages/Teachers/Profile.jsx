@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import { ProfileContainer, SidebarContainer, Content, ProfileHeader, ProfileDetails, ProfileLabel, ProfileInfo, EditButton } 
 from '../../styles/SettingsProfileStyles'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TeacherProfileSection = () => {
   const [teacherInfo, setTeacherInfo] = useState({
@@ -13,6 +15,7 @@ const TeacherProfileSection = () => {
   });
 
   return (
+    <>
     <ProfileContainer>
       <SidebarContainer>
         <Sidebar />
@@ -34,6 +37,8 @@ const TeacherProfileSection = () => {
         <EditButton>Edit Profile</EditButton>
       </Content>
     </ProfileContainer>
+    <ToastContainer />
+    </>
   );
 };
 

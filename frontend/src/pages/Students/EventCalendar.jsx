@@ -7,25 +7,29 @@ import {
   Events
 } from "../../styles/EventCalendarStyles.js";
 import Sidebar from "./Sidebar.jsx";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const StudentEventSection = () => {
   const [events, setEvents] = useState([]);
 
+  const fetchEvents = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/v1/events/getall"
+      );
+      setEvents(response.data.events || []);
+    } catch (error) {
+      toast.error("Error fetching events");
+    }
+  };
   useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/api/v1/events/getall"
-        );
-        setEvents(response.data.events || []);
-      } catch (error) {
-        console.error("Error fetching events:", error);
-      }
-    };
     fetchEvents();
+    toast.success("Events fetched successfully");
   }, []);
 
   return (
+    <>
     <EventCalendarContainer>
       <Sidebar />
       <Content>
@@ -42,6 +46,8 @@ const StudentEventSection = () => {
         </Events>
       </Content>
     </EventCalendarContainer>
+    <ToastContainer />
+    </>
   );
 };
 

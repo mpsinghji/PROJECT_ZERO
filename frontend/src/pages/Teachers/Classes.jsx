@@ -8,9 +8,12 @@ import {
   ClassList,
   ClassItem,
 } from "../../styles/ClassesStyles";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ClassSection = () => {
   return (
+    <>
     <ClassContainer>
       <SidebarContainer>
         <Sidebar />
@@ -20,6 +23,8 @@ const ClassSection = () => {
         <ClassList></ClassList>
       </Content>
     </ClassContainer>
+    <ToastContainer />
+    </>
   );
 };
 

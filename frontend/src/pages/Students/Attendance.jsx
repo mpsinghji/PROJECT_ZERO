@@ -10,6 +10,8 @@ import {
   AttendanceDate,
   AttendanceStatus,
 } from "../../styles/AttendanceStyles";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AttendanceSection = () => {
   const attendance = [
@@ -21,6 +23,7 @@ const AttendanceSection = () => {
   ];
 
   return (
+    <>
     <AttendanceContainer>
       <SidebarContainer>
         <Sidebar />
@@ -39,6 +42,8 @@ const AttendanceSection = () => {
         </AttendanceList>
       </Content>
     </AttendanceContainer>
+    <ToastContainer />
+    </>
   );
 };
 

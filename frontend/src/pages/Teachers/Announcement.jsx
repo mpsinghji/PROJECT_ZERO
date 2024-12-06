@@ -35,6 +35,7 @@ const CheckAnnouncementSection = () => {
 
   useEffect(() => {
     fetchAnnouncements();
+    toast.success('Announcements fetched successfully');
   }, []);
 
   const handleSubmit = async (e) => {
@@ -46,20 +47,16 @@ const CheckAnnouncementSection = () => {
           announcement: announcement,
         }
       );
-      console.log("Announcement sent:", response.data);
-      toast.success('Announcement sent successfully');
       setAnnouncement("");
       fetchAnnouncements();
     } catch (error) {
-      console.error("Error sending announcement:", error);
       toast.error('Error sending announcement');
-
     }
   };
 
   return (
+    <>
     <AnnouncementContainer>
-      <ToastContainer />
       <Sidebar />
       <Content>
         <Title>Announcement</Title>
@@ -90,6 +87,8 @@ const CheckAnnouncementSection = () => {
         </AnnouncementList>
       </Content>
     </AnnouncementContainer>
+    <ToastContainer />
+    </>
   );
 };
 

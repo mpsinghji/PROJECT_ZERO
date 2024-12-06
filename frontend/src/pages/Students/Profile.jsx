@@ -10,6 +10,8 @@ import {
   Label,
   Value,
 } from '../../styles/SettingsProfileStyles';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProfileSection = () => {
   const studentProfile = {
@@ -21,6 +23,7 @@ const ProfileSection = () => {
   };
 
   return (
+    <>
     <ProfileContainer>
       <SidebarContainer>
         <Sidebar />
@@ -51,6 +54,8 @@ const ProfileSection = () => {
         </ProfileInfo>
       </Content>
     </ProfileContainer>
+      <ToastContainer />
+    </>
   );
 };
 
