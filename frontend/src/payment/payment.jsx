@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   FormContainer,
@@ -16,6 +17,7 @@ import ProjectLogo from "../assets/bg1.png";
 const Payment = () => {
   const [responseId, setResponseId] = React.useState("");
   const [responseState, setResponseState] = React.useState("");
+  const navigate = useNavigate();
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -76,6 +78,7 @@ const Payment = () => {
       image: "../assets/bg1.png",
       handler: function (response) {
         setResponseId(response.razorpay_payment_id);
+        navigate("/payment-success");
       },
       prefill: {
         name: "PROJECT_ZERO",
@@ -111,8 +114,8 @@ const Payment = () => {
         <Logo src={ProjectLogo} alt="Logo" />
         <Title>Fee Payment</Title>
         <Button onClick={() => createRazorpayOrder(100)}>Pay Now</Button>
-        <h3>OR</h3>
         {responseId && <ResponseText>Payment ID: {responseId}</ResponseText>}
+        <h3>OR</h3>
         <Form onSubmit={paymentFetch}>
           <Input type="text" name="paymentId" placeholder="Enter Payment ID" />
           <Button type="submit">Fetch Payment</Button>
