@@ -31,7 +31,7 @@ const Sidebar = () => {
     navigate(path);
   };
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => location.pathname === path ? 'active' : '';
 
   const handleLogout = () => {
     setIsModalOpen(true);
