@@ -14,7 +14,7 @@ import {
     AssignmentCard,
     Title,
     Description,
-} from '../../styles/TeacherAssignmentStyles';
+} from '../../styles/AdminAssignmentsStyles.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
