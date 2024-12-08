@@ -12,6 +12,8 @@ import libraryRouter from "./routes/libraryRoute.js";
 import assignmentRouter from "./routes/assignmentRouter.js";
 import attendanceRouter from "./routes/attendanceRouter.js";
 
+import Razorpay from "razorpay";
+
 dotenv.config({ path: "./config/config.env" });
 
 const app = express();
@@ -37,5 +39,53 @@ app.use("/api/v1/exam", examRouter);
 app.use("/api/v1/library", libraryRouter);
 app.use("/api/v1/assignments", assignmentRouter);
 app.use("/api/v1/attendance", attendanceRouter);
+
+app.post('/Fees', async(req, res) => {
+  const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+  });
+
+  const options = {
+    amount: req.body.amount,
+    currency: req.body.currency,
+    receipt: "fee_receipt#1",
+    payment_capture: 1,
+  };
+  try{
+    const response = await razorpay.orders.create(options);
+    res.json({
+      order_id: response.id,
+      currency: response.currency,
+      amount: response.amount
+    })
+  }catch(error){
+    res.status(500).send("Internal Server Error");
+  }
+})
+
+app.get("/payment/:paymentId", async (req, res) => {
+  const {paymentId} = req.params;
+
+  const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+  });
+  try{
+    const payment = await razorpay.payments.fetch(paymentId);
+    if(!payment){
+      return res.status(500).json("Error at razorpay loading");
+    }
+    res.json({
+      status:payment.status,
+      amount:payment.amount,
+      method:payment.method,
+      currency:payment.currency
+    })
+  }catch(error){
+    res.status(500).send("Failed to fetch payment details");
+  }
+}
+)
 
 export default app;

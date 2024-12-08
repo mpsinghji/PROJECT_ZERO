@@ -44,6 +44,8 @@ import CheckExamSection from "../src/pages/Teachers/Exams";
 
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 import LoginOtpPage from "./components/Otp/LoginOtp.jsx";
+import Payment from "./payment/payment.jsx";
+import PaymentSuccess from "./payment/paymentSuccess.jsx";
 
 function App() {
   return (
@@ -53,6 +55,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/choose-user" element={<ChooseUser />} />
         <Route path="/login-otp" element={<LoginOtpPage />} />
+
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment-success" element={<PaymentSuccess />} />
+
 
 
         {/* <Route path="/about-me" element={<AboutMe />} /> */}
