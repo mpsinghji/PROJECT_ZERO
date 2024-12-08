@@ -1,18 +1,21 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const TeachersContainer = styled.div`
   display: flex;
   padding-left: 240px;
   font-family: "Arial", sans-serif;
-
+  min-height: 100vh;
 `;
 
 export const Content = styled.div`
+  padding: 20px;
   flex: 1;
 `;
 
 export const TeachersContent = styled.div`
   padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
 `;
 
 export const TeachersHeader = styled.h2`
@@ -31,6 +34,8 @@ export const TeacherItem = styled.li`
   padding: 10px 20px;
   margin-bottom: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const AddTeacherForm = styled.form`
@@ -51,4 +56,17 @@ export const AddTeacherButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+`;
+
+
+export const RemoveButton = styled.button`
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #ff3333;
+  }
 `;

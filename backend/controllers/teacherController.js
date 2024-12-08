@@ -47,3 +47,26 @@ export const teacherLogin = async (req, res) => {
     return Response(res, 500, false, "Server error", error.message);
   }
 };
+
+export const getAllTeachers = async (req, res) => {
+  try {
+    const teachers = await Teacher.find();
+    res.status(200).json({ success: true, teachers });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export const deleteTeacher = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedTeacher = await Teacher.findByIdAndDelete(id);
+    if (!deletedTeacher) {
+      return Response(res, 404, false, "Teacher not found");
+    }
+    return Response(res, 200, true, "Teacher deleted successfully");
+  } catch (error) {
+    return Response(res, 500, false, "Server error", error.message);
+  }
+};
