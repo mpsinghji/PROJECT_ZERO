@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 // Container for the entire page
 export const ChooseUserContainer = styled.div`
@@ -8,7 +8,7 @@ export const ChooseUserContainer = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(to right, #1A252F, #1a252f);
+  background: linear-gradient(to right, #1a252f, #1a252f);
   color: #000;
   margin: 0;
   padding: 0;
@@ -142,5 +142,25 @@ export const UserSectionTransition = styled.div`
   &.hidden {
     opacity: 0;
   }
+`;
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+export const Spinner = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Circle = styled.div`
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: ${spin} 1s linear infinite;
 `;
 

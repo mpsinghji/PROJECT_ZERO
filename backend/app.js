@@ -10,6 +10,7 @@ import eventsRouter from "./routes/eventsRouter.js";
 import examRouter from "./routes/examRoute.js";
 import libraryRouter from "./routes/libraryRoute.js";
 import assignmentRouter from "./routes/assignmentRouter.js";
+import attendanceRouter from "./routes/attendanceRouter.js";
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -35,5 +36,6 @@ app.use("/api/v1/events", eventsRouter);
 app.use("/api/v1/exam", examRouter);
 app.use("/api/v1/library", libraryRouter);
 app.use("/api/v1/assignments", assignmentRouter);
+app.use("/api/v1/attendance", attendanceRouter);
 
 export default app;

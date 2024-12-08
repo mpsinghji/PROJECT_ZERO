@@ -9,7 +9,8 @@ import {
   Title,
   Button,
   InputField,
-  UserSectionTransition,
+  Spinner,
+  Circle,
 } from "../styles/ChooseUserStyles";
 import { createGlobalStyle } from "styled-components";
 import { useAuth } from "../context/authContext.jsx";
@@ -40,12 +41,14 @@ export const GlobalStyle = createGlobalStyle`
 const ChooseUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [role, setRole] = useState("admin");
   const { setIsAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const roleUrls = {
       admin: "http://localhost:5000/api/v1/admin/login",
@@ -61,7 +64,8 @@ const ChooseUser = () => {
 
       console.log(response);
       const tokenKey = `${role}token`;
-      const token = response.data?.[tokenKey] || response.data?.data?.[tokenKey];
+      const token =
+        response.data?.[tokenKey] || response.data?.data?.[tokenKey];
 
       if (!token) {
         throw new Error("Token not found in response");
@@ -78,6 +82,8 @@ const ChooseUser = () => {
       toast.error(
         error.response?.data?.message || "Login failed. Please try again."
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -142,8 +148,14 @@ const ChooseUser = () => {
                 required
               />
             </div>
-            <Button as="button" type="submit">
-              Login
+            <Button as="button" type="submit" disabled={loading}>
+              {loading ? (
+                <Spinner>
+                  <Circle />
+                </Spinner>
+              ) : (
+                "Login"
+              )}
             </Button>
           </form>
         </UserSection>
