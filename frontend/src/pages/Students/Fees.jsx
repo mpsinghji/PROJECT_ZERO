@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import { 
   FeesContainer, 
@@ -10,7 +10,7 @@ import {
   FeesTableData, 
   FeesPayButton 
 } from "../../styles/feesStyles";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/loading.jsx";
@@ -19,6 +19,12 @@ const Fees = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [semesterTitle, setSemesterTitle] = useState("");
+  
+  // Retrieve paid semesters from localStorage
+  const [paidFees, setPaidFees] = useState(() => {
+    const storedPaidFees = localStorage.getItem("paidFees");
+    return storedPaidFees ? JSON.parse(storedPaidFees) : [];
+  });
 
   const feesData = [
     { semester: "1st Semester", amount: "₹100" },
@@ -34,8 +40,17 @@ const Fees = () => {
     setLoading(true); 
 
     setTimeout(() => {
-      navigate("/payment", { state: { semesterTitle } }); 
-    }, 2000); 
+      // Update the state and save it in localStorage
+      const updatedPaidFees = [...paidFees, semester];
+      setPaidFees(updatedPaidFees);
+      localStorage.setItem("paidFees", JSON.stringify(updatedPaidFees)); // Store in localStorage
+
+      toast.success("No fee due left!"); // Show success toast
+      setLoading(false);
+
+      // Navigate to payment page after processing payment
+      navigate("/payment", { state: { semesterTitle: semester } });
+    }, 2000);
   };
 
   return (
@@ -59,8 +74,15 @@ const Fees = () => {
                   <FeesTableData>{fee.semester}</FeesTableData>
                   <FeesTableData>{fee.amount}</FeesTableData>
                   <FeesTableData>
-                    <FeesPayButton onClick={() => handlePayment(fee.semester)}>
-                      Pay
+                    <FeesPayButton
+                      onClick={() => handlePayment(fee.semester)}
+                      style={{
+                        backgroundColor: paidFees.includes(fee.semester) ? "green" : "",
+                        color: paidFees.includes(fee.semester) ? "white" : "",
+                      }}
+                      disabled={paidFees.includes(fee.semester)} // Disable the button if fee is paid
+                    >
+                      {paidFees.includes(fee.semester) ? "Paid" : "Pay"}
                     </FeesPayButton>
                   </FeesTableData>
                 </FeesTableRow>

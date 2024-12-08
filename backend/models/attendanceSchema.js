@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const attendanceSchema = new mongoose.Schema({
   student: {
     type: mongoose.Schema.Types.ObjectId,
@@ -8,8 +7,11 @@ const attendanceSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['Present', 'Absent'],
+    enum: ['Present', 'Absent', 'Absent with apology'],
     required: true
+  },
+  date: { // Add date field to store the selected date
+    type: String,     required: true,
   }
 });
 

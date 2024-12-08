@@ -1,17 +1,20 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StudentsContainer = styled.div`
   display: flex;
- padding-left: 240px;
+  padding-left: 240px;
   font-family: "Arial", sans-serif;
-
+  min-height: 100vh;
 `;
 
 export const Content = styled.div`
   flex: 1;
+  padding: 20px;
 `;
 
 export const StudentsContent = styled.div`
+  background-color: #f9f9f9;
+  border-radius: 8px;
   padding: 20px;
 `;
 
@@ -31,6 +34,8 @@ export const StudentItem = styled.li`
   padding: 10px 20px;
   margin-bottom: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const AddStudentForm = styled.form`
@@ -51,4 +56,16 @@ export const AddStudentButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+`;
+
+export const RemoveButton = styled.button`
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #ff3333;
+  }
 `;

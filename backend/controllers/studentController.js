@@ -49,3 +49,28 @@ export const studentLogin = async (req, res) => {
     return Response(res, 500, false, "Server error", error.message);
   }
 };
+
+export const getAllStudents = async (req, res) => {
+  try {
+    const students = await Student.find();
+    res.status(200).json({ success: true, students });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  } 
+};
+
+
+export const deleteStudent = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedStudent = await Student.findByIdAndDelete(id);
+    if (!deletedStudent) {
+      return Response(res, 404, false, "Student not found");
+    }
+    return Response(res, 200, true, "Student deleted successfully");
+  } catch (error) {
+    return Response(res, 500, false, "Server error", error.message);
+  }
+};
+

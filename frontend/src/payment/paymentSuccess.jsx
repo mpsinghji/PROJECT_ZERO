@@ -75,7 +75,7 @@ const PaymentSuccess = () => {
 
 
           <button
-            onClick={() => navigate("/choose-user")}
+            onClick={() => navigate("/student/fees")}
             style={{
               padding: "12px 24px",
               borderRadius: "8px",

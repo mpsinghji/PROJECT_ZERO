@@ -20,25 +20,31 @@ router.get("/students", async (req, res) => {
 
 // Submit attendance
 router.post("/attendance", async (req, res) => {
-    const { attendance } = req.body;
-
+    const { attendance, date } = req.body; // Get the date and attendance from the request body
+  
     try {
-        const attendanceRecords = Object.entries(attendance).map(
-            ([studentId, status]) => ({
-                student: studentId,
-                status,
-                date: new Date(),
-            })
+      // Format the date as DD-MM-YYYY
+      const formattedDate = new Date(date); // Convert the date string to a Date object
+      const day = String(formattedDate.getDate()).padStart(2, "0");
+      const month = String(formattedDate.getMonth() + 1).padStart(2, "0");
+      const year = formattedDate.getFullYear();
+      const formattedDateString = `${day}-${month}-${year}`; // Format the date as DD-MM-YYYY
+  
+      // Loop through the attendance data and insert or update each record
+      for (const [studentId, status] of Object.entries(attendance)) {
+        await Attendance.findOneAndUpdate(
+          { student: studentId, date: formattedDateString },  // Find existing attendance for the student and date
+          { student: studentId, status, date: formattedDateString }, // If it exists, update it
+          { upsert: true } // If it doesn't exist, insert a new document
         );
-
-        await Attendance.insertMany(attendanceRecords); // Save all attendance records in bulk
-        res.status(200).send("Attendance data submitted successfully!");
+      }
+  
+      res.status(200).send("Attendance data submitted successfully!");
     } catch (error) {
-        console.error("Error saving attendance:", error);
-        res.status(500).json({ error: "Failed to save attendance" });
+      console.error("Error saving attendance:", error);
+      res.status(500).json({ error: "Failed to save attendance" });
     }
-});
-
+  });
   
 
 export default router;
