@@ -19,6 +19,7 @@ import {
   Logo,
 } from "../../styles/SidebarStyles";
 import bg1 from "../../assets/bg1.png";
+import { MdPayment } from "react-icons/md";
 import LogoutModal from "../../components/Logout/logOut";
 
 const Sidebar = () => {
@@ -41,16 +42,20 @@ const Sidebar = () => {
   };
 
   const handleConfirmLogout = () => {
-    console.log('User has logged out');
+    console.log("User has logged out");
     localStorage.removeItem("studenttoken");
-    navigate("/choose-user"); 
-    setIsModalOpen(false); 
+    navigate("/choose-user");
+    setIsModalOpen(false);
   };
 
   return (
     <SidebarContainer>
       <SidebarHeader>
-        <Logo src={bg1} alt="Logo" onClick={() => navigate("/student/dashboard")} />
+        <Logo
+          src={bg1}
+          alt="Logo"
+          onClick={() => navigate("/student/dashboard")}
+        />
       </SidebarHeader>
       <SidebarHeader>Student</SidebarHeader>
       <SidebarNav>
@@ -109,6 +114,15 @@ const Sidebar = () => {
           Library
         </SidebarNavItem>
         <SidebarNavItem
+          onClick={() => handleNavigation("/student/fees")}
+          className={isActive("/student/fees")}
+        >
+          <SidebarIcon>
+            <MdPayment />
+          </SidebarIcon>
+          Fees
+        </SidebarNavItem>
+        <SidebarNavItem
           onClick={() => handleNavigation("/student/communication")}
           className={isActive("/student/communication")}
         >
@@ -145,11 +159,11 @@ const Sidebar = () => {
           Log Out
         </SidebarNavItem>
         {isModalOpen && (
-            <LogoutModal
-              onClose={handleCloseModal}
-              onConfirm={handleConfirmLogout}
-            />
-          )}
+          <LogoutModal
+            onClose={handleCloseModal}
+            onConfirm={handleConfirmLogout}
+          />
+        )}
       </SidebarNav>
     </SidebarContainer>
   );

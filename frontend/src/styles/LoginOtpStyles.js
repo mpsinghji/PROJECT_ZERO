@@ -1,72 +1,59 @@
 import styled from 'styled-components';
 
-// Container for the OTP page (no gradient background, just center alignment)
-export const LoginPageContainer = styled.section`
+export const LoginPageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-family: "Arial", sans-serif;
-
+  background-color: #1a252f ;
+  font-family: Arial, sans-serif;
 `;
 
-// Box for the OTP form, with a simple border and padding
 export const LoginBox = styled.div`
-  background: white;  // Solid white background for the box
+  background-color: #fff;
   border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 40px;
   text-align: center;
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border: 2px solid #ddd;  // Light border for the box
+  margin: 0 auto;
+  color: #333;
 `;
 
-// Heading style for the OTP page
 export const Heading = styled.h2`
-  color: #333;  // Dark color for better contrast
-  font-family: Arial, sans-serif;
-  font-size: 1.8rem;
+  font-size: 24px;
   margin-bottom: 20px;
-  font-weight: 500;
 `;
 
-// Input fields for the OTP form with a clean design
 export const InputField = styled.input`
   width: 100%;
-  padding: 15px;
-  margin: 10px 0;
-  border: 2px solid #ddd;  // Light border for the input fields
-  border-radius: 8px;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   font-size: 16px;
-  outline: none;
-  background-color: #ffffff;
+  color: #333;
 `;
 
-// Submit button with a solid color and hover effect
 export const SubmitButton = styled.button`
-  background-color: #1db196;
-  color: white;
-  padding: 15px 30px;
+  background-color: #16a085;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
+  padding: 12px 20px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 20px;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #128670;
-  }
-
-  &:active {
-    background-color: #1db196;
+    background-color: #1abc9c;
   }
 `;
 
-// Message text under the OTP input area
 export const Message = styled.p`
-  color: #333;  // Dark color for readability
   margin-top: 20px;
+  color: #007bff;
   font-size: 14px;
 `;

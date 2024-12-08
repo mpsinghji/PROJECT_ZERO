@@ -26,6 +26,7 @@ import ExamSection from "./pages/Students/Exam.jsx";
 import PerformanceSection from "./pages/Students/Performance.jsx";
 import AttendanceSection from "./pages/Students/Attendance.jsx";
 import LibrarySection from "./pages/Students/Library.jsx";
+import Fees from "./pages/Students/Fees.jsx";
 import AnnouncementSection from "./pages/Students/Announcement.jsx";
 import ProfileSection from "./pages/Students/Profile.jsx";
 import StudentEventSection from "./pages/Students/EventCalendar.jsx";
@@ -42,6 +43,7 @@ import CheckAttendanceSection from "../src/pages/Teachers/Attendance";
 import CheckExamSection from "../src/pages/Teachers/Exams";
 
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
+import LoginOtpPage from "./components/Otp/LoginOtp.jsx";
 
 function App() {
   return (
@@ -50,6 +52,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/choose-user" element={<ChooseUser />} />
+        <Route path="/login-otp" element={<LoginOtpPage />} />
+
+
         {/* <Route path="/about-me" element={<AboutMe />} /> */}
 
         {/* Add the Admin Register route here */}
@@ -81,6 +86,7 @@ function App() {
         <Route exact path="/student/performance" element={<ProtectedRoute roles={['student']}><PerformanceSection /></ProtectedRoute>} />
         <Route exact path="/student/attendance" element={<ProtectedRoute roles={['student']}><AttendanceSection /></ProtectedRoute>} />
         <Route exact path="/student/library" element={<ProtectedRoute roles={['student']}><LibrarySection /></ProtectedRoute>} />
+        <Route exact path="/student/fees" element={<ProtectedRoute roles={['student']}><Fees /></ProtectedRoute>} />
         <Route exact path="/student/communication" element={<ProtectedRoute roles={['student']}><AnnouncementSection /></ProtectedRoute>} />
         <Route exact path="/student/EventCalendar" element={<ProtectedRoute roles={['student']}><StudentEventSection /></ProtectedRoute>} />
         <Route exact path="/student/settings" element={<ProtectedRoute roles={['student']}><ProfileSection /></ProtectedRoute>} />

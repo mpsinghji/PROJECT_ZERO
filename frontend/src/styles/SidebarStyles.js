@@ -7,10 +7,10 @@ export const SidebarContainer = styled.div`
   top: 0; /* Centers the sidebar vertically */
   left: 0;
   width: 250px;
-  height: 92%; /* Adjust the height to 90% of the viewport */
+  height: 94%;
   background-color: #1A252F;
   color: #ECF0F1;
-  padding-top: 70px;
+  padding-top: 50px;
   z-index: 100;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
   transition: width 0.3s ease-in-out;
