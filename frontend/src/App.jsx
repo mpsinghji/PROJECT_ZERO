@@ -55,13 +55,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/choose-user" element={<ChooseUser />} />
         <Route path="/login-otp" element={<LoginOtpPage />} />
-
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/payment-success" element={<PaymentSuccess />} />
-
-
-
         {/* <Route path="/about-me" element={<AboutMe />} /> */}
+
 
         {/* Add the Admin Register route here */}
         <Route exact path="/admin-register" element={<AdminRegister />} />
@@ -96,6 +91,8 @@ function App() {
         <Route exact path="/student/communication" element={<ProtectedRoute roles={['student']}><AnnouncementSection /></ProtectedRoute>} />
         <Route exact path="/student/EventCalendar" element={<ProtectedRoute roles={['student']}><StudentEventSection /></ProtectedRoute>} />
         <Route exact path="/student/settings" element={<ProtectedRoute roles={['student']}><ProfileSection /></ProtectedRoute>} />
+        <Route path="/payment" element={<ProtectedRoute roles={['student']}><Payment /> </ProtectedRoute>} />
+        <Route path="/payment-success" element={<ProtectedRoute roles={['student']}> <PaymentSuccess /> </ProtectedRoute>} />
 
         {/* Teachers sections here */}
         <Route exact path="/teacher/classes" element={<ProtectedRoute roles={['teacher']}><ClassSection /></ProtectedRoute>} />

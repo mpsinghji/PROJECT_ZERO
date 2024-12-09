@@ -115,19 +115,19 @@ const Payment = () => {
         <Title>Fee Payment</Title>
         <Button onClick={() => createRazorpayOrder(100)}>Pay Now</Button>
         {responseId && <ResponseText>Payment ID: {responseId}</ResponseText>}
-        <h3>OR</h3>
-        <Form onSubmit={paymentFetch}>
-          <Input type="text" name="paymentId" placeholder="Enter Payment ID" />
-          <Button type="submit">Fetch Payment</Button>
+        {/* <h3>OR</h3> */}
+        {/* <Form onSubmit={paymentFetch}> */}
+          {/* <Input type="text" name="paymentId" placeholder="Enter Payment ID" /> */}
+          {/* <Button type="submit">Fetch Payment</Button>
           {responseState.length !== 0 && (
             <List>
               <li>Amount: ₹{responseState.amount / 100}</li>
               <li>Currency: {responseState.currency}</li>
               <li>Status: {responseState.status}</li>
               <li>Method: {responseState.method}</li>
-            </List>
-          )}
-        </Form>
+            </List> */}
+          {/* )} */}
+        {/* </Form> */}
       </FormContainer>
     </Container>
   );
