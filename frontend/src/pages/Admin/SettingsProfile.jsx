@@ -16,11 +16,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AdminSettingProfile = () => {
     const teacherInfo = {
-      name: 'John Doe',
-      email: 'johndoe@example.com',
-      phone: '123-456-7890',
-      address: '123 Main St, City, Country',
-      qualification: 'Master of Education',
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+      qualification: '',
     };
   
     return (

@@ -145,7 +145,7 @@ const AdminSidebar = () => {
             </SidebarIcon>
             Exams
           </SidebarNavItem>
-          <SidebarNavItem
+          {/* <SidebarNavItem
             className={isActive("/admin/Performance") ? "active" : ""}
             onClick={() => handleNavigation("/admin/Performance")}
           >
@@ -153,7 +153,7 @@ const AdminSidebar = () => {
               <BsGraphDown />
             </SidebarIcon>
             Performance
-          </SidebarNavItem>
+          </SidebarNavItem> */}
           <SidebarNavItem
             className={isActive("/admin/Attendance") ? "active" : ""}
             onClick={() => handleNavigation("/admin/Attendance")}

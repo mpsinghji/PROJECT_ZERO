@@ -20,9 +20,7 @@ export const TopContent = styled.div`
 
 export const BottomContent = styled.div`
   margin-top: 20px;
-  display: flex; /* Make the content side by side */
-  gap: 20px; /* Add gap between the components */
-  // background-color: yellow;
+  display: flex; 
   position:absolute;
   left:5rem;
 

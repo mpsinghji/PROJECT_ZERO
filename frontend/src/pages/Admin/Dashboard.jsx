@@ -21,7 +21,6 @@ import { useNavigate } from "react-router-dom";
 import AttendanceGraph from "../../components/Analysis/Attendance.jsx";
 import PaymentGraph from "../../components/Analysis/paymentDisplay.jsx";
 
-
 export const GlobalStyle = createGlobalStyle`
   body {
     font-family: "Arial", sans-serif;
@@ -48,7 +47,6 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let isMounted = true;
     const token = localStorage.getItem("admintoken");
     if (!token) {
       toast.error("Invalid User. Please log in again.");
@@ -65,92 +63,71 @@ const AdminDashboard = () => {
           },
         });
 
-        if (isMounted) {
-          setData({
-            totalStudents: response.data.totalStudents,
-            totalTeachers: response.data.totalTeachers,
-            totalAdmins: response.data.totalAdmins,
-          });
-          setLoading(false);
-        }
+        setData({
+          totalStudents: response.data.totalStudents,
+          totalTeachers: response.data.totalTeachers,
+          totalAdmins: response.data.totalAdmins,
+        });
+        setLoading(false);
       } catch (err) {
-        if (isMounted) {
-          const status = err.response?.status;
+        setLoading(false);
+        const status = err.response?.status;
 
-          if (status === 401) {
-            toast.error("Session expired. Redirecting to login...");
-            setTimeout(() => {
-              window.location.href = "/admin-signin";
-            }, 2000); 
-          } else {
-            toast.error("Failed to fetch data. Please try again later.");
-          }
-          setError(true);
-          setLoading(false);
+        if (status === 401) {
+          toast.error("Session expired. Redirecting to login...");
+          setTimeout(() => {
+            window.location.href = "/admin-signin";
+          }, 2000); 
+        } else {
+          toast.error("Failed to fetch data. Please try again later.");
         }
+        setError(true);
       }
     };
+
     fetchData();
-  
-    axios.get("/api/v1/admin/dashboard", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then(response => {
-        setData(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error);
-        setLoading(false);
-      });
+  }, [navigate]);
 
-      return () => {
-        isMounted = false;
-      }
-      if(loading){
-        return <Loading />
-      }
-      if(error){ 
-        return toast.error("Failed to fetch data. Please try again later.");
-      }
-  
-  }, []);
+  if (loading) {
+    return <Loading />;
+  }
 
+  if (error) {
+    return <div>Error fetching data. Please try again later.</div>;
+  }
 
   return (
     <>
-    <GlobalStyle />
-    <AdminDashboardContainer>
-      <AdminSidebar />
-      <Content>
-        <TopContent>
-          <Section>
-            <SectionTitle>Overview</SectionTitle>
-            <CardContainer>
-              <Card>
-                <CardTitle>Total Admins</CardTitle>
-                <CardContent>{data.totalAdmins}</CardContent>
-              </Card>
-              <Card>
-                <CardTitle>Total Teachers</CardTitle>
-                <CardContent>{data.totalTeachers}</CardContent>
-              </Card>
-              <Card>
-                <CardTitle>Total Students</CardTitle>
-                <CardContent>{data.totalStudents}</CardContent>
-              </Card>
-            </CardContainer>
-          </Section>
-        </TopContent>
+      <GlobalStyle />
+      <AdminDashboardContainer>
+        <AdminSidebar />
+        <Content>
+          <TopContent>
+            <Section>
+              <SectionTitle>Overview</SectionTitle>
+              <CardContainer>
+                <Card>
+                  <CardTitle>Total Admins</CardTitle>
+                  <CardContent>{data.totalAdmins}</CardContent>
+                </Card>
+                <Card>
+                  <CardTitle>Total Teachers</CardTitle>
+                  <CardContent>{data.totalTeachers}</CardContent>
+                </Card>
+                <Card>
+                  <CardTitle>Total Students</CardTitle>
+                  <CardContent>{data.totalStudents}</CardContent>
+                </Card>
+              </CardContainer>
+            </Section>
+          </TopContent>
 
-        <BottomContent>
-          <AttendanceGraph />
-          <PaymentGraph />
-        </BottomContent>
-      </Content>
-    </AdminDashboardContainer>
+          <BottomContent>
+            <AttendanceGraph />
+            <PaymentGraph />
+          </BottomContent>
+        </Content>
+      </AdminDashboardContainer>
     </>
   );
 };
