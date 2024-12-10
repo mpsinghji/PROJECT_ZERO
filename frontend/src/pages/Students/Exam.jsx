@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from './Sidebar';
-import { Bar } from 'react-chartjs-2'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   ExamContainer,
   SidebarContainer,
@@ -9,75 +10,64 @@ import {
   ExamResultsContainer,
   ExamSubject,
   ExamResult,
-  ExamChartContainer,
-} from '../../styles/ExamStyles'; 
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+} from '../../styles/ExamStyles';
+import axios from 'axios';
 
 const ExamSection = () => {
-  const chartRef = useRef(null);
+  const [exam, setExam] = useState([]);
 
+  useEffect(() => {
+    fetchExams();
+    toast.success('Data fetched successfully');
+  }, []);
 
-  const examResultsData = {
-    subjects: ['Math', 'Science', 'English', 'History'],
-    results: [80, 75, 90, 85] 
-  };
-
-  const barChartData = {
-    labels: examResultsData.subjects,
-    datasets: [
-      {
-        label: 'Exam Results',
-        backgroundColor: '#007bff',
-        borderColor: '#007bff',
-        borderWidth: 1,
-        hoverBackgroundColor: '#0056b3',
-        hoverBorderColor: '#0056b3',
-        data: examResultsData.results
+  const fetchExams = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/v1/exam/getall');
+      if (Array.isArray(response.data.exams)) {
+        setExam(response.data.exams.reverse());
+      } else {
+        toast.error('Unexpected data format received');
       }
-    ]
-  };
-
-
-  const chartOptions = {
-    scales: {
-      y: {
-        type: 'linear',
-        beginAtZero: true,
-        max: 100
-      }
+    } catch (error) {
+      console.log(error);
+      toast.error('Error fetching exams');
     }
+  };
+
+  const formatDateToLocal = (date) => {
+    const localDate = new Date(date);
+    const day = String(localDate.getDate()).padStart(2, '0'); // Adds leading zero if needed
+    const month = String(localDate.getMonth() + 1).padStart(2, '0'); // Adds leading zero and months are 0-indexed
+    const year = localDate.getFullYear();
+    return `${day}/${month}/${year}`;
   };
 
   return (
     <>
-    <ExamContainer>
-      <SidebarContainer>
-        <Sidebar />
-      </SidebarContainer>
-      <Content>
-        <ExamHeader>Exam Results</ExamHeader>
-        <ExamResultsContainer>
-          {examResultsData.subjects.map((subject, index) => (
-            <div key={index}>
-              <ExamSubject>{subject}</ExamSubject>
-              <ExamResult>Score: {examResultsData.results[index]}%</ExamResult>
-            </div>
-          ))}
-          <ExamChartContainer>
-            <Bar
-              ref={chartRef}
-              data={barChartData}
-              options={chartOptions}
-              />
-          </ExamChartContainer>
-        </ExamResultsContainer>
-      </Content>
-    </ExamContainer>
-    <ToastContainer />
+      <ExamContainer>
+        <SidebarContainer>
+          <Sidebar />
+        </SidebarContainer>
+        <Content>
+          <ExamHeader>Exams</ExamHeader>
+          <ExamResultsContainer>
+            {exam.length > 0 ? (
+              <div>
+                {exam.map((exam, index) => (
+                  <div key={index}>
+                    <ExamSubject>{exam.subjectName}</ExamSubject>
+                    <ExamResult>Date: {formatDateToLocal(exam.date)}</ExamResult> {/* Display the formatted date */}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p>No exams found.</p>
+            )}
+          </ExamResultsContainer>
+        </Content>
+      </ExamContainer>
+      <ToastContainer />
     </>
   );
 };

@@ -100,8 +100,8 @@ const Library = () => {
             <BookItem key={book._id}>
               <BookTitle>{book.bookname}</BookTitle>
               <BookAuthor>by {book.author}</BookAuthor>
-              <ActionButton onClick={() => handleBookPick(book._id, 'student123')}>Pick</ActionButton>
-              <ActionButton onClick={() => handleBookReturn(book._id, 'student123')}>Return</ActionButton>
+              {/* <ActionButton onClick={() => handleBookPick(book._id, 'student123')}>Pick</ActionButton> */}
+              {/* <ActionButton onClick={() => handleBookReturn(book._id, 'student123')}>Return</ActionButton> */}
             </BookItem>
           ))}
         </BookList>

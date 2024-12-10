@@ -29,7 +29,7 @@ export const BottomContent = styled.div`
 
 
 export const Section = styled.section`
-  margin-bottom: 40px;
+  // margin-bottom: 40px;
   flex: 1; 
 `;
 

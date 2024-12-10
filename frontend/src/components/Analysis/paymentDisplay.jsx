@@ -68,6 +68,7 @@ const PaymentGraph = () => {
 
   return (
     <GraphWrapper>
+      <h2>Payment Graph</h2>
       {loading ? (
         <p>Loading payment data...</p>
       ) : error ? (
@@ -98,7 +99,6 @@ const PaymentGraph = () => {
               },
             },
           }}
-          style={{ marginTop: "70px" }}
         />
       )}
     </GraphWrapper>

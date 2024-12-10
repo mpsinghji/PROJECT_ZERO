@@ -2,18 +2,7 @@ import React, { useState, useEffect } from "react";
 import AdminSidebar from "./Sidebar.jsx";
 import Loading from "../../components/Loading/loading.jsx";
 import axios from "axios";
-import {
-  AdminDashboardContainer,
-  Content,
-  TopContent,
-  BottomContent,
-  Section,
-  SectionTitle,
-  CardContainer,
-  Card,
-  CardTitle,
-  CardContent,
-} from "../../styles/DashboardStyles.js";
+import { AdminDashboardContainer, Content, TopContent, BottomContent, Section, SectionTitle } from "../../styles/DashboardStyles.js";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +10,6 @@ import AttendanceGraph from "../../components/Analysis/Attendance.jsx";
 import PaymentGraph from "../../components/Analysis/paymentDisplay.jsx";
 import ActivityGraph from "../../components/Analysis/Activitycount.jsx";
 import UserAnalysis from "../../components/Analysis/userAnalysis.jsx";
-
 
 const AdminDashboard = () => {
   const [data, setData] = useState({
@@ -87,41 +75,29 @@ const AdminDashboard = () => {
   }
 
   return (
-    <>
-      <AdminDashboardContainer>
-        <AdminSidebar />
-        <Content>
-          <TopContent>
-            <Section>
-              <SectionTitle>Overview</SectionTitle>
-              <CardContainer>
-                <Card>
-                  <CardTitle>Total Admins</CardTitle>
-                  <CardContent>{data.totalAdmins}</CardContent>
-                </Card>
-                <Card>
-                  <CardTitle>Total Teachers</CardTitle>
-                  <CardContent>{data.totalTeachers}</CardContent>
-                </Card>
-                <Card>
-                  <CardTitle>Total Students</CardTitle>
-                  <CardContent>{data.totalStudents}</CardContent>
-                </Card>
-              </CardContainer>
-            </Section>
-          </TopContent>
+    <AdminDashboardContainer>
+      <AdminSidebar />
+      <Content>
+        <TopContent>
+          <Section>
+            <SectionTitle>OVERVIEW</SectionTitle>
+          </Section>
+        </TopContent>
 
-          <BottomContent>
-            <AttendanceGraph />
-            <PaymentGraph />
-          </BottomContent>
-          <BottomContent>
-            <ActivityGraph />
-            <UserAnalysis />
-          </BottomContent>
-        </Content>
-      </AdminDashboardContainer>
-    </>
+        <BottomContent>
+            <UserAnalysis
+              totalStudents={data.totalStudents}
+              totalTeachers={data.totalTeachers}
+              totalAdmins={data.totalAdmins}
+            />
+          <PaymentGraph />
+        </BottomContent>
+        <BottomContent>
+          <AttendanceGraph />
+          <ActivityGraph />
+        </BottomContent>
+      </Content>
+    </AdminDashboardContainer>
   );
 };
 

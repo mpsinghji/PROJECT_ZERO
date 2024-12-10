@@ -72,12 +72,12 @@ const AttendanceGraph = () => {
     fetchAttendance();
   }, [startDate, endDate]);
 
-  const handleStartDateChange = (event) => setStartDate(event.target.value);
-  const handleEndDateChange = (event) => setEndDate(event.target.value);
+  // const handleStartDateChange = (event) => setStartDate(event.target.value);
+  // const handleEndDateChange = (event) => setEndDate(event.target.value);
 
   return (
     <GraphWrapper>
-      <h2>Attendance Overview</h2>
+      <h2>Attendance</h2>
       {chartData ? (
         <Bar
           data={chartData}
