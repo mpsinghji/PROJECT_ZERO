@@ -22,6 +22,11 @@ const AttendanceGraph = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
+  const parseDate = (dateString) => {
+    const [day, month, year] = dateString.split('/');
+    return new Date(`${year}-${month}-${day}`);
+  };
+
   useEffect(() => {
     const fetchAttendance = async () => {
       try {
@@ -31,8 +36,8 @@ const AttendanceGraph = () => {
 
           const filteredRecords = attendanceRecords.filter((record) => {
             const recordDate = new Date(record.date);
-            const start = startDate ? new Date(startDate) : null;
-            const end = endDate ? new Date(endDate) : null;
+            const start = startDate ? parseDate(startDate) : null;
+            const end = endDate ? parseDate(endDate) : null;
 
             if (start && end) return recordDate >= start && recordDate <= end;
             if (start) return recordDate >= start;
@@ -72,23 +77,37 @@ const AttendanceGraph = () => {
     fetchAttendance();
   }, [startDate, endDate]);
 
-  // const handleStartDateChange = (event) => setStartDate(event.target.value);
-  // const handleEndDateChange = (event) => setEndDate(event.target.value);
-
   return (
     <GraphWrapper>
       <h2>Attendance</h2>
+      <div>
+        <label>Start Date: </label>
+        <input 
+          type="text" 
+          value={startDate} 
+          onChange={(e) => setStartDate(e.target.value)} 
+          placeholder="dd-mm-yyyy"
+        />
+        <label>End Date: </label>
+        <input 
+          type="text" 
+          value={endDate} 
+          onChange={(e) => setEndDate(e.target.value)} 
+          placeholder="dd-mm-yyyy"
+        />
+      </div>
+
       {chartData ? (
         <Bar
           data={chartData}
           options={{
             responsive: true,
-            maintainAspectRatio: true, // Critical for filling container size
+            maintainAspectRatio: true, 
             plugins: {
               legend: { display: true, position: "top" },
             },
           }}
-          style={{ height: "100%", width: "100%" }} // Full size of GraphWrapper
+          style={{ height: "100%", width: "100%" }} 
         />
       ) : (
         <p>No attendance data available for the selected date range.</p>
