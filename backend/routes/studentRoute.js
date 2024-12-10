@@ -1,6 +1,6 @@
 import express from "express";
 import Student from "../models/studentModel.js";
-import { studentLogin ,studentRegister,getAllStudents,deleteStudent,getStudentProfile} from "../controllers/studentController.js";
+import { studentLogin ,studentRegister,getAllStudents,deleteStudent,getStudentProfile,getStudentCount} from "../controllers/studentController.js";
 import { validateUserRegistration } from "../middlewares/userValidator.js";
 
 
@@ -26,5 +26,7 @@ studentRoute.get("/", async (req, res) => {
 
   
 studentRoute.get("/profile",getStudentProfile);
+
+studentRoute.get("/count",getStudentCount);
 
 export default studentRoute;

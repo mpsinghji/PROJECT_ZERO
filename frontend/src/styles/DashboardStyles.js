@@ -1,10 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AdminDashboardContainer = styled.div`
   display: flex;
   margin-left: 200px;
 `;
-
 
 export const Content = styled.div`
   flex: 1;
@@ -19,10 +18,11 @@ export const TopContent = styled.div`
 `;
 
 export const BottomContent = styled.div`
-  display: flex; 
-  position:absolute;
-  left:5rem;
-
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  left: 5rem;
 `;
 
 export const Section = styled.section`
@@ -71,9 +71,29 @@ export const StudentDashboardContainer = styled.div`
   padding-left: 240px;
 `;
 
-
 export const TeacherDashboardContainer = styled.div`
   display: flex;
   padding-left: 240px;
 `;
 
+// New styles for events
+export const EventList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+export const EventItem = styled.li`
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  p {
+    margin: 5px 0;
+  }
+`;

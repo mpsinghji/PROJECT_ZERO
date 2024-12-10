@@ -102,3 +102,12 @@ export const getStudentProfile = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+export const getStudentCount = async (req, res) => {
+  try {
+    const totalStudents = await Student.countDocuments({ role: "student" });
+    res.status(200).json({ success: true, totalStudents });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Server error", error: error.message });
+  }
+};
