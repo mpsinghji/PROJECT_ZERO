@@ -88,4 +88,50 @@ app.get("/payment/:paymentId", async (req, res) => {
 }
 )
 
+app.get("/payments", async (req, res) => {
+  const { fromDate, toDate } = req.query;
+  const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+  });
+
+  try {
+    const filter = {};
+
+    if (fromDate && toDate) {
+      const startDate = new Date(fromDate).getTime() / 1000; 
+      const endDate = new Date(toDate).getTime() / 1000; 
+      filter.created_at = { gte: startDate, lte: endDate };
+    }
+
+    const payments = await razorpay.payments.all({
+      ...filter,
+      count: 100,
+    });
+
+    const paymentCounts = {};
+    payments.items.forEach(payment => {
+      const paymentDate = new Date(payment.created_at * 1000); 
+      const dateString = `${paymentDate.getDate()}/${paymentDate.getMonth() + 1}/${paymentDate.getFullYear()}`;
+      
+      paymentCounts[dateString] = (paymentCounts[dateString] || 0) + 1;
+    });
+
+    const groupedPayments = Object.keys(paymentCounts).map(date => ({
+      date,
+      count: paymentCounts[date],
+    }));
+
+    res.json({
+      success: true,
+      data: groupedPayments,  
+    });
+  } catch (error) {
+    console.error('Error fetching payments:', error);
+    res.status(500).json({ success: false, message: 'Failed to fetch payments' });
+  }
+});
+
+
+
 export default app;

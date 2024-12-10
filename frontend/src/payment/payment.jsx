@@ -92,21 +92,21 @@ const Payment = () => {
     paymentObject.open();
   };
 
-  const paymentFetch = (e) => {
-    e.preventDefault();
+  // const paymentFetch = (e) => {
+  //   e.preventDefault();
 
-    const paymentId = e.target.paymentId.value;
+  //   const paymentId = e.target.paymentId.value;
 
-    axios
-      .get(`http://localhost:5000/payment/${paymentId}`)
-      .then((response) => {
-        console.log(response.data);
-        setResponseState(response.data);
-      })
-      .catch((error) => {
-        console.log("error occurred", error);
-      });
-  };
+  //   axios
+  //     .get(`http://localhost:5000/payment/${paymentId}`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setResponseState(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log("error occurred", error);
+  //     });
+  // };
 
   return (
     <Container>
