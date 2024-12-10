@@ -16,11 +16,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 const CheckExamSection = () => {
   const [examData, setExamData] = useState([]);
-  const [subjectName, setSubjectName] = useState('');
+  const [subjectName, setSubjectname] = useState('');
   const [subjectCode, setSubjectCode] = useState('');
   const [batch, setBatch] = useState('');
   const [date, setDate] = useState('');
 
+  
   useEffect(() => {
     fetchExams();
     toast.success('Exams fetched successfully');
@@ -28,33 +29,35 @@ const CheckExamSection = () => {
 
   const fetchExams = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/v1/exam/getall");
-      if (Array.isArray(response.data)) {
-        setExamData(response.data);
+      const response = await axios.get('http://localhost:5000/api/v1/exam/getall');
+      if (Array.isArray(response.data.exams)) { 
+        setExamData(response.data.exams.reverse());
       } else {
-        setExamData([response.data]);
+        toast.error('Unexpected data format received');
       }
     } catch (error) {
       toast.error('Error fetching exams');
     }
   };
+  
 
   const handleAddExam = async (e) => {
     e.preventDefault();
-    const newExam = { subjectName, subjectCode, batch, date };
+    const newExam = { subjectName, subjectCode, batch, date } ;
     try {
-      const response = await axios.post("http://localhost:5000/api/v1/exam", newExam);
-      if (typeof response.data === "object") {
+      const response = await axios.post('http://localhost:5000/api/v1/exam', newExam);
+      if (typeof response.data === 'object') {
         setExamData([...examData, response.data]);
-        setSubjectName('');
+        setSubjectname('');
         setSubjectCode('');
         setBatch('');
         setDate('');
+        fetchExams();
       } else {
-        toast.error("Error adding exam");
+        toast.error('Error adding exam');
       }
     } catch (error) {
-      toast.error("Error adding exam", error);
+      toast.error('Error adding exam');
     }
   };
 
@@ -71,7 +74,7 @@ const CheckExamSection = () => {
           <FormInput
             type="text"
             value={subjectName}
-            onChange={(e) => setSubjectName(e.target.value)}
+            onChange={(e) => setSubjectname(e.target.value)}
             required
           />
           <FormLabel>Subject Code:</FormLabel>
@@ -100,12 +103,12 @@ const CheckExamSection = () => {
         
         <h3>Exam Details:</h3>
         <ul>
-          {examData.map((exam, index) => (
-            <li key={index}>
+        {examData.map((exam,index) => (
+            <li key={index} style={{ marginBottom: '10px', backgroundColor: '#f2f2f2', padding: '10px', borderRadius: '5px' }}>
               <p><strong>Subject Name:</strong> {exam.subjectName}</p>
               <p><strong>Subject Code:</strong> {exam.subjectCode}</p>
               <p><strong>Batch:</strong> {exam.batch}</p>
-              <p><strong>Date:</strong> {exam.date}</p>
+              <p><strong>Date:</strong> {new Date(exam.date).toLocaleString()}</p>
             </li>
           ))}
         </ul>

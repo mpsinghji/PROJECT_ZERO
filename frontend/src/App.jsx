@@ -46,6 +46,7 @@ import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 import LoginOtpPage from "./components/Otp/LoginOtp.jsx";
 import Payment from "./payment/payment.jsx";
 import PaymentSuccess from "./payment/paymentSuccess.jsx";
+import AttendanceGraph from "./components/Analysis/Attendance.jsx";
 
 function App() {
   return (
@@ -69,6 +70,7 @@ function App() {
         <Route exact path="/teacher/dashboard" element={<ProtectedRoute roles={['teacher']}><TeacherDashboard /></ProtectedRoute>} />
 
         {/* Admin Section */}
+        <Route path="/admin/attendance-graph" element={<ProtectedRoute roles={['admin']}> <AttendanceGraph /> </ProtectedRoute> } />
         <Route exact path="/admin/Announcement" element={<ProtectedRoute roles={['admin']}><AdminAnnouncement /></ProtectedRoute>} />
         <Route exact path="/admin/Assignment" element={<ProtectedRoute roles={['admin']}><AdminAssignment /></ProtectedRoute>} />
         <Route exact path="/admin/Attendance" element={<ProtectedRoute roles={['admin']}><AdminAttendance /></ProtectedRoute>} />

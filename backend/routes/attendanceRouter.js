@@ -14,8 +14,18 @@ router.get("/students", async (req, res) => {
       res.status(500).json({ error: "Failed to fetch students" });
     }
   });
-  
-  
+
+// Fetch all attendance
+router.get("/getall", async (req, res) => {
+  try {
+    const response = await Attendance.find({});
+    res.status(200).json({ success: true, data: response });
+  } catch (error) {
+    console.error("Error fetching attendance data:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+});
+
   
 
 // Submit attendance
