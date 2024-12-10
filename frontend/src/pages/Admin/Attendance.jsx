@@ -43,6 +43,14 @@ const AdminAttendance = () => {
         // Check if the data is an array
         if (Array.isArray(response.data)) {
           setStudents(response.data);
+
+          // Initialize attendance state with "Present" as default
+          const initialAttendance = response.data.reduce((acc, student) => {
+            acc[student._id] = "Present"; // Set default as "Present"
+            return acc;
+          }, {});
+
+          setAttendance(initialAttendance);
         } else {
           console.error("Data is not an array:", response.data);
         }
@@ -113,6 +121,7 @@ const AdminAttendance = () => {
                       <input
                         type="radio"
                         name={`attendance-${student._id}`}
+                        checked={attendance[student._id] === "Present"} // Set "Present" as default
                         onChange={() =>
                           handleAttendanceChange(student._id, "Present")
                         }
@@ -123,6 +132,7 @@ const AdminAttendance = () => {
                       <input
                         type="radio"
                         name={`attendance-${student._id}`}
+                        checked={attendance[student._id] === "Absent"}
                         onChange={() =>
                           handleAttendanceChange(student._id, "Absent")
                         }

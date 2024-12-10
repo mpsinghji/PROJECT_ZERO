@@ -43,6 +43,12 @@ const CheckAttendanceSection = () => {
         // Check if the data is an array
         if (Array.isArray(response.data)) {
           setStudents(response.data);
+          // Set default attendance to "Present" for each student
+          const initialAttendance = response.data.reduce((acc, student) => {
+            acc[student._id] = "Present"; // Set default to "Present"
+            return acc;
+          }, {});
+          setAttendance(initialAttendance);
         } else {
           console.error("Data is not an array:", response.data);
         }
@@ -115,6 +121,7 @@ const CheckAttendanceSection = () => {
                       <input
                         type="radio"
                         name={`attendance-${student._id}`}
+                        checked={attendance[student._id] === "Present"}
                         onChange={() =>
                           handleAttendanceChange(student._id, "Present")
                         }
@@ -125,6 +132,7 @@ const CheckAttendanceSection = () => {
                       <input
                         type="radio"
                         name={`attendance-${student._id}`}
+                        checked={attendance[student._id] === "Absent"}
                         onChange={() =>
                           handleAttendanceChange(student._id, "Absent")
                         }
