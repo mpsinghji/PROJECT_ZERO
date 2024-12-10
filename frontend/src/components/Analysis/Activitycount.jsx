@@ -2,6 +2,22 @@
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import axios from "axios";
+import styled from "styled-components";
+
+const GraphWrapper = styled.div`
+  flex: 1; /* Adjust layout responsiveness */
+  height: 400px; /* Fixed height for consistent sizing */
+  max-height: 500px; /* Maximum height limit */
+  width: 100%; /* Full width of parent container */
+  max-width: 600px; /* Maximum width limit */
+  background: #f9f9f9; /* Optional for contrast */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden; /* Prevent content from overflowing */
+  margin: 0 auto; /* Center the graph */
+`;
+
 
 const ActivityGraph = () => {
   const [activityCounts, setActivityCounts] = useState({
@@ -13,11 +29,13 @@ const ActivityGraph = () => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const [eventsRes, assignmentsRes, announcementsRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/v1/events/count"),
-          axios.get("http://localhost:5000/api/v1/assignments/count"),
-          axios.get("http://localhost:5000/api/v1/announcements/count"),
-        ]);
+        const [eventsRes, assignmentsRes, announcementsRes] = await Promise.all(
+          [
+            axios.get("http://localhost:5000/api/v1/events/count"),
+            axios.get("http://localhost:5000/api/v1/assignments/count"),
+            axios.get("http://localhost:5000/api/v1/announcements/count"),
+          ]
+        );
 
         setActivityCounts({
           events: eventsRes.data.count,
@@ -64,10 +82,12 @@ const ActivityGraph = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column"}}>
-      <h2>Activity Graph</h2>
-      <Bar data={data} options={options} />
-    </div>
+    <GraphWrapper>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <h2>Activity Graph</h2>
+        <Bar data={data} options={options} />
+      </div>
+    </GraphWrapper>
   );
 };
 

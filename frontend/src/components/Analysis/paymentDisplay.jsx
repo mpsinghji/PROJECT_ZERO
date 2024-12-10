@@ -2,6 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement } from "chart.js";
+import styled from "styled-components";
+
+const GraphWrapper = styled.div`
+  flex: 1;
+  height: 400px;
+  max-height: 500px;
+  width: 100%;
+  max-width: 600px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden;
+  margin: 0 auto;
+`;
 
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement);
 
@@ -52,8 +67,7 @@ const PaymentGraph = () => {
   }, []);
 
   return (
-    <div style={{ width: "80%", margin: "0 auto" }}>
-      <h2>Payments Overview</h2>
+    <GraphWrapper>
       {loading ? (
         <p>Loading payment data...</p>
       ) : error ? (
@@ -63,6 +77,7 @@ const PaymentGraph = () => {
           data={paymentData}
           options={{
             responsive: true,
+            maintainAspectRatio: true, // Allow chart to fill its container
             plugins: {
               legend: {
                 display: true,
@@ -77,15 +92,16 @@ const PaymentGraph = () => {
                 beginAtZero: true,
                 ticks: {
                   callback: function (value) {
-                    return `${value}`; 
+                    return `${value}`;
                   },
                 },
               },
             },
           }}
+          style={{ marginTop: "70px" }}
         />
       )}
-    </div>
+    </GraphWrapper>
   );
 };
 

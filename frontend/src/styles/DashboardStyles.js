@@ -21,9 +21,12 @@ export const BottomContent = styled.div`
   margin-top: 20px;
   display: flex;
   gap: 20px;
-  position: absolute;
-  left: 5rem;
+  position: relative; /* Changed from absolute for better layout control */
+  left: 0;
+  width: 100%; /* Ensure the container spans the full width */
+  justify-content: space-between; /* Adjust spacing between graphs */
 `;
+
 
 export const Section = styled.section`
   margin-bottom: 40px;

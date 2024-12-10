@@ -14,28 +14,14 @@ import {
   CardTitle,
   CardContent,
 } from "../../styles/DashboardStyles.js";
-import { createGlobalStyle } from "styled-components";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import AttendanceGraph from "../../components/Analysis/Attendance.jsx";
 import PaymentGraph from "../../components/Analysis/paymentDisplay.jsx";
 import ActivityGraph from "../../components/Analysis/Activitycount.jsx";
+import UserAnalysis from "../../components/Analysis/userAnalysis.jsx";
 
-export const GlobalStyle = createGlobalStyle`
-  body {
-    font-family: "Arial", sans-serif;
-    background: #ecf0f1;
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-  }
-
-  html, body {
-    height: 100%;
-    width: 100%;
-  }
-`;
 
 const AdminDashboard = () => {
   const [data, setData] = useState({
@@ -58,11 +44,14 @@ const AdminDashboard = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/v1/admin/dashboard", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "http://localhost:5000/api/v1/admin/dashboard",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         setData({
           totalStudents: response.data.totalStudents,
@@ -78,7 +67,7 @@ const AdminDashboard = () => {
           toast.error("Session expired. Redirecting to login...");
           setTimeout(() => {
             window.location.href = "/admin-signin";
-          }, 2000); 
+          }, 2000);
         } else {
           toast.error("Failed to fetch data. Please try again later.");
         }
@@ -99,7 +88,6 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <GlobalStyle />
       <AdminDashboardContainer>
         <AdminSidebar />
         <Content>
@@ -127,8 +115,9 @@ const AdminDashboard = () => {
             <AttendanceGraph />
             <PaymentGraph />
           </BottomContent>
-          <BottomContent style={{ marginTop: "250px", marginLeft: "200px" ,height:"200px"}}>
-            <ActivityGraph/>
+          <BottomContent>
+            <ActivityGraph />
+            <UserAnalysis />
           </BottomContent>
         </Content>
       </AdminDashboardContainer>
