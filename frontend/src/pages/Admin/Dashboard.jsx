@@ -20,6 +20,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import AttendanceGraph from "../../components/Analysis/Attendance.jsx";
 import PaymentGraph from "../../components/Analysis/paymentDisplay.jsx";
+import ActivityGraph from "../../components/Analysis/Activitycount.jsx";
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -125,6 +126,9 @@ const AdminDashboard = () => {
           <BottomContent>
             <AttendanceGraph />
             <PaymentGraph />
+          </BottomContent>
+          <BottomContent style={{ marginTop: "250px", marginLeft: "200px" ,height:"200px"}}>
+            <ActivityGraph/>
           </BottomContent>
         </Content>
       </AdminDashboardContainer>

@@ -48,6 +48,7 @@ import Payment from "./payment/payment.jsx";
 import PaymentSuccess from "./payment/paymentSuccess.jsx";
 import AttendanceGraph from "./components/Analysis/Attendance.jsx";
 import PaymentGraph from "./components/Analysis/paymentDisplay.jsx";
+import ActivityGraph from "./components/Analysis/Activitycount.jsx";
 
 function App() {
   return (
@@ -74,6 +75,7 @@ function App() {
 
         <Route path="/admin/attendance-graph" element={<ProtectedRoute roles={['admin']}> <AttendanceGraph /> </ProtectedRoute> } />
         <Route path="/admin/payment-graph" element={<ProtectedRoute roles={['admin']}><PaymentGraph /> </ProtectedRoute>} />
+        <Route path="/admin/activity-graph" element={<ProtectedRoute roles={['admin']}><ActivityGraph /> </ProtectedRoute> } />
         <Route exact path="/admin/Announcement" element={<ProtectedRoute roles={['admin']}><AdminAnnouncement /></ProtectedRoute>} />
         <Route exact path="/admin/Assignment" element={<ProtectedRoute roles={['admin']}><AdminAssignment /></ProtectedRoute>} />
         <Route exact path="/admin/Attendance" element={<ProtectedRoute roles={['admin']}><AdminAttendance /></ProtectedRoute>} />

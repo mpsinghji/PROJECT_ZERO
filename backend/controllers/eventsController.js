@@ -32,3 +32,12 @@ export const getAllEvents = async (req, res, next) => {
     next(err);
   }
 };
+
+export const countEvents = async (req, res) => {
+  try {
+    const count = await Events.countDocuments();
+    res.status(200).json({ success: true, count });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};

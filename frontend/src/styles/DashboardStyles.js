@@ -19,7 +19,6 @@ export const TopContent = styled.div`
 `;
 
 export const BottomContent = styled.div`
-  margin-top: 20px;
   display: flex; 
   position:absolute;
   left:5rem;

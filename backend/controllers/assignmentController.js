@@ -29,3 +29,12 @@ export const addAssignment = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Server error' });
     }
 };
+
+export const countAssignments = async (req, res) => {
+    try {
+        const count = await Assignment.countDocuments();
+        res.status(200).json({ success: true, count });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
