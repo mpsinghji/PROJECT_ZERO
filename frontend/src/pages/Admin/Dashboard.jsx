@@ -48,6 +48,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let isMounted = true;
     const token = localStorage.getItem("admintoken");
     if (!token) {
       toast.error("Invalid User. Please log in again.");
@@ -55,6 +56,41 @@ const AdminDashboard = () => {
       navigate("/choose-user");
       return;
     }
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/v1/admin/dashboard", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (isMounted) {
+          setData({
+            totalStudents: response.data.totalStudents,
+            totalTeachers: response.data.totalTeachers,
+            totalAdmins: response.data.totalAdmins,
+          });
+          setLoading(false);
+        }
+      } catch (err) {
+        if (isMounted) {
+          const status = err.response?.status;
+
+          if (status === 401) {
+            toast.error("Session expired. Redirecting to login...");
+            setTimeout(() => {
+              window.location.href = "/admin-signin";
+            }, 2000); 
+          } else {
+            toast.error("Failed to fetch data. Please try again later.");
+          }
+          setError(true);
+          setLoading(false);
+        }
+      }
+    };
+    fetchData();
   
     axios.get("/api/v1/admin/dashboard", {
       headers: {
@@ -69,6 +105,16 @@ const AdminDashboard = () => {
         setError(error);
         setLoading(false);
       });
+
+      return () => {
+        isMounted = false;
+      }
+      if(loading){
+        return <Loading />
+      }
+      if(error){ 
+        return toast.error("Failed to fetch data. Please try again later.");
+      }
   
   }, []);
 

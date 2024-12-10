@@ -70,3 +70,17 @@ export const deleteTeacher = async (req, res) => {
     return Response(res, 500, false, "Server error", error.message);
   }
 };
+
+export const getTeacherProfile = async (req, res) => {
+  try {
+    const teacher = await Teacher.findOne({}); 
+    if (!teacher) {
+      return res.status(404).json({ message: "Teacher not found" });
+    }
+
+    res.status(200).json({ email: teacher.email });
+  } catch (error) {
+    console.error("Error fetching teacher profile:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};

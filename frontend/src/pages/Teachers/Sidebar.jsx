@@ -93,7 +93,7 @@ const Sidebar = () => {
           </SidebarIcon>
           Dashboard
         </SidebarNavItem>
-        <SidebarNavItem
+        {/* <SidebarNavItem
           active={isActive("/teacher/classes")}
           onClick={() => handleNavigation("/teacher/classes")}
         >
@@ -101,7 +101,7 @@ const Sidebar = () => {
             <BsPeople />
           </SidebarIcon>
           Classes
-        </SidebarNavItem>
+        </SidebarNavItem> */}
         <SidebarNavItem
           active={isActive("/teacher/students")}
           onClick={() => handleNavigation("/teacher/students")}
@@ -129,7 +129,7 @@ const Sidebar = () => {
           </SidebarIcon>
           Exams
         </SidebarNavItem>
-        <SidebarNavItem
+        {/* <SidebarNavItem
           active={isActive("/teacher/performance")}
           onClick={() => handleNavigation("/teacher/performance")}
         >
@@ -137,7 +137,7 @@ const Sidebar = () => {
             <BsGraphDown />
           </SidebarIcon>
           Performance
-        </SidebarNavItem>
+        </SidebarNavItem> */}
         <SidebarNavItem
           active={isActive("/teacher/attendance")}
           onClick={() => handleNavigation("/teacher/attendance")}

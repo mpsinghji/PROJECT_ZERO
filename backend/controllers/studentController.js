@@ -8,14 +8,12 @@ export const studentRegister = async (req, res) => {
   try {
     console.log("Request Body:", req.body);
 
-    // Check if the student already exists by email or roll number
     const existingStudent = await Student.findOne({ $or: [{ email }, { rollno }] });
     console.log("Existing student:", existingStudent);
     if (existingStudent) {
       return Response(res, 400, false, "Student with this email or roll number already exists");
     }
 
-    // Create a new student
     const student = new Student({ email, password, rollno, mobileno });
     await student.save();
 

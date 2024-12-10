@@ -1,4 +1,6 @@
 import Admin from "../models/adminModel.js";
+import Student from "../models/studentModel.js";
+import Teacher from "../models/teacherModel.js";
 import { Response } from "../utils/response.js";
 import jwt from "jsonwebtoken";
 
@@ -47,5 +49,23 @@ export const adminLogin = async (req, res) => {
     return Response(res, 200, true, "Admin logged in", { admintoken });
   } catch (error) {
     return Response(res, 500, false, "Server error", error.message);
+  }
+};
+
+export const getDashboardData = async (req, res) => {
+  try {
+    // Count total users based on their roles
+    const totalStudents = await Student.countDocuments({ role: 'student' });
+    const totalTeachers = await Teacher.countDocuments({ role: 'teacher' });
+    const totalAdmins = await Admin.countDocuments({ role: 'admin' });
+
+    return res.status(200).json({
+      totalStudents,
+      totalTeachers,
+      totalAdmins,
+    });
+  } catch (error) {
+    console.error("Error fetching dashboard data:", error);
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
