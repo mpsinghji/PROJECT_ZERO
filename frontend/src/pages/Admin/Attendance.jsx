@@ -39,11 +39,11 @@ const AdminAttendance = () => {
         );
         console.log("Response Status:", response.status); // Log the status
         console.log("API Response:", response.data); // Log the data
-
+        
         // Check if the data is an array
         if (Array.isArray(response.data)) {
           setStudents(response.data);
-
+          
           // Initialize attendance state with "Present" as default
           const initialAttendance = response.data.reduce((acc, student) => {
             acc[student._id] = "Present"; // Set default as "Present"
@@ -58,8 +58,9 @@ const AdminAttendance = () => {
         console.error("Error fetching students:", error);
       }
     };
-
+    
     fetchStudents();
+    toast.success("Students fetched successfully!");
   }, []);
 
   // Handle checkbox changes

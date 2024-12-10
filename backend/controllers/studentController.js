@@ -72,3 +72,33 @@ export const deleteStudent = async (req, res) => {
   }
 };
 
+export const getStudentProfile = async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(" ")[1]; 
+    if (!token) {
+      return res.status(401).json({ message: "No token provided" });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decoded) {
+      return res.status(401).json({ message: "Invalid token" });
+    }
+
+    const student = await Student.findById(decoded.id);
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      name: student.name,
+      rollno: student.rollno,
+      gender: student.gender,
+      mobileno: student.mobileno,
+      email: student.email,
+    });
+  } catch (error) {
+    console.error("Error fetching student profile:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
