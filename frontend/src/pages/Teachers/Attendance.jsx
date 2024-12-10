@@ -58,6 +58,7 @@ const CheckAttendanceSection = () => {
     };
 
     fetchStudents();
+    toast.success("Attendance Data fetched successfully!");
   }, []);
 
   // Handle checkbox changes

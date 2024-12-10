@@ -106,7 +106,7 @@ const AttendanceGraph = () => {
       <h2>Attendance Overview</h2>
 
       {/* Date Range Selector */}
-      <div>
+      {/* <div>
         <label htmlFor="start-date">Start Date: </label>
         <input
           type="date"
@@ -123,7 +123,7 @@ const AttendanceGraph = () => {
           value={endDate}
           onChange={handleEndDateChange}
         />
-      </div>
+      </div> */}
 
       {chartData ? (
         <Bar

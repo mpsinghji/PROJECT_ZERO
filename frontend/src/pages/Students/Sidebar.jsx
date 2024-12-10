@@ -86,7 +86,7 @@ const Sidebar = () => {
           </SidebarIcon>
           Exams
         </SidebarNavItem>
-        <SidebarNavItem
+        {/* <SidebarNavItem
           onClick={() => handleNavigation("/student/performance")}
           className={isActive("/student/performance")}
         >
@@ -94,7 +94,7 @@ const Sidebar = () => {
             <BsGraphDown />
           </SidebarIcon>
           Performance
-        </SidebarNavItem>
+        </SidebarNavItem> */}
         <SidebarNavItem
           onClick={() => handleNavigation("/student/attendance")}
           className={isActive("/student/attendance")}

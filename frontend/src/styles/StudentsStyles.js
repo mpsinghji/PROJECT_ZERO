@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StudentsContainer = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ export const StudentList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: 400px; /* Adjust based on layout */
+  max-height: 500px; /* Adjust based on layout */
   overflow-y: auto;
 
   &::-webkit-scrollbar {

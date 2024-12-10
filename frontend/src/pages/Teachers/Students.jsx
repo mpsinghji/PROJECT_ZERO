@@ -10,6 +10,8 @@ import {
   StudentInfo,
   NoStudentsMessage,
 } from "../../styles/StudentsStyles";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const StudentSection = () => {
   const [students, setStudents] = useState([]); // Initialize as an empty array
@@ -36,6 +38,7 @@ const StudentSection = () => {
     };
 
     fetchStudents();
+    toast.success("Students Fetched Successfully");
   }, []);
 
   if (loading) {
@@ -47,35 +50,39 @@ const StudentSection = () => {
   }
 
   return (
-    <StudentsContainer>
+    <>
       <Sidebar />
-      <Content>
-        <StudentsContent>
-          <StudentsHeader>Students</StudentsHeader>
-          {students.length > 0 ? (
-            <StudentList>
-              {students.map((student) => (
-                <StudentItem key={student._id}>
-                  <StudentInfo>
-                    <div>
-                      <span className="label">Roll Number:</span> {student.rollno}
-                    </div>
-                    <div>
-                      <span className="label">Email:</span> {student.email}
-                    </div>
-                    <div>
-                      <span className="label">Phone:</span> {student.mobileno}
-                    </div>
-                  </StudentInfo>
-                </StudentItem>
-              ))}
-            </StudentList>
-          ) : (
-            <NoStudentsMessage>No students found.</NoStudentsMessage>
-          )}
-        </StudentsContent>
-      </Content>
-    </StudentsContainer>
+      <StudentsContainer>
+        <Content>
+          <StudentsContent>
+            <StudentsHeader>Students</StudentsHeader>
+            {students.length > 0 ? (
+              <StudentList>
+                {students.map((student) => (
+                  <StudentItem key={student._id}>
+                    <StudentInfo>
+                      <div>
+                        <span className="label">Roll Number:</span>{" "}
+                        {student.rollno}
+                      </div>
+                      <div>
+                        <span className="label">Email:</span> {student.email}
+                      </div>
+                      <div>
+                        <span className="label">Phone:</span> {student.mobileno}
+                      </div>
+                    </StudentInfo>
+                  </StudentItem>
+                ))}
+              </StudentList>
+            ) : (
+              <NoStudentsMessage>No students found.</NoStudentsMessage>
+            )}
+          </StudentsContent>
+        </Content>
+      </StudentsContainer>
+      <ToastContainer />
+    </>
   );
 };
 
