@@ -35,15 +35,8 @@ const PaymentGraph = () => {
 
           const dates = [];
           const paymentCounts = [];
-
-          // Format date to DD/MM/YYYY
-          const formatDate = (dateString) => {
-            const options = { day: "2-digit", month: "2-digit", year: "numeric" };
-            return new Intl.DateTimeFormat("en-GB", options).format(new Date(dateString));
-          };
-
           payments.forEach((payment) => {
-            dates.push(formatDate(payment.date)); // Format the date
+            dates.push(payment.date);
             paymentCounts.push(payment.count);
           });
 
