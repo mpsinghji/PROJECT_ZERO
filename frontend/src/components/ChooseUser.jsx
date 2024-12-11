@@ -43,7 +43,7 @@ const ChooseUser = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [role, setRole] = useState("admin");
-  const { setIsAuthenticated } = useAuth();
+  const { setIsAuthenticated, setUserRole } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -73,10 +73,11 @@ const ChooseUser = () => {
 
       localStorage.setItem(tokenKey, token);
       setIsAuthenticated(true);
-
-      if (role === "admin") navigate("/admin/dashboard");
-      else if (role === "student") navigate("/student/dashboard");
-      else if (role === "teacher") navigate("/teacher/dashboard");
+      setUserRole(role);
+      navigate(`/${role}/dashboard`);
+      // if (role === "admin") navigate("/admin/dashboard");
+      // else if (role === "student") navigate("/student/dashboard");
+      // else if (role === "teacher") navigate("/teacher/dashboard");
     } catch (error) {
       console.log(error);
       toast.error(

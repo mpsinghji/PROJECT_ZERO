@@ -9,21 +9,37 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token);
+useEffect(() => {
+    const adminToken = localStorage.getItem("admintoken");
+    const studentToken = localStorage.getItem("studenttoken");
+    const teacherToken = localStorage.getItem("teachertoken");
+
+    if (adminToken) {
+        setIsAuthenticated(true);
+        setUserRole('admin');
+    } else if (studentToken) {
+        setIsAuthenticated(true);
+        setUserRole('student');
+    } else if (teacherToken) {
+        setIsAuthenticated(true);
+        setUserRole('teacher');
+    } else {
+        setIsAuthenticated(false);
+        setUserRole(null);
+    }
     setLoading(false);
-  }, []);
+}, []);
 
   if (loading) {
     return <Loading />;
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
-      {children}
+    <AuthContext.Provider value={{ isAuthenticated, userRole, setIsAuthenticated, setUserRole }}>
+        {children}
     </AuthContext.Provider>
-  );
+);
 };
