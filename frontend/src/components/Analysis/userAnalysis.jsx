@@ -41,7 +41,7 @@ const UserAnalysis = ({ totalStudents, totalTeachers, totalAdmins }) => {
     plugins: {
       title: {
         display: true,
-        text: 'Admin Dashboard Stats',
+        // text: 'Admin Dashboard Stats',
       },
       tooltip: {
         callbacks: {
@@ -53,6 +53,7 @@ const UserAnalysis = ({ totalStudents, totalTeachers, totalAdmins }) => {
 
   return (
     <GraphWrapper>
+      <h2>Admin Dashboard Stats</h2>
       <Bar data={data} options={options} />
     </GraphWrapper>
   );

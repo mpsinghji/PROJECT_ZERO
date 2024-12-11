@@ -8,8 +8,6 @@ import {
   ProfileHeader,
   ProfileInfo,
   ProfileDetail,
-  Label,
-  Value,
 } from '../../styles/SettingsProfileStyles';
 import Loading from '../../components/Loading/loading';
 import { ToastContainer, toast } from 'react-toastify';
@@ -21,31 +19,33 @@ const ProfileSection = () => {
     rollno: '',
     gender: '',
     mobileno: '',
-    email: ''
+    email: '',
   });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStudentProfile = async () => {
       try {
-        const token = localStorage.getItem("studenttoken"); 
+        const token = localStorage.getItem('studenttoken');
         if (!token) {
-          toast.error("No token found. Please log in again.");
+          toast.error('No token found. Please log in again.');
           setLoading(false);
           return;
         }
 
-        const response = await axios.get("http://localhost:5000/api/v1/student/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
+        const response = await axios.get(
+          'http://localhost:5000/api/v1/student/profile',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setStudentProfile(response.data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching student profile:", error);
-        toast.error("Failed to fetch profile. Please try again later.");
+        console.error('Error fetching student profile:', error);
+        toast.error('Failed to fetch profile. Please try again later.');
         setLoading(false);
       }
     };
@@ -67,24 +67,24 @@ const ProfileSection = () => {
           <ProfileHeader>Profile</ProfileHeader>
           <ProfileInfo>
             <ProfileDetail>
-              <Label>Name:</Label>
-              <Value>{studentProfile.name}</Value>
+              <div style={{ fontWeight: 'bold' }}>Name:</div>
+              <div>{studentProfile.name}</div>
             </ProfileDetail>
             <ProfileDetail>
-              <Label>Roll. No.:</Label>
-              <Value>{studentProfile.rollno}</Value>
+              <div style={{ fontWeight: 'bold' }}>Roll. No. :</div>
+              <div>{studentProfile.rollno}</div>
             </ProfileDetail>
             <ProfileDetail>
-              <Label>Gender:</Label>
-              <Value>{studentProfile.gender}</Value>
+              <div style={{ fontWeight: 'bold' }}>Gender:</div>
+              <div>{studentProfile.gender}</div>
             </ProfileDetail>
             <ProfileDetail>
-              <Label>Mobile No.:</Label>
-              <Value>{studentProfile.mobileno}</Value>
+              <div style={{ fontWeight: 'bold' }}>Mobile No. :</div>
+              <div>{studentProfile.mobileno}</div>
             </ProfileDetail>
             <ProfileDetail>
-              <Label>Email:</Label>
-              <Value>{studentProfile.email}</Value>
+              <div style={{ fontWeight: 'bold' }}>Email:</div>
+              <div>{studentProfile.email}</div>
             </ProfileDetail>
           </ProfileInfo>
         </Content>

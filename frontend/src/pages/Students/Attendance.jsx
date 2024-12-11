@@ -1,50 +1,101 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Sidebar from "./Sidebar";
 import {
-  AttendanceContainer,
-  SidebarContainer,
+  StudentDashboardContainer,
   Content,
-  AttendanceHeader,
-  AttendanceList,
-  AttendanceItem,
-  AttendanceDate,
-  AttendanceStatus,
+  Section,
+  SectionTitle,
+  AttendanceContainer,
+  AttendanceCard,
+  CardTitle,
+  CardContent,
+  Table,
+  TableRow,
+  TableData,
 } from "../../styles/AttendanceStyles";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
-const AttendanceSection = () => {
-  const attendance = [
-    { id: 1, date: "2024-05-01", present: true },
-    { id: 2, date: "2024-05-02", present: false },
-    { id: 3, date: "2024-05-03", present: true },
-    { id: 4, date: "2024-05-04", present: true },
-    { id: 5, date: "2024-05-05", present: true },
-  ];
+const Attendance = () => {
+  const [attendanceData, setAttendanceData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAttendance = async () => {
+      try {
+        const token = localStorage.getItem("studenttoken"); // Use 'studenttoken' instead of 'token'
+        console.log("Token being sent:", token); // Log token to ensure it's being passed
+
+        const response = await axios.get(
+          "http://localhost:5000/api/v1/attendance/my-attendance",
+          {
+            headers: {
+              studenttoken: token, // Pass token as 'studenttoken' in headers
+            },
+          }
+        );
+
+        if (response.data.success) {
+          console.log("Attendance data:", response.data.attendanceRecords); // Log the response data
+          setAttendanceData(response.data.attendanceRecords); // Update the state with the data
+          setLoading(false); // Set loading to false after data is fetched
+        } else {
+          console.log("No attendance records found");
+          setLoading(false); // Set loading to false if no records are found
+        }
+      } catch (error) {
+        console.error("Error fetching attendance", error);
+        setLoading(false); // Set loading to false in case of error
+      }
+    };
+
+    fetchAttendance();
+  }, []);
+
+  if (loading) {
+    return <p>Loading attendance data...</p>;
+  }
 
   return (
-    <>
-    <AttendanceContainer>
-      <SidebarContainer>
-        <Sidebar />
-      </SidebarContainer>
+    <StudentDashboardContainer>
+      <Sidebar />
       <Content>
-        <AttendanceHeader>Attendance</AttendanceHeader>
-        <AttendanceList>
-          {attendance.map(({ id, date, present }) => (
-            <AttendanceItem key={id}>
-              <AttendanceDate>{date}</AttendanceDate>
-              <AttendanceStatus present={present}>
-                {present ? "Present" : "Absent"}
-              </AttendanceStatus>
-            </AttendanceItem>
-          ))}
-        </AttendanceList>
+        <Section>
+          <SectionTitle>Attendance</SectionTitle>
+          <AttendanceContainer>
+            <AttendanceCard>
+              <CardTitle>Attendance Summary</CardTitle>
+              <CardContent>
+                <Table>
+                  <thead>
+                    <TableRow>
+                      {/* <TableHeader>Date</TableHeader> */}
+                      {/* <TableHeader>Status</TableHeader> */}
+                    </TableRow>
+                  </thead>
+                  <tbody>
+                    {attendanceData.length > 0 ? (
+                      attendanceData.map((attendance, index) => (
+                        <TableRow key={index}>
+                          <TableData>{attendance.date}</TableData>
+                          <TableData>{attendance.status}</TableData>
+                        </TableRow>
+                      ))
+                    ) : (
+                      <TableRow>
+                        <TableData colSpan="2">
+                          No attendance data available
+                        </TableData>
+                      </TableRow>
+                    )}
+                  </tbody>
+                </Table>
+              </CardContent>
+            </AttendanceCard>
+          </AttendanceContainer>
+        </Section>
       </Content>
-    </AttendanceContainer>
-    <ToastContainer />
-    </>
+    </StudentDashboardContainer>
   );
 };
 
-export default AttendanceSection;
+export default Attendance;

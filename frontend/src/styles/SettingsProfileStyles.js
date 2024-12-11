@@ -43,12 +43,5 @@ export const EditButton = styled.button`
 
 export const ProfileDetail = styled.div`
   margin-bottom: 20px;
-`;
-
-export const Label = styled.span`
-  font-weight: bold;
-`;
-
-export const Value = styled.span`
-  margin-left: 10px;
+  display: flex;
 `;

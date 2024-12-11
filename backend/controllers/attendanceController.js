@@ -32,3 +32,22 @@ export const getAllAttendance = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getStudentAttendance = async (req, res, next) => {
+  try {
+    const studentId = req.student.id; // From the decoded JWT token
+    console.log("Fetching attendance for student ID:", studentId); // Log student ID
+    const attendanceRecords = await Attendance.find({ student: studentId });
+
+    if (!attendanceRecords || attendanceRecords.length === 0) {
+      return res.status(404).json({ error: "No attendance records found for this student" });
+    }
+
+    res.status(200).json({
+      success: true,
+      attendanceRecords
+    });
+  } catch (err) {
+    next(err); // Pass to error handler
+  }
+};

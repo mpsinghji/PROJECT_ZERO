@@ -21,6 +21,14 @@ const studentSchema = new mongoose.Schema({
     required: [true, "Mobile number is required"],
     unique: true,
   },
+  gender: {
+    enum: ["male", "female", "other"],
+    type: String,
+  },
+  name: {
+    type: String,
+    required: [true, "Name is required"],
+  },
   role: {
     type: String,
     default: "student",

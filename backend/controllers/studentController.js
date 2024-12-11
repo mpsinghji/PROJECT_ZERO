@@ -3,7 +3,7 @@ import { Response } from "../utils/response.js";
 import jwt from "jsonwebtoken";
 
 export const studentRegister = async (req, res) => {
-  const { email, password, rollno, mobileno } = req.body;
+  const { email, password, rollno, mobileno,gender,name } = req.body;
 
   try {
     console.log("Request Body:", req.body);
@@ -14,7 +14,7 @@ export const studentRegister = async (req, res) => {
       return Response(res, 400, false, "Student with this email or roll number already exists");
     }
 
-    const student = new Student({ email, password, rollno, mobileno });
+    const student = new Student({ email, password, rollno, mobileno,gender,name });
     await student.save();
 
     return Response(res, 201, true, "Student successfully registered");

@@ -1,8 +1,30 @@
 import express from "express";
 import Attendance from "../models/attendanceSchema.js";
 import Student from "../models/studentModel.js"; // Assuming you have a Student model
+import { getAllAttendance, markAttendance, getStudentAttendance } from "../controllers/attendanceController.js"; // Import controller functions
+import jwt from "jsonwebtoken"; // Add JWT for token validation
 
 const router = express.Router();
+
+// JWT token verification middleware
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization?.split(" ")[1] || req.headers.studenttoken; // Check for studenttoken if no token in Authorization header
+  if (!token) {
+    return res.status(403).json({ error: "Token is required" });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ error: "Invalid token" });
+    }
+    console.log("Decoded student info:", decoded);  // Log the decoded info
+    req.student = decoded; // Attach decoded student info to request
+    next();
+  });
+};
+
+
+
 
 // Fetch student list
 router.get("/students", async (req, res) => {
@@ -26,7 +48,9 @@ router.get("/getall", async (req, res) => {
   }
 });
 
-  
+
+router.get("/my-attendance", verifyToken, getStudentAttendance);  // Use the controller method here
+
 
 // Submit attendance
 router.post("/attendance", async (req, res) => {
@@ -55,6 +79,11 @@ router.post("/attendance", async (req, res) => {
       res.status(500).json({ error: "Failed to save attendance" });
     }
   });
-  
 
-export default router;
+
+  router.get("/", getAllAttendance);  // Use the controller method here
+
+  router.post("/attendance", markAttendance);  // Use the controller method here
+
+  
+  export default router;

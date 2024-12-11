@@ -87,6 +87,7 @@ export const EventList = styled.ul`
 `;
 
 export const EventItem = styled.li`
+  font-family: Arial, sans-serif;
   border: 1px solid #ddd;
   padding: 10px;
   margin-bottom: 10px;
