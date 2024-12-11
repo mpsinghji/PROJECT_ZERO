@@ -96,9 +96,11 @@ const ChooseUser = () => {
     },
   };
 
-  const handleRoleSelection = (role) => {
-    setRole(role);
-  };
+  const handleRoleSelection = (selectedRole) => {
+    setRole(selectedRole);
+    console.log("Selected Role:", selectedRole);
+};
+
 
   return (
     <>
