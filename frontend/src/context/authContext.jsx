@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Loading from "../components/Loading/loading";
+import Cookies from "js-cookie";
 
 const AuthContext = createContext();
 
@@ -13,9 +14,12 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
 useEffect(() => {
-    const adminToken = localStorage.getItem("admintoken");
-    const studentToken = localStorage.getItem("studenttoken");
-    const teacherToken = localStorage.getItem("teachertoken");
+  // const adminToken = localStorage.getItem("admintoken");
+  // const studentToken = localStorage.getItem("studenttoken");
+  // const teacherToken = localStorage.getItem("teachertoken");
+    const adminToken = Cookies.get("admintoken");
+    const studentToken = Cookies.get("studenttoken");
+    const teacherToken = Cookies.get("teachertoken");
 
     if (adminToken) {
         setIsAuthenticated(true);

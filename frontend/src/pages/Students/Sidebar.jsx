@@ -21,6 +21,7 @@ import {
 import bg1 from "../../assets/bg1.png";
 import { MdPayment } from "react-icons/md";
 import LogoutModal from "../../components/Logout/logOut";
+import Cookies from "js-cookie";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -43,7 +44,8 @@ const Sidebar = () => {
 
   const handleConfirmLogout = () => {
     console.log("User has logged out");
-    localStorage.removeItem("studenttoken");
+    // localStorage.removeItem("studenttoken");
+    Cookies.remove("studenttoken");
     navigate("/choose-user");
     setIsModalOpen(false);
   };

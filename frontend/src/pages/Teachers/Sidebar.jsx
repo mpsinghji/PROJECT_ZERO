@@ -22,6 +22,7 @@ import {
 import styled , { css } from "styled-components";
 import bg1 from "../../assets/bg1.png";
 import LogoutModal from "../../components/Logout/logOut";
+import Cookies from "js-cookie";
 
 export const SidebarNavItem = styled.li`
   display: flex;
@@ -72,7 +73,8 @@ const Sidebar = () => {
   };
 
   const handleConfirmLogout = () => {
-    localStorage.removeItem("teachertoken");
+    // localStorage.removeItem("teachertoken");
+    Cookies.remove("teachertoken");
     navigate("/choose-user"); 
     setIsModalOpen(false); 
   };

@@ -16,6 +16,7 @@ import { createGlobalStyle } from "styled-components";
 import { useAuth } from "../context/authContext.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie"; 
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -71,7 +72,8 @@ const ChooseUser = () => {
         throw new Error("Token not found in response");
       }
 
-      localStorage.setItem(tokenKey, token);
+      Cookies.set(tokenKey, token, { expires: 1, secure: true });
+      // localStorage.setItem(tokenKey, token);
       setIsAuthenticated(true);
       setUserRole(role);
       navigate(`/${role}/dashboard`);
@@ -89,7 +91,8 @@ const ChooseUser = () => {
   };
 
   const tokenKey = `${role}token`;
-  const token = localStorage.getItem(tokenKey);
+  // const token = localStorage.getItem(tokenKey);
+  const token = Cookies.get(tokenKey);
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

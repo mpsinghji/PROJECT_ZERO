@@ -5,6 +5,7 @@ import axios from 'axios'; // Add axios import
 import { ProfileContainer, SidebarContainer, Content, ProfileHeader, ProfileDetails, ProfileLabel, ProfileInfo, EditButton } from '../../styles/SettingsProfileStyles';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie';
 
 const TeacherProfileSection = () => {
   const [teacherInfo, setTeacherInfo] = useState({
@@ -19,7 +20,8 @@ const TeacherProfileSection = () => {
   useEffect(() => {
     const fetchTeacherProfile = async () => {
       try {
-        const token = localStorage.getItem("teachertoken");
+        // const token = localStorage.getItem("teachertoken");
+        const token = Cookies.get("teachertoken");
         if (!token) {
           toast.error("No token found. Please log in again.");
           setLoading(false);

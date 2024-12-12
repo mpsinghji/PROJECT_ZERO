@@ -14,6 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/loading.jsx";
+import Cookies from "js-cookie";
 
 const Fees = () => {
   const navigate = useNavigate();
@@ -22,7 +23,8 @@ const Fees = () => {
   
   // Retrieve paid semesters from localStorage
   const [paidFees, setPaidFees] = useState(() => {
-    const storedPaidFees = localStorage.getItem("paidFees");
+    // const storedPaidFees = localStorage.getItem("paidFees");
+    const storedPaidFees = Cookies.get("paidFees");
     return storedPaidFees ? JSON.parse(storedPaidFees) : [];
   });
 
@@ -43,7 +45,8 @@ const Fees = () => {
       // Update the state and save it in localStorage
       const updatedPaidFees = [...paidFees, semester];
       setPaidFees(updatedPaidFees);
-      localStorage.setItem("paidFees", JSON.stringify(updatedPaidFees)); // Store in localStorage
+      // localStorage.setItem("paidFees", JSON.stringify(updatedPaidFees)); // Store in localStorage
+      Cookies.set("paidFees", JSON.stringify(updatedPaidFees));
 
       toast.success("No fee due left!"); // Show success toast
       setLoading(false);

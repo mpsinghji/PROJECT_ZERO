@@ -2,8 +2,24 @@ import Admin from "../models/adminModel.js";
 import Student from "../models/studentModel.js";
 import Teacher from "../models/teacherModel.js";
 import { Response } from "../utils/response.js";
+import { sendEMail, sendOtpEmail } from "../middlewares/sendEmail.js";
 import jwt from "jsonwebtoken";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const generateOtp = () => Math.floor(100000 + Math.random() * 900000);
+
+const saveOtpToAdmin = async (admin, otp) => {
+  const otpExpire = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes expiry
+  admin.otp = otp;
+  admin.otpExpire = otpExpire;
+  await admin.save();
+  return otp;
+};
 
 export const adminRegister = async (req, res) => {
   const { email, password } = req.body;
@@ -11,14 +27,12 @@ export const adminRegister = async (req, res) => {
   try {
     console.log("Request Body:", req.body);
 
-    // Check if the admin already exists
     const existingAdmin = await Admin.findOne({ email });
     console.log("Existing Admin:", existingAdmin);
     if (existingAdmin) {
       return Response(res, 400, false, "Admin already exists");
     }
 
-    // Create a new admin
     const admin = new Admin({ email, password });
     await admin.save();
 

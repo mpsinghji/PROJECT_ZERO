@@ -13,6 +13,8 @@ import {
   EventItem,
   EventList,
 } from "../../styles/DashboardStyles";
+import Loading from "../../components/Loading/loading.jsx";
+import Cookies from "js-cookie";
 
 const StudentDashboard = () => {
   const [assignmentCount, setAssignmentCount] = useState(null);
@@ -23,7 +25,8 @@ const StudentDashboard = () => {
 
   const fetchData = async (url, setter, field) => {
     try {
-      const token = localStorage.getItem("studenttoken");
+      // const token = localStorage.getItem("studenttoken");
+      const token = Cookies.get("studenttoken");
       if (!token) {
         throw new Error("No token found. Please log in.");
       }
@@ -52,7 +55,7 @@ const StudentDashboard = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading data...</p>;
+    return <Loading />;
   }
 
   return (

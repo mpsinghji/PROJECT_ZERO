@@ -14,6 +14,7 @@ import {
 import Loading from "../../components/Loading/loading";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from "js-cookie";
 
 const AdminSettingProfile = () => {
   const [adminInfo, setAdminInfo] = useState({
@@ -28,7 +29,8 @@ const AdminSettingProfile = () => {
   useEffect(() => {
     const fetchAdminProfile = async () => {
       try {
-        const token = localStorage.getItem("admintoken");
+        // const token = localStorage.getItem("admintoken");
+        const token = Cookies.get("admintoken");
         if (!token) {
           toast.error("No token found. Please log in again.");
           setLoading(false);

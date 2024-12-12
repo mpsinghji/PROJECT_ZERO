@@ -14,6 +14,7 @@ import {
   TableRow,
   TableData,
 } from "../../styles/AttendanceStyles";
+import Cookies from "js-cookie";
 
 const Attendance = () => {
   const [attendanceData, setAttendanceData] = useState([]);
@@ -22,7 +23,8 @@ const Attendance = () => {
   useEffect(() => {
     const fetchAttendance = async () => {
       try {
-        const token = localStorage.getItem("studenttoken"); // Use 'studenttoken' instead of 'token'
+        // const token = localStorage.getItem("studenttoken"); // Use 'studenttoken' instead of 'token'
+        const token = Cookies.get("studenttoken");
         console.log("Token being sent:", token); // Log token to ensure it's being passed
 
         const response = await axios.get(

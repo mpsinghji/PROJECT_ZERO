@@ -26,6 +26,7 @@ import { FaUserPlus } from "react-icons/fa";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { CgUserRemove } from "react-icons/cg";
 import LogoutModal from "../../components/Logout/logOut";
+import Cookies from "js-cookie";
 
 const AdminSidebar = () => {
   const navigate = useNavigate();
@@ -57,7 +58,8 @@ const AdminSidebar = () => {
 
   const handleConfirmLogout = () => {
     console.log('User has logged out');
-    localStorage.removeItem("admintoken");
+    // localStorage.removeItem("admintoken");
+    Cookies.remove("admintoken");
     navigate("/choose-user"); 
     setIsModalOpen(false); 
   };

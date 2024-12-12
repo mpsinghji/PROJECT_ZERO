@@ -10,6 +10,7 @@ import AttendanceGraph from "../../components/Analysis/Attendance.jsx";
 import PaymentGraph from "../../components/Analysis/paymentDisplay.jsx";
 import ActivityGraph from "../../components/Analysis/Activitycount.jsx";
 import UserAnalysis from "../../components/Analysis/userAnalysis.jsx";
+import Cookies from "js-cookie";
 
 const AdminDashboard = () => {
   const [data, setData] = useState({
@@ -22,7 +23,9 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("admintoken");
+
+    // const token = localStorage.getItem("admintoken");
+    const token = Cookies.get("admintoken");
     if (!token) {
       toast.error("Invalid User. Please log in again.");
       setLoading(false);

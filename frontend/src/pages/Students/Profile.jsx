@@ -12,6 +12,7 @@ import {
 import Loading from '../../components/Loading/loading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie';
 
 const ProfileSection = () => {
   const [studentProfile, setStudentProfile] = useState({
@@ -26,7 +27,8 @@ const ProfileSection = () => {
   useEffect(() => {
     const fetchStudentProfile = async () => {
       try {
-        const token = localStorage.getItem('studenttoken');
+        // const token = localStorage.getItem('studenttoken');
+        const token = Cookies.get('studenttoken');
         if (!token) {
           toast.error('No token found. Please log in again.');
           setLoading(false);

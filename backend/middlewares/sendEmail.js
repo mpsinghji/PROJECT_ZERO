@@ -22,3 +22,31 @@ export const sendEMail = async (options) => {
 
     await transporter.sendMail(mailOptions);
 }
+
+
+export const sendOtpEmail = async (user, otp) => {
+    const emailTemplate = `
+      <html>
+        <body>
+          <h2>Verify your account</h2>
+          <p>Dear User,</p>
+          <p>Your OTP for verification is: <strong>${otp}</strong></p>
+          <p>The OTP will expire in 15 minutes.</p>
+        </body>
+      </html>
+    `;
+  
+    const subject = "Verify your account";
+  
+    try {
+      // Send OTP email using the sendEMail function
+      await sendEMail({
+        email: user.email,  // Recipient's email
+        subject: subject,   // Subject for the OTP email
+        html: emailTemplate, // HTML template for OTP email
+      });
+    } catch (error) {
+      console.error("Error sending OTP email:", error);
+    }
+  };
+  
